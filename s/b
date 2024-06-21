@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# change fname for different output filename
-fname="report.pdf"
-
-# main pdf build command
-latexmk
-mv main.pdf $fname
