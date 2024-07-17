@@ -1,6 +1,6 @@
 \RequirePackage[english]{babel}
 \RequirePackage{stix}
-\RequirePackage[letterpaper,margin=1in]{geometry}
+\RequirePackage[letterpaper, margin=1in]{geometry}
 \RequirePackage{amsmath, amsthm, amsfonts, tikz-cd}
 \RequirePackage{enumitem}
 \RequirePackage{graphicx}
@@ -16,3 +16,12 @@
 \newcommand{\code}[1]{\color{purple}{\texttt{#1}}\color{black}{}}
 \newcommand{\filename}[1]{\color{teal}{\texttt{#1}}\color{black}{}}
 \newcommand{\datatext}[1]{\color{brown}{\texttt{#1}}\color{black}{}}
+
+% amsthm settings
+\newtheorem{defn}{Definition}[subsection]
+\newtheorem{lemm}[defn]{Lemma}
+\newtheorem{coro}[defn]{Corollary}
+\newtheorem{thrm}[defn]{Theorem}
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem*{exmp}{Example}
+\newtheorem*{rmrk}{Remark}
