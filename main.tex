@@ -1,4 +1,5 @@
-\documentclass[11pt]{article}
+% \documentclass[11pt]{article}
+\documentclass[11pt, openany]{book}
 
 % Input user sty files
 \usepackage{sty/pkgs}
@@ -9,11 +10,19 @@
 \addbibresource{bib/ref.bib}
 % End of bib resources
 
+\makeindex
+
 \begin{document}
-\maketitle
+
 
 % Input source of contents
-% \input{./src/placeholder.tex}
+\maketitle
+
+\tableofcontents
+% \input{./src/abs.tex}
+\input{./src/00.tex}
+\input{./src/01.tex}
+\input{./src/02.tex}
 % End of source of contents contents
 
 \printbibliography

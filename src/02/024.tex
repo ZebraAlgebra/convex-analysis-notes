@@ -1,0 +1,46 @@
+\section{Recession Cones and Constancy Space of Functions}
+\label{sect:024}
+
+\paragraph{}Fix a proper function $f$ on $\mathbb{R}^m$. We introduced $\operatorname{epi}(f),V_{f,u}$. We can look at their recession cones.
+
+\begin{prop}[Recession Cones of Level Sets and Epigraphs]\label{prop:024-recess-epi-level}
+	.
+	\begin{enumerate}[label=(\alph*)]
+		\item (Recession Cones of Epigraphs) The recession cone $R_{\operatorname{epi}(f)}$ is upward-closed; we define $r_f:=R_{\operatorname{epi}(f)}^\vee$.
+		\item (Recession Cones of Level Sets are Slices) The recession cones of $V_{f,u}$ can be described as follows:
+		      \[
+			      R_{V_{f,u}}=\begin{cases}
+				      \mathbb{R}^m                                 & \text{ if }V_{f,u}=\emptyset    \\
+				      \left(R_{\operatorname{epi}}(f)\right)_{:,0} & \text{ if }V_{f,u}\neq\emptyset
+			      \end{cases}
+		      \]
+		      Note: when $V_{f,u}\neq\emptyset$, $R_{V_{f,u}}$ is independent of $u$; we denote it as $R_f$. Similarly, write $L_{f}=R_f\cap -R_f$. We call $R_f,L_f$ the recession cone and constancy space of $f$.
+		\item (Recession Function Characterizes Recession Cone and Constancy Space) Suppose $f$ is closed, then:
+		      \[
+			      R_f=r_f^{-1}\left(-\mathbb{R}_{+}\right),\;
+			      L_f=\left(r_f^{-1}\left(-\mathbb{R}_{+}\right)\right)\cap\left(-r_f^{-1}(-\mathbb{R}_{+})\right)=\left(r_f^{-1}(0)\right)\cap\left(-r_f^{-1}(0)\right)
+		      \]
+		\item (Formula for Recession Function) Suppose $f$ is closed, then for $x\in \operatorname{dom}(f)$:
+		      \[
+			      r_f(d)=\underset{\alpha >0}{\operatorname{sup}}\frac{f(x+\alpha d)-f(x)}{\alpha }
+			      =\lim_{\alpha \to+\infty}\frac{f(x+\alpha d)-f(x)}{\alpha }
+		      \]
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	For (a), use the fact that $\operatorname{epi}(f)$ is upward-closed.	For (b), use $V_{f,u}=\operatorname{epi}(f)_{:,u}=\operatorname{epi}(f)\cap \left(\mathbb{R}^m\times \{u\}\right)$ and \Cref{prop:013-yoga-recession}. For (c), (b) gives:
+	\[
+		R_f=r_f^{-1}\left(-\mathbb{R}_{+}\right),\;
+		L_f=\left(r_f^{-1}\left(-\mathbb{R}_{+}\right)\right)\cap\left(-r_f^{-1}(-\mathbb{R}_{+})\right)
+	\]
+	For $L_f=\left(r_f^{-1}(0)\right)\cap\left(-r_f^{-1}(0)\right)$, use convexity of $f$ and $r_f(0)=0$. For (d), convexity of $f$ gives the second "=" (as the expression is monotically increasing in $\alpha $). For the first "=", for fixed $d$ and $x\in \operatorname{dom}(f)$, we have by properness and closedness that:
+	\begin{align*}
+		r_f(d) & =\inf \left\{u\in \mathbb{R}:(x,f(x))+\rho_{(d,u)}\subset \operatorname{epi}(f)\right\}                                       \\
+		       & = \inf \left\{u\in \mathbb{R}:f(x+\alpha d)\leq f(x)+\alpha u\text{ for }\alpha \in \mathbb{R}_+\right\}                      \\
+		       & = \inf \left\{u\in \mathbb{R}:u\geq \alpha^{-1}\left(f(x+\alpha d)- f(x)\right)\text{ for }\alpha \in \mathbb{R}_{++}\right\} \\
+		       & = \sup_{\alpha \in \mathbb{R}_{++}} \alpha^{-1}\left(f(x+\alpha d)- f(x)\right)\qedhere{}
+	\end{align*}
+\end{proof}
+
+

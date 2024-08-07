@@ -1,0 +1,146 @@
+\section{Epigraphs, Closedness and Convexity}
+\label{sect:021}
+
+\paragraph{}In this section, we introduce the epigraph construction, establish some results that relates properties of a scalar function to its epigraph. After that, we define what it means for a function to be closed, to be convex, and conclude this section with the yoga of convex functions. In the following definition, we introduce some terminology to simplify the expression of some basic conditions that an extended-real-valued functions can take. The main peculiarity of arithmetic on $\overline{\mathbb{R}}$ is that one cannot define $0\times\pm\infty,\infty-\infty$, however the convenience $\overline{\mathbb{R}}$ offers is significant in our context.
+
+\begin{defn}[Types of functions, Extension by $+\infty$, Well-formedness]
+	\label{defn:021-functions-def}
+	Let $f:\mathbb{R}^m\to \overline{\mathbb{R}}$. We say $f$ is:
+	\begin{itemize}
+		\item a scalar function
+		\item a proper function if $-\infty\notin f(\mathbb{R}^m)$ and $f(\mathbb{R}^m)\neq \{+\infty\}$.
+		\item a decent function if $\{\pm\infty\}\nsubset f(\mathbb{R}^m)$.
+		\item a real-valued function if $f(\mathbb{R}^m)\subset \mathbb{R}$
+	\end{itemize}
+	Suppose $f$ is only defined over a subset $X\subset \mathbb{R}^m$, then the extension of $f$ by infinity is the function that takes value $+\infty$ on places where $f$ is not defined. Given functions $\{f_i:\mathbb{R}^m\to \overline{\mathbb{R}}\}_{i=1}^k$, we say that the linear combination $\sum_{i=1}^ka_if_i:x\mapsto\sum_{i:a_i\neq 0}a_if_i(x)$ is well-formed if this expression is well-defined for all $x\in \mathbb{R}^m$.
+\end{defn}
+
+\paragraph{}Epigraphs gives a good way to associate a geometric / topological object of a scalar function. For this section, let us fix a scalar function $f:\mathbb{R}^m\to \overline{\mathbb{R}}$.
+
+\begin{defn}[Epigraph, Domain, Sublevel sets]
+	\label{defn:012-epi-dom-sublvl}
+	The epigraph of $f$ is the following:
+	\[
+		\operatorname{epi}(f)=\{(x,u)\in \mathbb{R}^m\times \mathbb{R}:f(x)\leq u\}\subset \mathbb{R}^{m+1}
+	\]
+	Given $u\in \mathbb{R}$, the sublevel set at $u$, written as $V_{f,u}$ is given by:
+	\[
+		V_{f,u}=\{x\in \mathbb{R}^m :f(x)\leq u\}=f^{-1}[-\infty,u]\subset \mathbb{R}^m
+	\]
+	Note also that as $u$ grows, the set grows.	The effective domain is:
+	\[
+		\operatorname{dom}(f)=\{x\in \mathbb{R}^m:f(x)<+\infty\}=f^{-1}[-\infty,+\infty)\subset \mathbb{R}^m
+	\]
+	One can also realize $\operatorname{dom}(f)$ as an ascending union of sublevel sets: $\operatorname{dom}(f)=\bigcup_{u\in \mathbb{N}}V_{f,u}$.
+\end{defn}
+
+\paragraph{}The slices and fibers of epigraphs contains useful information.
+
+\begin{prop}[Slice, Fibers, and Projection of Epis]
+	\label{prop:021-epi-slice-fibers}.
+	\begin{enumerate}[label=(\alph*)]
+		\item (Slices give Sublevel Sets) Given $u\in \mathbb{R}$, we have the following description of slices:
+		      \[
+			      \operatorname{epi}(f)_{:,u}=V_{f,u}
+		      \]
+		\item (Fibers Recovers Functions) Given $x\in \mathbb{R}^m$, we have the following description of fibers:
+		      \[
+			      \operatorname{epi}(f)_{x,:}=\begin{cases}
+				      \mathbb{R},        & \text{if }f(x)=-\infty       \\
+				      \mathbb{R}_++f(x), & \text{if }f(x)\in \mathbb{R} \\
+				      \emptyset,         & \text{if }f(x)=+\infty
+			      \end{cases}
+		      \]
+		      Therefore: $f(x)=\inf \operatorname{epi}(f)_{x,:}$.
+		\item (Effective Domain as Image) Let $\pi:\mathbb{R}^{m}\times \mathbb{R}\to \mathbb{R}^m$ be projection $(x,u)\mapsto x$, then $\operatorname{dom}(f)=\pi(\operatorname{epi}(f))$.
+	\end{enumerate}
+\end{prop}
+
+\paragraph{}Proof of this proposition is left to the readers. The epigraph of a scalar function contains all the set-theoretic information of this function - one can recover the function from its epigraph. To establish a finer correspondence (see \Cref{prop:021-epi-corr-set}), consider the following definition:
+
+\begin{defn}[Upward-Closed Sets, Associated Functions]
+	\label{defn:021-ucset-assfunc}
+	A subset $Z\subset \mathbb{R}^{m+1}$ is upward-closed if for each $x\in \mathbb{R}^m$, $Z_{x,:}$ is either $\emptyset,\mathbb{R}$ or of the form $\mathbb{R}_++u$ for some $u\in \mathbb{R}$. In this case, we define the associated function $Z^\vee:\mathbb{R}^m\to \overline{\mathbb{R}}$ by:
+	\[
+		Z^\vee(x)=\inf Z_{x,:},\;\text{for }x\in \mathbb{R}^m
+	\]
+\end{defn}
+
+\paragraph{}The following is straightfoward:
+
+\begin{prop}[Epigraph Correspondence]
+	\label{prop:021-epi-corr-set}
+	There is a bijective correspondence between scalar functions $\mathbb{R}^m\to \overline{\mathbb{R}}$ and upward-closed subsets of $\mathbb{R}^{m+1}$ given by $\operatorname{epi}(\cdot)$ and $(\cdot)^\vee$.
+\end{prop}
+
+\paragraph{}Some properties of scalar functions can be examined at the level of epigraphs. For example, we show that lower-semicontinuity of functions corresponds to closedness of epigraphs.
+\begin{prop}[Lower-semicontinuity v.s. Closedness]
+	\label{prop:021-epi-lsc}
+	TFAE:
+	\begin{enumerate}[label=(\roman*)]
+		\item The level sets $V_{f,u}$ are closed for $u\in \mathbb{R}$.
+		\item $f$ is lower-semicontinuous.
+		\item $\operatorname{epi}(f)$ is closed.
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	May assume $\operatorname{epi}(f)\neq\emptyset$.
+	\begin{itemize}
+		\item (i) implies (ii): Take $\{x_i\}_i\to x$. If $f(x)>u>\underset{i}{\operatorname{liminf}}f(x_i)$, then there is a subsequence contained in $V_{f,u}$, showing $x\in V_{f,u}$ by closedness, a contradiction, so $f(x)\leq \underset{i}{\operatorname{liminf}}f(x_i)$.
+		\item (ii) implies (iii): Take $\operatorname{epi}(f)\supset\{(x_i,w_i)\}_i\to(x,w)$, then $x_i\to x$. We get $(x,w)\in \operatorname{epi}(f)$ by:
+		      \[f(x)\leq\underset{i}{\operatorname{liminf}}f(x_i)\leq \underset{i}{\operatorname{liminf}}w_i=w\]
+		\item  (iii) implies (i): By (a) of \Cref{prop:021-epi-slice-fibers}.\qedhere{}
+	\end{itemize}
+\end{proof}
+
+\paragraph{}Now we define what it means to be a convex or closed function.
+
+\begin{defn}[Convexity and Closedness of Scalar Functions]
+	\label{defn:021-convex-funcs}
+	We say that $f$ is convex (resp. closed) if its epigraph $\operatorname{epi}(f)$ is convex (resp. closed).
+\end{defn}
+
+\paragraph{}By \Cref{prop:021-epi-slice-fibers}, $\operatorname{dom}(f)$ and the sublevel sets $V_{f,u}$ are convex if $f$ is convex by \Cref{prop:011-conv-yoga}.
+\paragraph{}Without looking at epigraphs, we know that closed functions are realized as lower-semicontinuous functions. Convex functions are also realized as follows.
+
+\begin{defn}[Convex Functions - in the Usual Sense]
+	\label{defn:021-conv-usual}.
+	Suppose $f$ is proper, then we say that $f$ is convex in the usual sense if:
+	\[
+		f(I(x,y;\alpha))\leq
+		I(f(x),f(y);\alpha),\;\text{for }x,y\in C,\alpha\in(0, 1)
+	\]
+	We say that $f$ is strict if "$<$" holds whenever $x\neq y,\alpha\in(0,1)$.
+\end{defn}
+
+\paragraph{}Note that when $f$ is proper, the term $I(f(x),f(y);\alpha)$ is well-defined for $\alpha \in(0,1)$, and convexity of $f$ is the same as convexity of $f$ in the usual sense. One can impose weaker condition for this term to be well-defined (e.g. image not containing both $\{\pm\infty\}$), but properness gives enough flexibility for us.
+
+\begin{rmrk}We give a small list of function properties and their counterparts for epigraphs.
+	\begin{itemize}
+		\item Properness: $f$ is proper iff $\operatorname{epi}(f)$ contains no vertical lines and is non-empty.
+		\item Dominance: Given another scalar function $g:\mathbb{R}^m\to \overline{\mathbb{R}}$, then $f$ dominates $g$ iff $\operatorname{epi}(g)\subset \operatorname{epi}(f)$.
+		\item Lower-semicontinuity: $f$ is lower-semicontinuous ion iff $\operatorname{epi}(f)$ is closed.
+		\item Convexity: We say that $f$ is a convex function iff $\operatorname{epi}(f)$ is a convex set.
+	\end{itemize}
+\end{rmrk}
+
+\paragraph{}Now we present some yogas of convex functions.
+
+\begin{prop}[Yoga of Convex Functions]\label{prop:021-yoga-convex-functions}
+	Convex functions retains convexity under several operations:
+	\begin{enumerate}[label=(\alph*)]
+		\item (Composition with Affine) Given convex function $f$ on $\mathbb{R}^m$, affine $A:\mathbb{R}^l\to \mathbb{R}^n$, $g:=f\circ A$ is convex.
+		\item (Positive Combinations) Given convex functions $\{f_i\}_{i=1}^k$ on $\mathbb{R}^m$ and some scalars $\{\gamma_i\}_{i=1}^k\subset \mathbb{R}_{+}$, if the combination $f:=\sum_{i=1}^k \gamma_i f_i$ is well-formed, then it is convex.
+		\item (Pointwise Supremum) Given convex functions $\{f_i\}_{i\in I}$ on $\mathbb{R}^m$, then $f:x\mapsto\sup_{i\in I}f_i(x)$ is convex.
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	For (a), use $\operatorname{epi}(g)_{x,:}=\operatorname{epi}(f)_{Ax,:}$ for $x\in \mathbb{R}^l$. For (b), may assume $ \gamma_i>0$, then we may use $\operatorname{epi}(f)_{x,:}=\sum_{i=1}^k\gamma_i\operatorname{epi}(f_i)_{x,:}$.	For (c), use $\operatorname{epi}(f)=\bigcap_{i\in I}\operatorname{epi}(f_i)$
+\end{proof}
+
+\begin{rmrk}
+	Analogous statement holds with convexity replaced by closedness.
+\end{rmrk}
+

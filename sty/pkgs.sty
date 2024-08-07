@@ -1,13 +1,14 @@
 \RequirePackage[english]{babel}
 \RequirePackage{stix}
 \RequirePackage[letterpaper, margin=1in]{geometry}
-\RequirePackage{amsmath, amsthm, amsfonts, tikz-cd}
+\RequirePackage{amsmath, amsthm, amsfonts, tikz-cd, stmaryrd}
 \RequirePackage{enumitem}
 \RequirePackage{graphicx}
 \RequirePackage{todonotes}
 \RequirePackage{xcolor}
 \RequirePackage[colorlinks=true, allcolors=blue]{hyperref}
 \RequirePackage[backend=biber,style=ieee]{biblatex}
+\RequirePackage[nameinlink]{cleveref}
 \RequirePackage{csquotes}
 \RequirePackage{chngcntr}
 \RequirePackage{subfig}
@@ -18,10 +19,13 @@
 \newcommand{\datatext}[1]{\color{brown}{\texttt{#1}}\color{black}{}}
 
 % amsthm settings
-\newtheorem{defn}{Definition}[subsection]
+\newtheorem{defn}{Definition}[section]
 \newtheorem{lemm}[defn]{Lemma}
 \newtheorem{coro}[defn]{Corollary}
 \newtheorem{thrm}[defn]{Theorem}
 \newtheorem{prop}[defn]{Proposition}
 \newtheorem*{exmp}{Example}
 \newtheorem*{rmrk}{Remark}
+
+% cref settings
+

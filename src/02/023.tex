@@ -1,0 +1,110 @@
+\section{Closures of Functions}
+\label{sect:023}
+
+\paragraph{}In this section, we construct convex, closed, or convex and closed functions that "best approximates" a given function. The idea is that we can apply $\operatorname{cl},\operatorname{epi}$ to epigraphs. For this section, fix a scalar function $f$.
+
+\begin{defn}[Various Closures of Functions]
+	\label{defn:023-closure-funcs}
+	We define:
+	\[
+		\operatorname{conv}f=
+		\operatorname{conv}(\operatorname{epi}(f))^\vee,\;
+		\operatorname{cl}f=
+		\operatorname{cl}(\operatorname{epi}(f))^\vee,\;
+		\operatorname{clconv}f=
+		\operatorname{cl}(\operatorname{conv} (\operatorname{epi}(f)))^\vee
+	\]
+\end{defn}
+\paragraph{}Note it is in general not true that $\operatorname{cl}(\operatorname{conv} (\operatorname{epi}(f)))=\operatorname{conv}(\operatorname{cl} (\operatorname{epi}(f)))$.
+\paragraph{}Let us compare the functions in \Cref{defn:023-closure-funcs} by the following series of propositions.
+
+\begin{prop}[Universal properties of cl, conv, clconv]\label{prop:023-closure-univ}
+	The functions $\operatorname{conv}f,\operatorname{cl}f,\operatorname{clconv}f$ are the largest (in the dominance relation) convex, closed, convex and closed function dominated by $f$.
+\end{prop}
+
+\begin{proof}
+	This is by the universal properties of $\operatorname{conv},\operatorname{cl}$ for subsets; see remark after \Cref{defn:021-conv-usual}.
+\end{proof}
+
+
+\begin{prop}[Optimality]
+	\label{prop:023-closure-optimality}
+	The functions $f,\operatorname{cl}f,\operatorname{conv}f,\operatorname{clconv}f$ have the same inf. Therefore, every argmin of $f$ is an argmin of $\operatorname{cl}f,\operatorname{clconv}f,\operatorname{conv}f$.
+\end{prop}
+
+\begin{proof}
+	For a scalar function $g$, write $g^\ast:=\inf g$. By the containments of epigraphs, it suffices to show $f^\ast\leq(\operatorname{clconv}f)^\ast$. Note first that:
+	\[
+		f^\ast = \sup \{u\in \mathbb{R}: \operatorname{epi}(f)\subset \mathbb{R}^n\times (u + \mathbb{R}_+)\}
+	\]
+	However, given $u$, whenever $\operatorname{epi}(f)\subset \mathbb{R}^n\times (u + \mathbb{R}_+)$, since $\mathbb{R}^n\times (u + \mathbb{R}_+)$ is closed and convex, we have:
+	\[
+		\operatorname{cl}(\operatorname{conv}(\operatorname{epi}(f)))\subset \mathbb{R}^n\times (u + \mathbb{R}_+)\qedhere{}
+	\]
+\end{proof}
+
+\paragraph{}We next compare $\operatorname{cl}f$ and $f$ when $f$ is convex. We would use the following lemma.
+
+\begin{lemm}[Improper, Closed, Convex]
+	\label{lemm:023-improper-closed-convex}
+	Suppose $f$ is improper, convex, closed, then $f(\mathbb{R}^m)\subset\{\pm\infty\}$.
+\end{lemm}
+
+\begin{proof}
+	May assume $\operatorname{dom}(f)\neq \emptyset$, and $f(x)=-\infty$ for some $x\in \operatorname{dom}(f)$. Take $y\in \operatorname{dom}(f)$, then $f(I(x,y;[0, 1))=\{-\infty\}$ by convexity, hence $f(y)=-\infty$ by closedness.
+\end{proof}
+
+
+\begin{prop}[Yoga of Taking Closures of Convex Functions]
+	\label{prop:023-compare-func-closure}
+	Suppose $f$ is convex.
+	\begin{enumerate}[label=(\alph*)]
+		\item (Comparison of Effective Domain) We have
+		      \[
+			      \operatorname{cl}(\operatorname{dom}(f))=
+			      \operatorname{cl}(\operatorname{dom}(\operatorname{cl}f)),\;
+			      \operatorname{rint}(\operatorname{dom}(f))=
+			      \operatorname{rint}(\operatorname{dom}(\operatorname{cl}f))
+		      \]
+		\item (Comparison of Properness) $f$ is proper iff $\operatorname{cl}f$ is proper.
+		\item (Comparison of Values I) $f,\operatorname{cl}f$ coincides on $\operatorname{ri}(\operatorname{dom}(f))$.
+		\item (Comparison of Values II) Furthremore, for $x\in \operatorname{ri}(\operatorname{dom}(f))$, we have:
+		      \[
+			      (\operatorname{cl}f)(y)=\lim_{\alpha \to0^+}f(I(y,x;\alpha ))\;\text{ for }y\in \mathbb{R}^n
+		      \]
+	\end{enumerate}
+\end{prop}
+
+\paragraph{}In short, the geometry of $\operatorname{dom}(f),\operatorname{dom}(\operatorname{cl}f)$ are not too different by (a), (b), $f,\operatorname{cl}f$ differ only outside of $\operatorname{ri}(\operatorname{dom}(f))$ by (c), and that on those other points, (d) can be used to describe the values of $f$.
+
+\begin{proof}
+	For (a), it suffices to show the statement for rint. Let $\pi:\mathbb{R}^{n+1}\to \mathbb{R}^n,(x,u)\mapsto x$ be projection, then:
+	\begin{align*}
+		\operatorname{rint}(\operatorname{dom}(f)) & =\operatorname{rint}(\pi \operatorname{epi}(f))                 \\
+		                                           & =\pi\operatorname{rint}(\operatorname{epi}(f))                  \\
+		                                           & =\pi\operatorname{rint}(\operatorname{epi}(\operatorname{cl}f)) \\
+		                                           & =\operatorname{rint}(\pi\operatorname{epi}(\operatorname{cl}f)) \\
+		                                           & =\operatorname{rint}(\operatorname{dom}(\operatorname{cl}f))
+	\end{align*}
+	where the third "=" is by $\operatorname{cl}(\operatorname{epi}(f))=\operatorname{cl}(\operatorname{epi}(\operatorname{cl}f))$, the first and fifth are by definition of epigraphs, the second and forth are by the slice principle. For (c), we use slice principle. For $x\in \operatorname{rint}(\operatorname{dom}(f))$:
+	\begin{align*}
+		(f(x),+\infty) & =\operatorname{rint}(\operatorname{epi}(f)_{x,:})                  \\
+		               & =\operatorname{rint}(\operatorname{epi}(f))_{x,:}                  \\
+		               & =\operatorname{rint}(\operatorname{epi}(\operatorname{cl}f))_{x,:} \\
+		               & =\operatorname{rint}(\operatorname{epi}(\operatorname{cl}f)_{x,:}) \\
+		               & =(\operatorname{cl}f(x),+\infty)
+	\end{align*}
+	where the third "=" is by $\operatorname{cl}(\operatorname{epi}(f))=\operatorname{cl}(\operatorname{epi}(\operatorname{cl}f))$, the first and fifth are by definition of epigraphs, the second and forth are by the slice principle and (a). For (d), we have two cases:
+	\begin{itemize}
+		\item Case $y\in \operatorname{dom}(\operatorname{cl}f)$: \Cref{prop:012-linesegmentprinciple} gives $I(x,y;[0, 1))\subset \operatorname{rint}(\operatorname{dom}(f))$, so we see that $f,\operatorname{cl}f$ coincides on $I(x,y;[0,1))$ by (c). If $\operatorname{cl}f(y)\in \mathbb{R}$, then by \Cref{coro:022-line-continuity}, (d) holds in this case; otherwise, if $\operatorname{cl}f(y)=\infty$, then $\operatorname{cl}f$ is $-\infty$ on $I(x,y;[0,1))$ by the lemma, so (d) holds.
+		\item Case $y\notin \operatorname{dom}(\operatorname{cl}f)$: since $\operatorname{cl}f$ is closed, we have:
+		      \[
+			      \underset{\alpha \to 0^+}{\operatorname{liminf}}\operatorname{cl}f(I(y,x;\alpha ))\leq \operatorname{cl}f(y)=\infty
+		      \]
+		      hence (d) holds, as $f$ dominates $\operatorname{cl}f$.
+	\end{itemize}
+	For (b), if $\operatorname{cl}f$ is improper, then by \Cref{lemm:023-improper-closed-convex}, it takes $-\infty$ on $\operatorname{dom}(f)$, which would make $f$ improper by (a), (c). That $f$ is improper implies $\operatorname{cl}(f)$ is easy to show.
+\end{proof}
+
+% TODO: complete adaptation
+

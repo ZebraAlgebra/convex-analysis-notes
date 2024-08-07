@@ -1,0 +1,18 @@
+\chapter*{Preface}
+
+\paragraph{}This note started as a personal note on the book \cite{bertsekas2009convex}, with contents organized in an order more like those given in \cite{rockafellar+1970}. The intent was to simplify some of the proofs, presentations of contents. This books assumes some familiarity with point set topology, calculus, and linear algebra.
+
+\paragraph{}In \Cref{chap:01}, we define convex sets. The basic topology and geometry of convex sets are also studied in this chapter, including dimension, the construction of relative interiors, and the notion of recession cones. Several important yoga on the construction of convex sets are given here.
+
+\paragraph{}In \Cref{chap:02}, we define convex functions. The chapter starts with the construction of epigraphs, which are geometric objects associated to functions taking values in the extended real line.
+
+\section*{Notations and Conventions}
+
+\paragraph{}Here we lay out some notations and conventions used throughout this book. We use $\mathbb{R,N,Z}$ to denote the real numbers, natural numbers, integers, where we use the convention $0\notin \mathbb{N}$. Most of the time (probably with no exception) we work within $\mathbb{R}^m$. For a subset of $X\subset \mathbb{R}^m$, we use $\operatorname{cl}(X),\operatorname{int}(X)$ to denote the closure, interior of $X$ under the usual topology. For an element $x\in \mathbb{R}^m$, we use $\|x\|$ to denote its $2$-norm; in general, the $p$-norm of $x$ is denoted as $\|x\|_p$. Given $\varepsilon \in \mathbb{R}_{+}$ and $x\in \mathbb{R}^m$, $B(x;\varepsilon )$ is the set $\{y\in \mathbb{R}^m:\|x-y\|<\varepsilon \}$; given $X\subset \mathbb{R}$, write $B(X;\varepsilon )=\bigcup_{x\in X}B(x;\varepsilon )$. The unit sphere $\mathbb{S}^{m-1}\subset \mathbb{R}^m$ is the set $\{x\in \mathbb{R}^m:\|x\|=1\}$.
+
+\paragraph{}We also use $\overline{\mathbb{R}}$ to denote $\mathbb{R}\cup\{\pm\infty\}=[-\infty,+\infty]$, $\mathbb{R}_{+}=[0,+\infty)$, $\mathbb{R}_{++}=(0,+\infty)$. Given $f:X\to\overline{\mathbb{R}}$ with $X\subset \mathbb{R}^m$, for optimization purpose we can extend it by infinity out side of $X$, yielding a function $\overline{f}:\mathbb{R}^m\to\overline{\mathbb{R}}$ so that $\overline{f}\mid_{\mathbb{R}^m\smallsetminus X}$ is constant with value $\infty$. Therefore we often assume $f$ is defined over all $\mathbb{R}^m$.
+
+\paragraph{}Given $Z\subset \mathbb{R}^{k}\times \mathbb{R}^{m-k}=\mathbb{R}^m$, and $x\in \mathbb{R}^k,y\in \mathbb{R}^{m-k}$, we call $Z_{x,:}:=\{y\in \mathbb{R}^{m-k}:(x,y)\in Z\}$ and $Z_{:,y}:=\{x\in \mathbb{R}^{k}:(x,y)\in Z\}$ the fiber at $x$ and the slice at $y$. Most of the time, $k=m-1$.
+
+\paragraph{}An indexed set of elements in a set $S$ indexed by an index set $\mathcal{I}$ will be written as $\{x_i\}_{i\in \mathcal{I}}\subset S$. When the indexing set is omitted, the indexing set is assumed to be $\mathbb{N}$. Given a sequence $\{x_i\}_{i=1}^\infty$, we write $\{x_i\}_i\to x$ if $x_i$ converges to $x$ in $2$-norm. Given a sequence of subsets $\left\{C_i\right\}_{i}$ of $\mathbb{R}^n$, we say that it is an ascending chain if $C_1\subset C_2\subset \dotsc$, and a descending chain if $C_1\supset C_2\supset \dotsc$. Looking at the union of an ascending chain or an intersection of a descending chain of sets are things that will occur in the later chapters.
+

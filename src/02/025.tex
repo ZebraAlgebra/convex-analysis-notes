@@ -1,0 +1,49 @@
+\section{Conjugate Functions}
+\label{sect:025}
+
+\paragraph{}Fix a scalar function $f$ on $\mathbb{R}^m$ for this section. We can consider its conjugate functions. Such functions are ubiquitous in the theory of convex functions and convex optimizations.
+
+\begin{defn}[Conjugate]\label{defn:025-conjugate}
+	The conjugate $f^\star$ is defined as $f^\star(y)=\underset{x\in \mathbb{R}^m}{\operatorname{sup}}x^Ty-f(x)$. Equivalently:
+	\[
+		f^\star(y) =\sqrt{1+y^2}\left(\inf\left\{b\in \mathbb{R}:\operatorname{epi}(f)\subset E_{\nu((y,-1)),b}\right\}\right)
+	\]
+	which describes $f^\star(y)$ geometrically via $\operatorname{epi}(f)$ and extremal halfspace with fixed direction containing it.
+\end{defn}
+
+\paragraph{}We remark that since $\operatorname{epi}(f)$ is upward-closed, if $E_{(a,v),b}\supset \operatorname{epi}(f)\neq\emptyset$ where $a\in \mathbb{R}^{m},v\in \mathbb{R}$, then $v\leq 0$.
+
+
+\begin{prop}[Conjugacy Theorem]\label{prop:025-conjugacy-theorem}.
+	\begin{enumerate}[label=(\alph*)]
+		\item (Dominance) $f$ dominates $f^{\star\star}$.
+		\item (Properness) Suppose $f$ is convex, then properness of any of $f,f^{\star},f^{\star\star}$ implies that of others.
+		\item (Conjugate Equality) We have $f^\star=(\operatorname{clconv}f)^\star$.
+		\item (Double Conjugate Equality) If $\operatorname{clconv}(f)$ is proper, then $f^{\star\star}=\operatorname{clconv}(f)$.
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	For (a), we have $f^{\star\star}(x)=\sup_y\left(x^Ty-f^\star(y)\right)\leq \sup_y \left(x^Ty-\left(x^Ty-f(x)\right)\right)=f(x)$.\\
+	For (c), use the geometric description along with the fact that closed halfspaces are convex.\\
+	For (b), we show $f$ proper iff $f^\star$ proper (under the assumption $f$ convex), which would suffice.
+	\begin{itemize}
+		\item If $f(\mathbb{R}^m)=\{+\infty\}$, then $f^\star(\mathbb{R}^m)=\{-\infty\}$; if $-\infty\in f(\mathbb{R}^m)$, then $f^\star(\mathbb{R}^m)=\{+\infty\}$. Therefore, improperness of $f$ implies that of $f^\star$.
+		\item Suppose $f$ is proper and convex. By (f) of \Cref{prop:014-hyperplane-sep} and the previous remark, $\operatorname{epi}(f)$ is contained in some $E_{(a,v),b}$ with $(a,v)\in \mathbb{S}^{m}$, $v<0$, $b\in \mathbb{R}$. Therefore, for $(x,u)\in \operatorname{epi}(f)$, we have:
+		      \[
+			      y_0^Tx-f(x)\leq b,\text{ where }c=-b/v,\;y_0=-a/v
+		      \]
+		      giving $f^\star(y_0)\neq+\infty$. Now since $f$ is proper, $f(x_0)\in \mathbb{R}$ for some $x_0\in \mathbb{R}^m$, so for any $y\in \mathbb{R}^m$, $f^\star(y)\geq x_0^Ty-f(x_0)>-\infty$. These together show that $f^\star$ is proper if $f$ is proper and convex.
+	\end{itemize}
+	For (d), by (c), it suffices to show: for convex, closed, proper $f$, $f=f^{\star\star}$. Suppose $f(x_0)>f^{\star\star}(x_0)$ for some $x_0$, by (g) of \Cref{prop:014-hyperplane-sep} and our remark, we can find $(a,v)\in \mathbb{S}^m$ with $v>0$, $b\in \mathbb{R}$ such that:
+	\[
+		\left(x_0,f^{\star\star}(x_0)\right)\in E^{o}_{-(a,v),-b}, \; \operatorname{epi}(f)\subset E^o_{(a,v),b}
+	\]
+	This gives:
+	\[
+		y_0^Tx-f(x)<c<y_0^Tx_0-f^{\star\star}(x_0),\text{ for }x\in \mathbb{R}^m,\text{ where }y_0=-a/v,\; c=-b/v
+	\]
+	The sup of the leftmost term over $x$ is $f^\star(y_0)$, giving $f^{\star\star}(x_0)<y_0^Tx_0-f^\star(x_0)$, a contradiction. Therefore $f$ is dominated by $f^{\star\star}$ in this scenario. Paired with (a), we get the desired statement.
+\end{proof}
+
+

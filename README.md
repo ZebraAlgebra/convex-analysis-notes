@@ -1,18 +1,12 @@
-# A Template for a LaTeX
-
-A minimal LaTeX template for personal use.
+# Convex analysis notes.
 
 ## Dependencies
 
 Requires `texlive`, `biber`.
 
-## Building the pdf
+## Workflow on Neovim + VimTex
 
-To build pdf, execute:
-
-```
-sh s/b
-```
+One can use `\ + l + l` to start compilation in continuous mode.
 
 ## More configs
 
@@ -25,7 +19,3 @@ Modify the files in `sty` to specify other metadata, and packages.
 Add entries and contents into the directory `src` and input them in `main.tex`.
 
 Add bib entries in `ref.bib`.
-
-## TODO
-
-Design a config tool to add appropriate directory structures.

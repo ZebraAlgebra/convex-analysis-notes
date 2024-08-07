@@ -1,0 +1,78 @@
+\section{Continuity of Convex Functions, 1st and 2nd Order Convexity Condition}
+\label{sect:022}
+
+\paragraph{}In the following we give other characterizations of convex functions in the case where the function has some smoothness condition. Let us fix a function $f:\mathbb{R}^m\to \overline{\mathbb{R}}$.
+
+\begin{prop}[First and Second Order Condition for Convexity]
+	\label{prop:022-ordered-conditions-convexity}
+	Given nonempty convex $C\subset \mathbb{R}^m$, $U$ an open set containing $C$, with $f(U)\subset \mathbb{R}$.
+	\begin{enumerate}[label=(\roman*)]
+		\item If $f\in\mathscr{C}^1(U)$, then $f$ is convex on $C$ iff $f(y)\geq f(x)+\nabla f(x)^T(y-x)$ for $x,y\in C$.
+		\item If $f\in\mathscr{C}^2(U)$, then $f$ is convex on $C$ if $f(z)$ is positive semidefinite on $C$. "Only if" holds if $C$ is open.
+	\end{enumerate}
+\end{prop}
+\begin{proof}[Proof of (i)]
+	Fix $x,y\in C,\alpha \in [0, 1]$. For "if", let $z=I(x,y; \alpha )$. We have:
+	\[
+		I(f(x),f(y);\alpha )  \geq I(f(z)+\nabla f(z)^T(x-z),f(z)+\nabla f(z)^T(y-z);\alpha ) = f(z)
+	\]
+	For "only if", define $g(t)$ as:
+	\[
+		g(t)=\frac{f(x+t(y-x))-f(x)}{t}=\frac{f(I(x,y;t))-f(x)}{t},\;t\in(0, 1]
+	\]
+	then we have $g(1)=f(y)-f(x)$, $\lim_{t\to0^+}g(t)=\nabla f(x)^T(y-x)$, so it suffices to show that $g$ is monotonically increasing on $(0, 1]$. By rechoosing $y$, it suffices to show that $g$ obtain maximum at $1$. Take $t\in(0,1]$:
+	\[
+		tg(t)=f(I(x,y;t))-f(x)\leq I(f(x),f(y);t)-f(x)=tg(1)
+	\]
+	This concludes the proof of (i).
+\end{proof}
+\begin{proof}[Proof of (ii)]
+	Fix $x,y\in C,\alpha \in [0, 1]$. For "if", we have by mean value theorem that:
+	\[
+		f(y)=f(x)+\nabla f(x)^T(y-x)+\frac{1}{2}(y-x)^T\nabla^2f(I(x,y,\alpha ))(y-x)\geq f(x)+\nabla f(x)^T(y-x)
+	\]
+	for some $\alpha \in[0,1]$. The "Only if" part is similar: if $\nabla^2 f$ is not positive semidefinite on some $x\in C$, take some $z$ so that $B(x;\|z\|)\subset C$, $z^T\nabla^2f(I(x, x+z;\alpha))z<0$ for $\alpha\in[0,1]$, then mean value theorem says $f(x+z)<f(x)+\nabla f(x)^Tz$, contradiction.
+\end{proof}
+
+\paragraph{}A remarkable property of convex functions is that it has some continuity properties.
+
+\begin{prop}[Continuity Theorem]
+	\label{prop:022-continuity}
+	Suppose $f$ is proper, convex, then $f$ is continuous on $\operatorname{rint}(\operatorname{dom}(f))$.
+\end{prop}
+
+\begin{proof}
+	Let $C=\operatorname{rint}(\operatorname{dom}(f))$. It suffices to show under the assumptions $\dim C=m$, $X:=[-1,1]^n\subset C$ that $f$ is continuous at $0$. By convexity, $f$ is bounded on $X$ as $X=\operatorname{conv}(\{-1,1\}^n)$. Take $X\smallsetminus\{0\}\supset \{x_i\}_i\to 0$, then we take:
+	\[
+		y_i=\frac{x_i}{\|x_i\|_\infty}\in \operatorname{bdy}(X),\;
+		z_i:=-y_i\in \operatorname{bdy}(X)
+	\]
+	so we have $0\in I(x_i,z_i;[0,1])$, $x_i\in I(0,y_i;[0,1])$. Now we estimate $f(0)$: Firstly,
+	\[
+		f(0)=f\left(I\left(z_i,x_i;\frac{1}{\|x_i\|_\infty+1}\right)\right)\leq I\left(f(z_i),f(x_i);\frac{1}{\|x_i\|_\infty+1}\right)
+	\]
+	Since $\{f(z_i)\}_i$ is bounded, and $\|x_i\|_\infty\to0$, we get $f(0)\leq \underset{i}{\operatorname{liminf}}f(x_i)$. Nextly:
+	\[
+		f(x_i)=f(I(y_i, 0;\|x\|_\infty))\leq I(f(y_i),f(0);\|x\|_\infty)
+	\]
+	Again, since $\{f(y_i)\}_i$ is bounded, and $\|x_i\|_\infty\to0$, we get $\underset{i}{\operatorname{limsup}}f(x_i)\leq f(0)$.
+\end{proof}
+
+\begin{coro}
+	\label{coro:022-continuity-real-valued}
+	Suppose $f$ is convex and real-valued, then $f$ is continuous.
+\end{coro}
+
+\begin{coro}[Line Continuity Theorem]
+	\label{coro:022-line-continuity}
+	Suppose $m=1$, $f$ is closed, convex, and real-valued on $C=[0,1]$, then $f\in \mathscr{C}^0(C)$.
+\end{coro}
+
+\begin{proof}
+	It suffices to show upper-semicontinuity at $0$. For $C\supset (x_i)_i\to 0$, we have:
+	\[
+		f(x_i)=f(I(0,1;x_i))\leq I(f(0),f(1); x_i)
+	\]
+	which gives $\underset{i}{\operatorname{limsup}}f(x_i)\leq f(0)$.
+\end{proof}
+
