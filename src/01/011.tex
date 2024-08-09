@@ -7,9 +7,7 @@
 	\left\{\sum_{i=1}^k \alpha_i x_i,\; \left\{ x_i \right\}_{i=1}^k \subset X, \left\{\alpha_i\right\}_{i=1}^k\subset \mathbb{R}\right\}
 \]
 
-\paragraph{}The set of all such combinations is the linear subspace $\operatorname{lin}(X)\subset \mathbb{R}^n$ spanned by $X$; this is the smallest linear subspace containing $X$. If it turns out that $X=\operatorname{lin}(X)$ - that is, $X$ is closed under taking $\operatorname{lin}$ - then $X$ is itself a linear subspace.
-
-\paragraph{}By adding additional constraints to the coefficients $\alpha_i$, besides linear subspaces, we can then define the notion of affine sets, convex sets, and cones. We will define different types of constrained linear combinations, then define what it means to be affine, convex, cone.
+\paragraph{}The set of all such combinations is the linear subspace $\operatorname{lin}(X)\subset \mathbb{R}^n$ spanned by $X$; this is the smallest linear subspace containing $X$. If it turns out that $X=\operatorname{lin}(X)$ - that is, $X$ is closed under taking $\operatorname{lin}$ - then $X$ is itself a linear subspace. By adding additional constraints to the coefficients $\alpha_i$, besides linear subspaces, we can then define the notion of affine sets, convex sets, and cones. We will define different types of constrained linear combinations, then define what it means to be affine, convex, cone.
 
 \begin{defn}[Combinations]\label{defn:011-comb}
 	Let $\{\alpha_i\}_{i=1}^k\subset \mathbb{R}$. We say that $\sum_{i=1}^k \alpha_i x_i$ is a:
@@ -63,7 +61,7 @@
 	\end{itemize}
 \end{exmp}
 
-\paragraph{}The following is a restatement of \Cref{prop:011-bi} using \Cref{defn:011-I} in the case of affine, convex sets.
+\paragraph{}The following is a restatement of \Cref{prop:011-bi} using \Cref{defn:011-I} for affine or convex sets.
 
 \begin{prop}[Alternative Definition of Convex, Affine sets]The set $X$ is affine (resp. convex) iff $I(X,X;\mathbb{R}_{+})=I(X,X;\mathbb{R})=X$ (resp. $I(X,X;[0,1])=X$).
 \end{prop}
@@ -76,7 +74,7 @@
 		\item (Intersection) For convex sets $\{C_i\}_{i\in I}$ in $\mathbb{R}^m$, $\bigcap_iC_i$ is convex.
 		\item (Union of Ascending Chain) For convex sets $\{C_i\}_{i}$ in $\mathbb{R}^m$ with $C_1\subset C_2\subset\dotsc$, $\bigcup_iC_i$ convex.
 		\item (Product) For convex sets $\{C_i\}_{i=1}^k$ with $C_i\subset \mathbb{R}^{m_i}$, $\bigtimes_{i=1}^kC_i$ is convex.
-		\item (Non-negative Combination) For convex sets $\{C_i\}_{i=1}^k$ in $\mathbb{R}^m$ and $\{\alpha_i\}_{i=1}^k\subset \mathbb{R}_{+}$, $\sum_{i=1}^k\alpha_iC_i$ convex.
+		\item (Linear Combination) For convex sets $\{C_i\}_{i=1}^k$ in $\mathbb{R}^m$ and $\{\alpha_i\}_{i=1}^k\subset \mathbb{R}$, $\sum_{i=1}^k\alpha_iC_i$ convex.
 		\item (Closure and Interior) For convex set $C$ in $\mathbb{R}^m$, $\operatorname{cl}(C),\operatorname{int}(C)$ convex.
 		\item (Direct Image) For convex set $C\subset \mathbb{R}^m$ and affine $A:\mathbb{R}^m\to \mathbb{R}^n$, $A(C)$ convex.
 		\item (Inverse Image) For convex set $C\subset \mathbb{R}^m$ and affine $A:\mathbb{R}^l\to \mathbb{R}^m$, $A^{-1}(C)$ convex.
@@ -86,12 +84,12 @@
 \begin{proof}For (a), let $C=\bigcap_iC_i$, then $I(C,C;[0,1])\subset I(C_i,C_i;[0,1])=C_i$ for $i\in I$, giving (a).\\
 	For (b), let $C=\bigcup_iC_i$. We have: $I(C,C;[0,1])\subset \bigcup_iI(C_i,C_i;[0,1])=\bigcup_iC_i=C$.\\
 	For (c), we have $I(\bigtimes_{i=1}^kC_i,\bigtimes_{i=1}^kC_i,[0,1])\subset \bigtimes_{i=1}^kI(C_i,C_i,[0,1])=\bigtimes_{i=1}^kC_i$.\\
-	For (d), it suffices to show the cases $(\alpha_i)_{i=1}^k=(1,1)$ or $(\lambda)$ where $\lambda \geq 0$. We have:
+	For (d), it suffices to show the cases $(\alpha_i)_{i=1}^k=(1,1)$ or $(\lambda)$ where $\lambda\in \mathbb{R}$. We have:
 	\[
 		I(C_1+C_2,C_1+C_2;[0,1])\subset I(C_1,C_1;[0,1])+I(C_2,C_2;[0,1])=C_1+C_2
 	\]
 	\[
-		I(\lambda C,\lambda C,[0,1])=\lambda I(C,C,[0,1])=\lambda C
+		I(\lambda C,\lambda C,[0,1])\subset\lambda I(C,C,[0,1])=\lambda C
 	\]
 	For (e), to show interior is convex, take $x,y\in \operatorname{int}(C)$ and $\varepsilon>0$ with $B(\{x, y\};\varepsilon)\subset C$, we have:
 	\[
@@ -103,51 +101,37 @@
 	\]
 	For (f), to show image under affine is convex:
 	\[
-		I(A(C),A(C);[0,1])=A(I(C,C;[0,1]))=A(C)
+		I(A(C),A(C);[0,1])\subset A(I(C,C;[0,1]))\subset A(C)
 	\]
 	For (g), to show preimage under affine is convex:
 	\[
-		A\left(I\left(A^{-1}(C),A^{-1}(C);[0,1]\right)\right)=I\left(AA^{-1}(C),AA^{-1}(C);[0,1]\right)\subset I(C,C;[0,1])=C
+		A\left(I\left(A^{-1}(C),A^{-1}(C);[0,1]\right)\right)\subset I\left(AA^{-1}(C),AA^{-1}(C);[0,1]\right)\subset I(C,C;[0,1])=C
 	\]
 	which shows $I(A^{-1}(C),A^{-1}(C);[0,1])\subset A^{-1}(C)$. For (h), use (a), (c) and (f).
 \end{proof}
 
 \begin{rmrk}
-	For (e), once we define relative interiors in \Cref{sect:012}, we will see that $\operatorname{rint}(C)$ is convex. Relative interiors and closures are more natural to work with in the context of convex analysis; we will see this later.
+	For (e), once we define relative interiors in \Cref{sect:012}, we will see that $\operatorname{rint}(C)$ is convex. Relative interiors and closures are more natural to work with in the context of convex analysis; see \Cref{sect:012}.
 \end{rmrk}
 
-\paragraph{}The following is useful for controlling representations of elements in $\operatorname{conv}(X),\operatorname{c.cone}(X)$. A nice application is given in \Cref{coro:011-cara-conv}.
+\paragraph{}The following is useful for controlling representations of elements in $\operatorname{conv}(X),\operatorname{c.cone}(X)$. A nice application is given in item (c) below.
 
 \begin{prop}[Caratheodory]\label{prop:011-cara}
 	Consider elements in $\operatorname{c.conv}(X),\operatorname{conv}(X)$:
 	\begin{enumerate}[label=(\alph*)]
-		\item Every vector in $\operatorname{c.cone}(X)$ is a non-negative combination of linear independent vectors in $X$.
-		\item Every vector in $\operatorname{conv}(X)$ is a convex combination of no more than $m+1$ vectors in $X$.
+		\item Every element in $\operatorname{c.cone}(X)$ is a non-negative combination of linear independent elements in $X$.
+		\item Every element in $\operatorname{conv}(X)$ is a convex combination of no more than $m+1$ elements in $X$.
+		\item Suppose $X$ is compact, then $\operatorname{conv}(X)$ is compact.
 	\end{enumerate}
 \end{prop}
 
-\begin{proof}[Proof of (a)]
-	Take $0\neq x=\sum_{i=1}^k\alpha_ix_i$, a positive combination of elements in $X$. If $\{x_i\}_{i=1}^k$ are linearly independent, then one can represent $x$ as a positive combination of fewer elements in $X$ by subtracting $\sum_{i=1}^k \alpha_ix_i$ by a linear relation among $x_i$. This process cannot continue indefinitely, so we are done.
-\end{proof}
-
-\begin{proof}[Proof of (b)]
-	Take $x\in \operatorname{conv}(X)$. Apply (a) to $Y=X\times\{1\}\subset \mathbb{R}^{m+1}$, then we can express $(x,1)$:
+\begin{proof}
+	For (a), take $0\neq x=\sum_{i=1}^k\alpha_ix_i$, a positive combination of elements in $X$. If $\{x_i\}_{i=1}^k$ are linearly dependent, then one can represent $x$ as a positive combination of fewer elements in $X$ by subtracting $\sum_{i=1}^k \alpha_ix_i$ by a linear relation among $x_i$. This process cannot continue indefinitely, giving (a). For (b), take $x\in \operatorname{conv}(X)$. Apply (a) to $Y=X\times\{1\}\subset \mathbb{R}^{m+1}$, then we can express $(x,1)$:
 	\[
 		(x,1) = \sum_{i=1}^k \alpha_i (x_i,1)= \left(\sum_{i=1}^k \alpha_i x_i, \sum_{i=1}^k\alpha_i \right)
 	\]
-	as a positive combination of $k$ linearly independent vectors (hence $k\leq n + 1$).
+	as a non-negative combination of $k$ linearly independent elements (hence $k\leq m + 1$). For (c), given a sequence of convex combinations $\{z_i\}_i=\left\{\sum_{j=1}^{m+1}\alpha_j^ix_j^i\right\}_i$ of elements in $X$, then consider the sequence:
+	\[\left\{(\alpha_1^i,\dotsc,\alpha_{m+1}^i,x_1^i,\dotsc,x_{m+1}^i)\right\}_i\subset [0,1]^{m+1}\times X^{m+1}\]
+	Take a limit point $(\alpha_1,\dotsc,\alpha_{m+1},x_1,\dotsc,x_{m+1})$, then $\sum_{j=1}^{m+1} \alpha_jx_j\in \operatorname{conv}(X)$, and is a limit point of $\{z_i\}_i$.
 \end{proof}
 
-\begin{coro}\label{coro:011-cara-conv}
-	The convex hull of a compact set is compact.
-\end{coro}
-
-\begin{proof}
-	For a sequence of convex combinations $\{z_k\}_k=\left\{\sum_{i=1}^{n+1}\alpha_i^kx_i^k\right\}_k$ of elements in $X$, the sequence:
-	\[\left\{(\alpha_1^k,\dotsc,\alpha_{n+1}^k,x_1^k,\dotsc,x_{n+1}^k)\right\}_k\subset \mathbb{R}^{n+1}\times X^{n+1}\]
-	is bounded; take a limit point $(\alpha_1,\dotsc,\alpha_{n+1},x_1,\dotsc,x_{n+1})$, then consider $\sum_{i=1}^{n+1} \alpha_ix_i$.
-\end{proof}
-
-% \begin{exmp}[Half spaces]
-% 	Given $(a_j)_{j=1}^N\subset \mathbb{R}^n,(b_j)_{j=1}^N\subset \mathbb{R}$, the space $\{x:a_j^Tx\leq b_j\}$ is convex.
-% \end{exmp}

@@ -1,156 +1,113 @@
 \section{Relative Interior and Closure}
 \label{sect:012}
 
-\paragraph{}A nonempty convex set might have empty interior, but if one restricts attention to the affine hull, then it is a fact that in this subspace its interior is not empty. This subset is called the relative interior. Another nice fact is that convex functions (to be defined in the next chapter) is continuous on the relative interior. We will define relative interiors and give an alternative characterization of such sets (see \Cref{prop:012-prolongation}). After that, we formulate a list of yogas for the closure and relative interior operations for convex sets. For this section, fix a nonempty convex set $C\subset \mathbb{R}^m$, write $Y=\operatorname{aff}(C)$, $\dim(Y)=d\leq m$.
+\paragraph{}A nonempty convex set might have empty interior, but if one restricts attention to the affine hull, then it is a fact that in this subspace its interior is not empty. This subset is called the relative interior. Another nice fact is that convex functions (to be defined in the next chapter) is continuous on the relative interior. We will define relative interiors and give an alternative characterization of such sets (see (b), (c) of \Cref{prop:012-basic-ri}). After that, we formulate a list of yogas for the closure and relative interior operations for convex sets. For this section, fix a nonempty convex sets $C,C'$ of $\mathbb{R}^m$, write $Y=\operatorname{aff}(C)$ with $\dim(Y)=d\leq m$.
 
-\begin{defn}[Relative Interior and Relative Boundary]
+\begin{defn}[Relative Interior]
 	\label{defn:012-relint}
-	Define $\operatorname{rint}(C),\operatorname{rcl}(C)\subset Y$ as the interior, closure of $C$ with respect to the subspace topology of $Y$. Explicitly, if $T:\mathbb{R}^d\to \mathbb{R}^m$ is an affine surjection onto $Y$, then we have:
-	\[
-		\operatorname{rint}(C)=T (\operatorname{int}(T^{-1}(C))),\;
-		\operatorname{rcl}(C)=T (\operatorname{cl}(T^{-1}(C))),\;
-		\operatorname{rbdy}(C)=T (\operatorname{bdy}(T^{-1}(C)))
-	\]
+	Define $\operatorname{ri}(C)\subset Y$ as the interior of $C$ with respect to the subspace topology of $Y$. Explicitly, if $T:\mathbb{R}^d\to \mathbb{R}^m$ is an affine surjection onto $Y$, then $\operatorname{ri}(C)=T (\operatorname{int}(T^{-1}(C)))$.
 \end{defn}
 
-\paragraph{}By definition, we have the following inclusion relations:
-\[
-	\operatorname{int}(C)\subset \operatorname{rint}(C)\subset C,\; \operatorname{rcl}(C)=\operatorname{cl}(C)
-\]
-\[
-	\operatorname{rbdy}(C)=\operatorname{rcl}(C)\smallsetminus \operatorname{rint}(C)\subset \operatorname{cl}(C)\smallsetminus\operatorname{int}(C)=\operatorname{bdy}(C)
-\]
-\paragraph{}Therefore, we will almost never use the notations $\operatorname{rcl}(C),\operatorname{rbdy}(C)$.
-
-\begin{prop}[Relative Interior is Non-empty]
-	\label{prop:012-relint-nonempty}
-	We have $\operatorname{aff}(\operatorname{rint}(C))=Y$. Hence $\operatorname{rint}(C)\neq\emptyset$.
-\end{prop}
-
-\begin{proof}
-	Let $(e_i)_{i=1}^d$ be the standard basis of $\mathbb{R}^d$ and write $e_0=0$. Take any $\{x_i\}_{i=0}^d\subset C$ with $\operatorname{aff}(\{x_i\}_{i=0}^d)=Y$, define the affine map $T:\mathbb{R}^d\to \mathbb{R}^m$ by $T(e_i)=x_i$ for $i=0,\dotsc,d$; this is a surjection to $Y$. We have
-	\[
-		\operatorname{aff}(\operatorname{rint}(C)) \supset T\left(\operatorname{aff}\left(\operatorname{int}\left(\operatorname{conv}\left(\{e_i\}_{i=0}^d\right)\right)\right)\right)=T(\mathbb{R}^d)=Y\qedhere{}
-	\]
-\end{proof}
-
-\begin{prop}[Line Segment Principle]
-	\label{prop:012-linesegmentprinciple}
-	We have $I(\operatorname{rint}(C),\operatorname{cl}(C);[0,1))=\operatorname{rint}(C)$.
-\end{prop}
-
-\begin{proof}
-	Take $x\in \operatorname{rint}(C),y\in \operatorname{cl}(C), \alpha \in[0, 1)$. Want $z:=I(x, y; \alpha )\in\operatorname{rint}(C)$. May assume $d=m$ so rint and int coincides. Take $C\supset\{y_i\}_i\to y$, write $z_i=I(x,y_i;\alpha )$. Suppose $B(x,\varepsilon )\subset C$ for some $\varepsilon >0$, then:
-	\[
-		B(z_k;(1-\alpha )\varepsilon )\subset I(B(x;\varepsilon ),y_i;\alpha)\subset C
-	\]
-	By taking $i$ large enough with $B(z;(1-\alpha )\varepsilon /2)\subset B(z_i;(1-\alpha )\varepsilon )$, we get what we want.
-\end{proof}
-
-\begin{coro}[Relative Interior is Convex]
-	\label{coro:012-relint-conv}
-	We have $\operatorname{rint}(C)$ convex.
-\end{coro}
-
-\begin{proof}This is by $I(\operatorname{rint}(C),\operatorname{rint}(C),[0, 1))\subset
-		I(\operatorname{rint}(C),\operatorname{cl}(C);[0,1))=\operatorname{rint}(C)$.
-\end{proof}
-
-
-\paragraph{}The following proposition gives another characterization of rint which uses the \Cref{prop:012-linesegmentprinciple}.
-
-\begin{prop}[Prolongation Lemma]
-	\label{prop:012-prolongation}
-	Given $x\in C$, then $x\in \operatorname{rint}(C)$ iff for all $I(y,x;[0,1])\subset C$, there exists $\varepsilon>0$ with $I(y,x;[0,1+\varepsilon ])\subset C$.
-\end{prop}
-
-\begin{proof}
-	For "if", take $y\in \operatorname{rint}(C)$, $\varepsilon>0$ with $z=I(y,x;1+\varepsilon )\in C$, then by \Cref{prop:012-linesegmentprinciple}, we have $x\in I(y,z;[0,1))\subset \operatorname{rint}(C)$.	The proof for "only if" is clear after reduction to the case $d=m$.
-\end{proof}
-
-\paragraph{}Now we apply these tools to derive other properties of relative interiors.
-
-\begin{prop}[Basic Closures and Relative Interior Rules].
-	\label{prop:012-cl-rint-basic}
+\begin{prop}[Basic Facts about Relative Interiors]We have the following basic facts about $\operatorname{ri}(C)$:
+	\label{prop:012-basic-ri}
 	\begin{enumerate}[label=(\alph*)]
-		\item We have $\operatorname{cl}(C)=\operatorname{cl}(\operatorname{cl}(C))=\operatorname{cl}(\operatorname{rint}(C))$
-		\item We have $\operatorname{rint}(C)=\operatorname{rint}(\operatorname{rint}(C))=\operatorname{rint}(\operatorname{cl}(C))$
-		\item If $C'$ is another convex set, then TFAE:
+		\item (Relative Interior retains Dimension) $\operatorname{aff}(\operatorname{ri}(C))=Y$. Hence $\operatorname{ri}(C)\neq\emptyset$.
+		\item (Line Segment Principle) $I(\operatorname{ri}(C),\operatorname{cl}(C);[0,1))=\operatorname{ri}(C)$.
+		\item (Relative Interior is Convex) $\operatorname{ri}(C)$ is convex with $\operatorname{dim}(\operatorname{ri}(C))=d$.
+		\item (Prolongation Lemma) Given $x\in C$, then $x\in \operatorname{ri}(C)$ iff for all $I(y,x;[0,1])\subset C$, there exists $\varepsilon>0$ with $I(y,x;[0,1+\varepsilon ])\subset C$.
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	For (a), let $(e_i)_{i=1}^d$ be the standard basis of $\mathbb{R}^d$ and write $e_0=0$. Take $\{x_i\}_{i=0}^d\subset C$ with $\operatorname{aff}(\{x_i\}_{i=0}^d)=Y$, define affine map $T:\mathbb{R}^d\to \mathbb{R}^m$ by $T(e_i)=x_i$ for $i=0,\dotsc,d$; this is a surjection to $Y$. We have:
+	\[
+		\operatorname{aff}(\operatorname{ri}(C)) \supset T\left(\operatorname{aff}\left(\operatorname{int}\left(\operatorname{conv}\left(\{e_i\}_{i=0}^d\right)\right)\right)\right)=T(\mathbb{R}^d)=Y
+	\]
+	For (b), take $x\in \operatorname{ri}(C),y\in \operatorname{cl}(C), \alpha \in[0, 1)$. Want $z:=I(x, y; \alpha )\in\operatorname{ri}(C)$. May assume $d=m$ so ri and int coincides. Take $C\supset\{y_i\}_i\to y$, write $z_i=I(x,y_i;\alpha )$. Suppose $B(x,\varepsilon )\subset C$ for some $\varepsilon >0$, then:
+	\[
+		B(z_i;(1-\alpha )\varepsilon )\subset I(B(x;\varepsilon ),y_i;\alpha)\subset C
+	\]
+	By taking $i$ large enough with $B(z;(1-\alpha )\varepsilon /2)\subset B(z_i;(1-\alpha )\varepsilon )$, we get what we want.\\
+	For (c), (b) gives $I(\operatorname{ri}(C),\operatorname{ri}(C),[0, 1))\subset I(\operatorname{ri}(C),\operatorname{cl}(C);[0,1))=\operatorname{ri}(C)$; (a) shows $\operatorname{dim}(\operatorname{ri}(C))=d$.\\
+	For (d), "only if" is easy after reduction to the case $d=m$. For "if", given $y\in \operatorname{ri}(C)$, $\varepsilon>0$ with $z=I(y,x;1+\varepsilon )\in C$, we have $x\in I(y,z;[0,1))\subset \operatorname{ri}(C)$ by (b).
+\end{proof}
+
+\begin{prop}[Yoga of ri and cl]\label{prop:012-yoga-ri-cl}.
+	\begin{enumerate}[label=(\alph*)]
+		\item (ri and cl) We have the following basic relation between ri and cl:
 		      \begin{enumerate}[label=(\roman*)]
-			      \item $\operatorname{cl}(C)=\operatorname{cl}(C')$
-			      \item $\operatorname{rint}(C)=\operatorname{rint}(C')$
-			      \item $\operatorname{rint}(C)\subset C'\subset\operatorname{cl}(C)$
+			      \item $\operatorname{cl}(\operatorname{ri}(C))=\operatorname{cl}(C)=\operatorname{cl}(\operatorname{cl}(C))$
+			      \item $\operatorname{ri}(\operatorname{ri}(C))=\operatorname{ri}(C)=\operatorname{ri}(\operatorname{cl}(C))$
+			      \item If $C'$ is another convex set, then TFAE:
+			            \begin{enumerate}[label=(\arabic*)]
+				            \item $\operatorname{cl}(C)=\operatorname{cl}(C')$
+				            \item $\operatorname{ri}(C)=\operatorname{ri}(C')$
+				            \item $\operatorname{ri}(C)\subset C'\subset\operatorname{cl}(C)$
+			            \end{enumerate}
 		      \end{enumerate}
+		\item (Image Rule) Given affine $A:\mathbb{R}^l\to \mathbb{R}^m$, then:
+		      \begin{enumerate}[label=(\roman*)]
+			      \item $A\operatorname{ri}(C)=\operatorname{ri}(AC)$
+			      \item $A\operatorname{cl}(C)\subset \operatorname{cl}(AC)$, with "$\supset$" holds if $C$ is bounded.
+		      \end{enumerate}
+		\item (Product Rule)
+		\item (Sum Rule)
+		\item (Finite Intersection Rule)
+		\item (Inverse Image Rule)
+		\item (Slice and Fiber Rule)
 	\end{enumerate}
 \end{prop}
 
-\begin{proof}[Proof of (a)]
-	We only show $\operatorname{cl}(C)\subset \operatorname{cl}(\operatorname{rint}(C))$. Take $x\in \operatorname{rint}(C),y\in \operatorname{cl}(C)$. By \Cref{prop:012-linesegmentprinciple}:
-	\[
-		y\in \operatorname{cl}(I(x,y,[0, 1)))\subset \operatorname{cl}(\operatorname{rint}(C))\qedhere{}
-	\]
-\end{proof}
-
-\begin{proof}[Proof of (b)]
-	We first show $\operatorname{rint}(\operatorname{cl}(C))\subset \operatorname{rint}(C)$. Take $x\in \operatorname{rint}(C),y\in \operatorname{rint}(\operatorname{cl}(C))$. By \Cref{prop:012-prolongation}, there is $\varepsilon>0$ with $I(x,y;[0,1+\varepsilon ])\subset \operatorname{cl}(C)$; let $I(x,y;1+\varepsilon)=z$, then by \Cref{prop:012-linesegmentprinciple}:
-	\[
-		y\in I(x,z;[0, 1))\subset \operatorname{rint}(C)
-	\]
-	The identity $\operatorname{rint}(\operatorname{rint}(C))=\operatorname{rint}(C)$ is evident from the definition \Cref{defn:012-relint}.
-\end{proof}
-
-\begin{proof}[Proof of (c)]Straight-forward application of (a) and (b).
-\end{proof}
-
-\begin{prop}[Image Rules]
-	\label{prop:012-image-rules}
-	Let $A:\mathbb{R}^l\to \mathbb{R}^m$ be an affine map. Then:
+\begin{proof}The proof of the items are as follows.
 	\begin{enumerate}[label=(\alph*)]
-		\item $A\operatorname{rint}(C)=\operatorname{rint}(AC)$
-		\item $A\operatorname{cl}(C)\subset \operatorname{cl}(AC)$, with "$\supset$" holds if $C$ is bounded.
+		\item For (i) and (ii), take $x\in \operatorname{ri}(C)$ (exists by (a) of \Cref{prop:012-basic-ri}). We have:
+		      \begin{itemize}
+			      \item $\operatorname{cl}(\operatorname{ri}(C))\subset\operatorname{cl}(C)=\operatorname{cl}(\operatorname{cl}(C))$: Direct from the definition of closures.
+			      \item $\operatorname{ri}(\operatorname{ri}(C))=\operatorname{ri}(C)\subset\operatorname{ri}(\operatorname{cl}(C))$: By (a) of \Cref{prop:012-basic-ri}, $\operatorname{ri}(C),C,\operatorname{cl}(C)$ all have affine hull equal to $Y$, so these containments holds by definition of relative interiors (taking int in $Y$).
+			      \item $\operatorname{cl}(C)\subset \operatorname{cl}(\operatorname{ri}(C))$: For $y\in \operatorname{cl}(C)$, $y\in \operatorname{cl}(I(x,y,[0, 1)))\subset \operatorname{cl}(\operatorname{ri}(C))$ ((b) of \Cref{prop:012-basic-ri}).
+			      \item $\operatorname{ri}(\operatorname{cl}(C))\subset \operatorname{ri}(C)$: For $y\in \operatorname{ri}(\operatorname{cl}(C))$, take $\varepsilon>0$ with $I(x,y;[0,1+\varepsilon ])\subset \operatorname{cl}(C)$ ((d) of \Cref{prop:012-basic-ri}); let $I(x,y;1+\varepsilon)=z$, by (b) of \Cref{prop:012-basic-ri}, $y\in I(x,z;[0, 1))\subset \operatorname{ri}(C)$.
+		      \end{itemize}
+		      This concludes (i) and (ii). Item (iii) is straight-forward from (i) and (ii).
+		\item
+		      \begin{itemize}
+			      \item[(ii)] For "$\subset$", note that for $C\supset \{x_i\}_i\to x\in \operatorname{cl}(C)$, we have $AC\supset \{Ax_i\}_{i}\to Ax\in A\operatorname{cl}(C)$. Conversely, when $C$ is bounded, given $AC\supset \{Ax_i\}_i\to z\in \operatorname{cl}(AC)$, boundedness of $C$ gives a subsequence of $x_i$ converging to some $x\in \operatorname{cl}(C)$, making $Ax=z\in A\operatorname{cl}(C)$.
+			      \item[(i)] For "$\supset$", it suffices to show $AC\subset \operatorname{cl}(A \operatorname{ri}(C))$ in view of (a) of \Cref{prop:012-yoga-ri-cl}. By (ii):
+			            \[
+				            AC\subset A \operatorname{cl}(C) = A\operatorname{cl}(\operatorname{ri}(C)) \subset \operatorname{cl}(A \operatorname{ri}(C))
+			            \]
+			            For "$\subset$", use (d) of \Cref{prop:012-basic-ri}: for $x\in C$, $y\in \operatorname{ri}(C)$, take $\varepsilon >0$ with $I(x,y;[0,1+\varepsilon ])\subset C$:
+			            \[
+				            I(Ax,Ay;[0,1+\varepsilon ])=AI(x,y;[0,1+\varepsilon ])\subset AC
+			            \]
+			            showing that $Ay\in \operatorname{ri}(AC)$.
+		      \end{itemize}
 	\end{enumerate}
-\end{prop}
-
-\begin{proof}[Proof of (b)]
-	For "$\subset$", note that for $C\supset \{x_i\}_i\to x\in \operatorname{cl}(C)$, we have $AC\supset \{Ax_i\}_{i}\to Ax\in A\operatorname{cl}(C)$. Conversely, when $C$ is bounded, given $AC\supset \{Ax_i\}_i\to z\in \operatorname{cl}(AC)$, boundedness of $C$ gives a subsequence of $x_i$ converging to some $x\in \operatorname{cl}(C)$, making $Ax=z\in A\operatorname{cl}(C)$.
 \end{proof}
-
-\begin{proof}[Proof of (a)]
-	For "$\supset$", it suffices to show $AC\subset \operatorname{cl}(A \operatorname{rint}(C))$ in view of \Cref{prop:012-cl-rint-basic}:
-	\[
-		AC\subset A \operatorname{cl}(C) = A\operatorname{cl}(\operatorname{rint}(C)) \subset \operatorname{cl}(A \operatorname{rint}(C))
-	\]
-	For "$\subset$", we use \Cref{prop:012-prolongation}. For $x\in C$, $y\in \operatorname{rint}(C)$ and $\varepsilon >0$ with $I(x,y;[0,1+\varepsilon ])\subset C$:
-	\[
-		I(Ax,Ay;[0,1+\varepsilon ])=AI(x,y;[0,1+\varepsilon ])\subset AC\qedhere
-	\]
-\end{proof}
-
 
 \begin{prop}[Product Rule]
 	\label{prop:012-product-rules}
 	Let $C'$ be another nonempty convex set in some $\mathbb{R}^n$. Then:
 	\begin{enumerate}[label=(\alph*)]
-		\item $\operatorname{rint}(C)\times\operatorname{rint}(C')=\operatorname{rint}(C\times C')$
+		\item $\operatorname{ri}(C)\times\operatorname{ri}(C')=\operatorname{ri}(C\times C')$
 		\item $\operatorname{cl}(C)\times\operatorname{cl}(C')=\operatorname{cl}(C\times C')$
 	\end{enumerate}
 \end{prop}
 
 \begin{proof}
-	For (a), use \Cref{prop:012-prolongation}. Statement (b) is also trivial.
+	For (a), use (b) of \Cref{prop:012-basic-ri}. Statement (b) is also trivial.
 \end{proof}
 
 \begin{prop}[Sum Rule]
 	\label{prop:012-sum-rules}
 	Let $C'$ be another nonempty convex set in $\mathbb{R}^m$. Then:
 	\begin{enumerate}[label=(\alph*)]
-		\item $\operatorname{rint}(C)+\operatorname{rint}(C')=\operatorname{rint}(C+C')$
+		\item $\operatorname{ri}(C)+\operatorname{ri}(C')=\operatorname{ri}(C+C')$
 		\item $\operatorname{cl}(C)+\operatorname{cl}(C')\subset\operatorname{cl}(C+C')$, with "$\supset$" holds if $C$ or $C'$ is bounded.
 	\end{enumerate}
 \end{prop}
 
 \begin{proof}
-	By \Cref{prop:012-product-rules}, \Cref{prop:012-image-rules} (applied to summation map $\mathbb{R}^{m}\times\mathbb{R}^{m}\to \mathbb{R}^m$), we only need to show "$\supset$" in (b) under boundedness condition. Given $\{x_i\}_i\subset C,\{y_i\}_i\subset C'$ with $\{x_i+y_i\}_i\to z\in \operatorname{cl}(C+C')$, then both $\{x_i\}_i,\{y_i\}_i$ are bounded, so $\{(x_i,y_i)\}_i$ is bounded, hence has a subsequence converging to some $(x,y)\in \operatorname{cl}(C\times C')$; we have $z=x+y\in \operatorname{cl}(C)+\operatorname{cl}(C')$.
+	By \Cref{prop:012-product-rules}, (b) of \Cref{prop:012-yoga-ri-cl} (applied to summation map $\mathbb{R}^{m}\times\mathbb{R}^{m}\to \mathbb{R}^m$), we only need to show "$\supset$" in (b) under boundedness condition. Given $\{x_i\}_i\subset C,\{y_i\}_i\subset C'$ with $\{x_i+y_i\}_i\to z\in \operatorname{cl}(C+C')$, then both $\{x_i\}_i,\{y_i\}_i$ are bounded, so $\{(x_i,y_i)\}_i$ is bounded, hence has a subsequence converging to some $(x,y)\in \operatorname{cl}(C\times C')$; we have $z=x+y\in \operatorname{cl}(C)+\operatorname{cl}(C')$.
 \end{proof}
 
 \begin{rmrk}
@@ -161,14 +118,14 @@
 	\label{prop:012-fin-intersection-rules}
 	Let $C'$ be another nonempty convex set in $\mathbb{R}^m$. Then:
 	\begin{enumerate}[label=(\alph*)]
-		\item $\operatorname{rint}(C)\cap\operatorname{rint}(C')\subset\operatorname{rint}(C\cap C')$.
+		\item $\operatorname{ri}(C)\cap\operatorname{ri}(C')\subset\operatorname{ri}(C\cap C')$.
 		\item $\operatorname{cl}(C)\cap\operatorname{cl}(C')\supset\operatorname{cl}(C\cap C')$.
-		\item "=" holds in (a) and (b) if $\operatorname{rint}(C)\cap\operatorname{rint}(C')\neq\emptyset$.
+		\item "=" holds in (a) and (b) if $\operatorname{ri}(C)\cap\operatorname{ri}(C')\neq\emptyset$.
 	\end{enumerate}
 \end{prop}
 
 \begin{proof}[Proof of (a)]
-	We use \Cref{prop:012-prolongation}. Take $x\in C\cap C'$, $y\in \operatorname{rint}(C)\cap \operatorname{rint}(C')$, choose $\varepsilon,\varepsilon'>0$ with
+	We use (b) of \Cref{prop:012-basic-ri}. Take $x\in C\cap C'$, $y\in \operatorname{ri}(C)\cap \operatorname{ri}(C')$, choose $\varepsilon,\varepsilon'>0$ with
 	\[
 		I(x,y;[0,1+\varepsilon ])\subset C,\;
 		I(x,y;[0,1+\varepsilon' ])\subset C'
@@ -181,27 +138,27 @@
 \end{proof}
 
 \begin{proof}[Proof of (c)]
-	Take $x\in \operatorname{rint}(C) \cap\operatorname{rint}(C')$. Let $y\in \operatorname{cl}(C)\cap \operatorname{cl}(C')$. By \Cref{prop:012-linesegmentprinciple}, we have:
+	Take $x\in \operatorname{ri}(C) \cap\operatorname{ri}(C')$. Let $y\in \operatorname{cl}(C)\cap \operatorname{cl}(C')$. By (b) of \Cref{prop:012-basic-ri}, we have:
 	\[
-		y\in I(x, y;[0, 1])=\operatorname{cl}(I(x, y;[0, 1)))\subset\operatorname{cl}(\operatorname{rint}(C)\cap \operatorname{rint}(C'))
+		y\in I(x, y;[0, 1])=\operatorname{cl}(I(x, y;[0, 1)))\subset\operatorname{cl}(\operatorname{ri}(C)\cap \operatorname{ri}(C'))
 	\]
 	This gives:
 	\[
-		\operatorname{cl}(C)\cap \operatorname{cl}(C')\subset \operatorname{cl}(\operatorname{rint}(C)\cap \operatorname{rint}(C'))\subset \operatorname{cl}(C\cap C')
+		\operatorname{cl}(C)\cap \operatorname{cl}(C')\subset \operatorname{cl}(\operatorname{ri}(C)\cap \operatorname{ri}(C'))\subset \operatorname{cl}(C\cap C')
 	\]
-	giving the converse of (b). To show the converse of (a), note that by the above identity, $\operatorname{rint}(C)\cap \operatorname{rint}(C')$ and $C\cap C'$ has same cl, so they have same rint, so it suffices to show:
+	giving the converse of (b). To show the converse of (a), note that by the above identity, $\operatorname{ri}(C)\cap \operatorname{ri}(C')$ and $C\cap C'$ has same cl, so they have same ri, so it suffices to show:
 	\[
-		\operatorname{rint}(C)\cap \operatorname{rint}(C')\subset
-		\operatorname{rint}(\operatorname{rint}(C)\cap \operatorname{rint}(C'))
+		\operatorname{ri}(C)\cap \operatorname{ri}(C')\subset
+		\operatorname{ri}(\operatorname{ri}(C)\cap \operatorname{ri}(C'))
 	\]
-	but this follows from (a) applied to $\operatorname{rint}(C),\operatorname{rint}(C')$ (and (b) of \Cref{prop:012-cl-rint-basic}).
+	but this follows from (a) applied to $\operatorname{ri}(C),\operatorname{ri}(C')$ (and (a) of \Cref{prop:012-yoga-ri-cl}).
 \end{proof}
 
 \begin{prop}[Inverse Image Rule]
 	\label{prop:012-inv-img-rule}
-	Let $A:\mathbb{R}^l\to \mathbb{R}^m$ be an affine map. Suppose $A^{-1}\operatorname{rint}(C)\neq \emptyset$.
+	Let $A:\mathbb{R}^l\to \mathbb{R}^m$ be an affine map. Suppose $A^{-1}\operatorname{ri}(C)\neq \emptyset$.
 	\begin{enumerate}[label=(\alph*)]
-		\item $A^{-1}\operatorname{rint}(C)=\operatorname{rint}(A^{-1}C)$
+		\item $A^{-1}\operatorname{ri}(C)=\operatorname{ri}(A^{-1}C)$
 		\item $A^{-1}\operatorname{cl}(C)=\operatorname{cl}(A^{-1}C)$
 	\end{enumerate}
 \end{prop}
@@ -220,17 +177,17 @@
 	\[
 		A^{-1}C=\pi (\Gamma_A\cap \mathbb{R}^m\times C)
 	\]
-	We wish to compute $\operatorname{rint}(A^{-1}C)$. Note first that \Cref{prop:012-image-rules}, \Cref{prop:012-product-rules}:
+	We wish to compute $\operatorname{ri}(A^{-1}C)$. Note first that by (b) of \Cref{prop:012-yoga-ri-cl}, \Cref{prop:012-product-rules}:
 	\[
-		\operatorname{rint}(\Gamma_A)=\Gamma_A,\; \operatorname{rint}(\mathbb{R}^m\times C)= \mathbb{R}^m \times \operatorname{rint}(C)
+		\operatorname{ri}(\Gamma_A)=\Gamma_A,\; \operatorname{ri}(\mathbb{R}^m\times C)= \mathbb{R}^m \times \operatorname{ri}(C)
 	\]
-	so by \Cref{prop:012-image-rules}, \Cref{prop:012-fin-intersection-rules}, and the condition $A^{-1}\operatorname{rint}(C)\neq\emptyset$:
+	so by (b) of \Cref{prop:012-yoga-ri-cl}, \Cref{prop:012-fin-intersection-rules}, and the condition $A^{-1}\operatorname{ri}(C)\neq\emptyset$:
 	\begin{align*}
-		\operatorname{rint}(A^{-1}C) & =\operatorname{rint}(\pi (\Gamma_A\cap \mathbb{R}^m\times C))                        \\
-		                             & =\pi \operatorname{rint}(\Gamma_A\cap \mathbb{R}^m\times C)                          \\
-		                             & =\pi (\operatorname{rint}( \Gamma_A )\cap \operatorname{rint}(\mathbb{R}^m\times C)) \\
-		                             & =\pi ( \Gamma_A \cap \mathbb{R}^m\times \operatorname{rint}(C))                      \\
-		                             & =A^{-1}\operatorname{rint}(C)
+		\operatorname{ri}(A^{-1}C) & =\operatorname{ri}(\pi (\Gamma_A\cap \mathbb{R}^m\times C))                      \\
+		                           & =\pi \operatorname{ri}(\Gamma_A\cap \mathbb{R}^m\times C)                        \\
+		                           & =\pi (\operatorname{ri}( \Gamma_A )\cap \operatorname{ri}(\mathbb{R}^m\times C)) \\
+		                           & =\pi ( \Gamma_A \cap \mathbb{R}^m\times \operatorname{ri}(C))                    \\
+		                           & =A^{-1}\operatorname{ri}(C)
 	\end{align*}
 	For (b), we have:
 	\[
@@ -247,7 +204,7 @@
 	Conversely, given $A^{-1}C\supset (x_k)_k\to x\in \operatorname{cl}(A^{-1}C)$, then $C\supset (Ax_k)_k$ converges, to $Ax\in \operatorname{cl}(C)$.
 \end{proof}
 
-\paragraph{}The following proposition gives ways to represent $\operatorname{rint}(C)$ via fibers.
+\paragraph{}The following proposition gives ways to represent $\operatorname{ri}(C)$ via fibers.
 
 \begin{prop}[Slice and Fibers Rules]
 	\label{prop:012-slice-fiber-rules}
@@ -257,13 +214,13 @@
 	\]
 	Then we have:
 	\[
-		\operatorname{rint}(C)_{x,:}=
+		\operatorname{ri}(C)_{x,:}=
 		\begin{cases}
-			\emptyset                    & \text{ if }x\notin \operatorname{rint}(D) \\
-			\operatorname{rint}(C_{x,:}) & \text{ if }x\in \operatorname{rint}(D)
+			\emptyset                  & \text{ if }x\notin \operatorname{ri}(D) \\
+			\operatorname{ri}(C_{x,:}) & \text{ if }x\in \operatorname{ri}(D)
 		\end{cases}
 	\]
-	where we use the convention $\operatorname{rint}(\emptyset)=\emptyset$. One can formulate analogous statements for fibers.
+	where we use the convention $\operatorname{ri}(\emptyset)=\emptyset$. One can formulate analogous statements for fibers.
 \end{prop}
 
 \paragraph{}This generalizes the product rule:
@@ -271,13 +228,13 @@
 \begin{proof}
 	Again, let $\pi:\mathbb{R}^{m}\to \mathbb{R}^l$ be projection $(x,y)\mapsto x$. We then have:
 	\[
-		\operatorname{rint}(D)=\operatorname{rint}(\pi C)=\pi \operatorname{rint}(C)
+		\operatorname{ri}(D)=\operatorname{ri}(\pi C)=\pi \operatorname{ri}(C)
 	\]
-	Therefore, if $x\notin \operatorname{rint}(D)$, then we get $C_{x,:}=\emptyset$. Otherwise, we have:
+	Therefore, if $x\notin \operatorname{ri}(D)$, then we get $C_{x,:}=\emptyset$. Otherwise, we have:
 	\begin{align*}
-		\{x\}\times \operatorname{rint}(C)_{x,:} & = \{x\}\times \mathbb{R}^m\cap \operatorname{rint}(C)                      = \operatorname{rint}(\{x\}\times \mathbb{R}^m)\cap \operatorname{rint}(C) \\
-		                                         & = \operatorname{rint}(\{x\}\times \mathbb{R}^m\cap C)                      = \operatorname{rint}(\{x\}\times C_{x,:})
+		\{x\}\times \operatorname{ri}(C)_{x,:} & = \{x\}\times \mathbb{R}^m\cap \operatorname{ri}(C)                      = \operatorname{ri}(\{x\}\times \mathbb{R}^m)\cap \operatorname{ri}(C) \\
+		                                       & = \operatorname{ri}(\{x\}\times \mathbb{R}^m\cap C)                      = \operatorname{ri}(\{x\}\times C_{x,:})
 	\end{align*}
-	where we used \Cref{prop:012-product-rules} for the second "=", \Cref{prop:012-fin-intersection-rules} for the third "=" along with the proven fact $\operatorname{rint}(D)=\pi \operatorname{rint}(C)$ and the assumption $x\in \operatorname{rint}(D)$.
+	where we used \Cref{prop:012-product-rules} for the second "=", \Cref{prop:012-fin-intersection-rules} for the third "=" along with the proven fact $\operatorname{ri}(D)=\pi \operatorname{ri}(C)$ and the assumption $x\in \operatorname{ri}(D)$.
 \end{proof}
 
