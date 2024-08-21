@@ -1,0 +1,129 @@
+\section{Polyhedral Sets}
+\label{sect:017}
+
+\paragraph{}We have seen in \Cref{coro:015-halfspaces-intersection} that closed convex sets are essentially intersections of closed halfspaces. A special class of closed convex sets - called polyhedral - are the ones that are given by finite intersection of closed convex halfspaces.
+
+\begin{defn}[Polyhedral Sets and Cones]\label{defn:017-polyhedral-sets}
+	A set $P\subset \mathbb{R}^m$ is polyhedral if it is of the following form:
+	\[
+		P=\bigcap_{i=1}^rE_{a_i,b_i,-},\text{ for some }r\in \mathbb{N},\{a_i\}_{i=1}^r\subset\mathbb{R}^m,\{b_i\}_{i=1}^r\subset\mathbb{R}
+	\]
+	Equivalently, it is the set:
+	\[
+		P=\{v\in \mathbb{R}^m:Av\leq b\}
+	\]
+	where $A\in \mathbf{M}_{r,m}(\mathbb{R}),b\in \mathbb{R}^r$ given by $A_{i,:}=a_i^T,b_i=b_i$. Under such representation, we call $Av\leq b$ a defining equation of $P$. A polyhedral set is a polyhedral cone if the $b_i$'s can be taken to be $0$.
+\end{defn}
+
+\paragraph{}Here $\mathbf{M}_{r,m}(\mathbb{R})$ is the space of $r$ by $m$ matrices, and for a given matrix $A$, $A_{i,:}$ is the $i$-th row, $A_{:,i}$ is the $i$-th column, and the inequality is to be interpreted componentwise-ly.
+
+\paragraph{}Note that a polyhedral set is precisely a polyhedral set that is also a cone: suppose a cone $X$ is contained in some $E_{a,b,-}$, then $b\geq 0$ and $X\subset E_{a,0,-}$.
+
+\begin{exmp}
+	A "linear programming (LP) problem in standard form" is given as the follows:
+	\begin{align*}
+		\text{Maximize}\quad   & c^Tx              \\
+		\text{subject to}\quad & Ax\leq b, x\geq 0
+	\end{align*}
+	where $A\in \mathbf{M}_{r,m}(\mathbb{R}),b\in \mathbb{R}^r,c\in \mathbb{R}^m$. In such case, the region given by the constraints (called the "feasibility region") is a polyhedral set with a defining equation of the form:
+	\[
+		\left[
+			\begin{array}{r}
+				A \\\hline
+				-I
+			\end{array}
+			\right]
+		x\leq
+		\left[
+			\begin{array}{r}
+				b \\\hline
+				0
+			\end{array}
+			\right]
+	\]
+\end{exmp}
+
+\subsection{Extreme Points of Polyhedral Sets}
+
+\paragraph{}Extreme points of polyhedral sets admits quite explicit descriptions:
+
+\begin{prop}[Characterization of Extreme points of Polyhedral Sets]\label{prop:017-characterization-polyhedral-extreme}
+	Given a defining equation $Ax\leq b$ of a polyhedral set $P$ for some $A\in \mathbf{M}_{r,m}(\mathbb{R}),b\in \mathbb{R}^m$, a point $v\in P$ satisfies $v\in \operatorname{ext}(P)$ iff the matrix $A_v$ given by keeping rows in $A$ where "$=$" holds in $Av\leq b$ is non-empty and injective.
+\end{prop}
+
+\begin{proof}
+	Let $I_v$ be a subset of row indices $\{i:A_{i,:}v=b_i\}$. If $A_v$ is injective, then:
+	\[
+		\operatorname{ext}(P)\cap\left(\bigcap_{i\in I_v}H_{a_i,b_i}\right)=
+		\operatorname{ext}\left(P\cap\bigcap_{i\in I_v}H_{a_i,b_i}\right)=\operatorname{ext}\left(\{v\}\right)=\{v\}
+	\]
+	by \Cref{lemm:016-extreme-and-hyperlane}. Otherwise, notice:
+	\[
+		v\in\left(\bigcap_{i\notin I_v}E_{a_i,b_i,-}^o\right)\cap\left(\bigcap_{i\in I_v}H_{a_i,b_i}\right)\subset P
+	\]
+	If $I_v$ (and hence $A_v$) is empty, then $P$ contains an open neighborhood of $v$. If $A_v$ is not injective, take $w\in \operatorname{ker}(A_v)\smallsetminus\{0\}$, then there is some $\varepsilon >0$ with $\{v\pm \varepsilon w\}\subset P$. In each case, $v$ cannot be extreme.
+\end{proof}
+
+\begin{coro}[Variants]\label{coro:017-char-variants}
+	Let $P$ be a polyhedral set, $A\in \mathbf{M}_{r,m}(\mathbb{R}),b,c,d\in \mathbb{R}^m$,
+	\begin{enumerate}[label=(\alph*)]
+		\item Suppose $P=\{x\in \mathbb{R}^m:Ax=b,x\geq 0\}$. Given $v\in P$, we have $v\in \operatorname{ext}(P)$ iff the matrix $A'_v$ given by keeping columns in $A$ corresponding to indices of $v$ where $v> 0$ is empty or injective.
+		\item Suppose $P=\{x\in \mathbb{R}^m:Ax=b,c\leq x\leq d\}$. Given $v\in P$, we have $v\in \operatorname{ext}(P)$ iff the matrix $A'_v$ given by keeping columns in $A$ corresponding to indices of $v$ where $c<v<d$ is empty or injective.
+	\end{enumerate}
+\end{coro}
+
+\begin{proof}
+	One can write the defining equations of (a) and (b) in block form as:
+	\[
+		\left[
+			\begin{array}{r}
+				A  \\\hline
+				-A \\\hline
+				-I
+			\end{array}
+			\right]
+		x\leq
+		\left[
+			\begin{array}{r}
+				b  \\\hline
+				-b \\\hline
+				0
+			\end{array}
+			\right],\;
+		\left[
+			\begin{array}{r}
+				A  \\\hline
+				-A \\\hline
+				I  \\\hline
+				-I
+			\end{array}
+			\right]
+		x\leq
+		\left[
+			\begin{array}{r}
+				b  \\\hline
+				-b \\\hline
+				d  \\\hline
+				-c
+			\end{array}
+			\right]
+	\]
+	The rest is an application of \Cref{prop:017-characterization-polyhedral-extreme}.
+\end{proof}
+
+\begin{coro}[Nonemptiness of $\operatorname{ext}(P)$ - Polyhedral Case]\label{coro:017-extreme-existence-poly}
+	Suppose $P\subset \mathbb{R}^m$ is nonempty, polyhedral with defining equation $Ax\leq b$, then $\operatorname{ext}(P)\neq\emptyset$ iff $A$ is injective and nonempty.
+\end{coro}
+\begin{proof}
+	If $A$ is injective, then $P$ contains no lines (see \Cref{lemm:016-extreme-existence}). Otherwise, use \Cref{prop:017-characterization-polyhedral-extreme}.
+\end{proof}
+
+\subsection{Polyhedral Cones and Farkas Lemma}
+
+\paragraph{}A form of Farkas lemma characterizes polyhedral cones - they are the polars of finitely generated cones, a notion we shall define now.
+
+\begin{defn}[Finitely Generated Cones]\label{defn:017-fg-cones}
+	A convex cone $C$ is called finitely generated if it can be written as $\operatorname{c.conv}(X)$ for some finite subset $X=\{a_i\}_{i=1}^k\subset \mathbb{R}^m$.
+\end{defn}
+
+\paragraph{}Finitely generated cones are closed - they are images of $\mathbb{R}_+^k\subset \mathbb{R}^k$ under some linear map, so by \Cref{coro:014-closed-affine} applied to $C_0=\mathbb{R}_+^k$ (this set is retractive - being a finite intersection of halfspaces which are also retractive) and $C=\mathbb{R}^k$, it is closed.

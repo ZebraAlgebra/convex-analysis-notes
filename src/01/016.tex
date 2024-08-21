@@ -1,0 +1,72 @@
+\section{Extreme Points and Polar Cones}
+\label{sect:016}
+\paragraph{}Before going into the theory of polyhedral sets in \Cref{sect:017}, we will introduce in this section the notion of extreme points and polar cones of convex sets as preparation. For now, let us fix some $m\in \mathbb{N}$.
+
+\begin{defn}[Extreme Points]\label{defn:016-exterior}
+	Let $X,Y$ be subsets of $\mathbb{R}^m$, we define:
+	\[
+		J(X,Y)=\{(1-\alpha)x+\alpha y:(x,y,\alpha)\in X\times Y\times (0,1),x\neq y\},\;J(X)=J(X,X)
+	\]
+	The set of extreme points of a convex set $C\subset \mathbb{R}^m$ is defined as $\operatorname{ext}(C)=C\smallsetminus J(C)$.
+\end{defn}
+\paragraph{}In other words, the set of extreme points of a convex set $C\subset \mathbb{R}^m$ is the set of points that cannot be expressed as $I(x,y,\alpha )$ for some different $x,y\in C$ and $\alpha \in (0,1)$.
+
+\paragraph{}Extreme points behaves well under restriction to hyperplanes:
+
+\begin{lemm}[Extreme Points and Hyperplanes]\label{lemm:016-extreme-and-hyperlane}
+	Let $C\subset \mathbb{R}^m$ be convex with $C\subset E_{a,b,+}$, then we have $\operatorname{ext}(C)\cap H_{a,b}=\operatorname{ext}(C\cap H_{a,b})$.
+\end{lemm}
+
+\begin{proof}
+	Write $C'=C\cap H_{a,b}$. We only need $J(C)\cap H_{a,b}\subset J(C')\cap H_{a,b}$, which is by:
+	\[
+		J(C)\cap H_{a,b}\subset \left(J(C')\cup J(E^{o}_{a,b,+},E_{a,b,+})\right)\cap H_{a,b}=\left(J(C')\cup E^o_{a,b,+}\right)\cap H_{a,b}=J(C')\cap H_{a,b}\qedhere
+	\]
+\end{proof}
+
+\begin{lemm}[Nonemptiness of $\operatorname{ext}(C)$]\label{lemm:016-extreme-existence}
+	Let $C\subset \mathbb{R}^m$ be nonempty, closed, convex, then $\operatorname{ext}(C)\neq\emptyset$ if $L_C=0$, or equivalently if $C$ does not contain any lines.
+\end{lemm}
+
+\begin{proof}
+	The equivalence with the statement regarding line containment is (c) of \Cref{prop:013-yoga-linearity}. We now prove by induction, with the case $m=1$ being clear. For the inductive step, by inductive hypothesis, may assume $\dim(C)=m$, then by choosing a supporting separating hyperplane $H$ (see remark after \Cref{prop:015-hyperplane-sep}) crossing a point in $\operatorname{C}\smallsetminus \operatorname{int}(C)$ (such point exists, as $\mathbb{R}^m$ is connected and $C$ is closed), we get by inductive hypothesis applied to $C\cap H$ and \Cref{lemm:016-extreme-and-hyperlane} that $\operatorname{ext}(C)\neq\emptyset$.
+\end{proof}
+
+\paragraph{}Now we consider the construction of polar cones.
+
+\begin{defn}[Polar Cone]\label{defn:016-polar-cone}
+	Let $X\subset \mathbb{R}^m$ be a nonempty. We define the polar cone of $X$ as:
+	\[
+		X^\ast=
+		\left\{a\in \mathbb{R}^m:E_{a,0,-}\supset X\right\}=
+		\bigcap_{a\in X}E_{a,0,-}
+	\]
+	which is a closed convex cone; here we use the convention $E_{0,0,\pm}=\mathbb{R}^m$.
+\end{defn}
+
+\paragraph{}By definition, since $E_{a,0,-}$ are closed, convex, cones, we have:
+
+\[
+	X^\ast = \operatorname{cl}(X)^\ast =
+	\operatorname{cone}(X)^\ast = \operatorname{c.conv}(X)^\ast = \operatorname{cl}(\operatorname{c.conv}(X))^\ast
+\]
+
+\paragraph{}Also, when $X=-X$, then $X^\ast=\operatorname{lin}(X)^\perp$, as $E_{a,0,-}\cap E_{-a,0,-}=H_{a,0}$. In this sense, know that when $X=\operatorname{lin}(X)$ - that is, when $X$ is a linear subspace - then $X^\perp=X^\ast$, so we have $X^{\ast\ast}=X^{\perp\perp}=X$. In fact, $X=X^{\ast\ast}$ holds for nonempty closed convex cones:
+
+\begin{lemm}[Polar Cone Theorem]\label{lemm:016-polar-cone-theorem}
+	Let $X\subset \mathbb{R}^m$ be nonempty, then $X^{\ast\ast}=\operatorname{cl}(\operatorname{c.cone}(X))$.
+\end{lemm}
+
+\begin{proof}
+	May assume that $X$ is nonempty, closed, convex, cone and show $X=X^{\ast\ast}$. In general, we have:
+	\[
+		X^{\ast\ast}=\left\{a'\in \mathbb{R}^m:E_{a',0,-}\supset \bigcap_{a\in X}E_{a,0,-}\right\}\supset X
+	\]
+	For the reverse inclusion, we will use \Cref{lemm:014-projection}. Given $x\in X^{\ast\ast}$, let $x_0$ be its projection to $X$, then it suffices to show $x=x_0$. The optimality condition in \Cref{lemm:014-projection} can be written in terms of halfspaces:
+	\[
+		X-x_0\subset E_{x-x_0,0,-}
+	\]
+	As $X$ is cone, $\left\{\pm x_0\right\}\subset X-x_0$, so $x_0\in H_{x-x_0,0}$, giving $X=(X-x_0)+x_0\subset E_{x-x_0,0,-}+x_0=E_{x-x_0,0,-}$, showing that $x-x_0\in X^\ast$. In particular, since $x\in X^{\ast\ast}=\bigcap_{a\in X^{\ast}}E_{a,0,-}$, we get $x\in E_{x-x_0,0,-}$. Combined with $x_0\in H_{x-x_0,0}$, we get $x-x_0\in E_{x-x_0,0,-}$, hence $x=x_0$.
+\end{proof}
+
+

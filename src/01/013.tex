@@ -11,22 +11,22 @@
 	Given $d\in \mathbb{R}^m$, we say that $d$ is a direction of recession of $C$ if $C+\rho_d\subset C$.	The set of recession directions of $C$ is the recession cone $R_C$. The linearity subspace of $C$ is given as $L_C:=R_C\cap R_{-C}$; equivalently, $d\in L_C$ iff $C+\ell_d\subset C$.
 \end{defn}
 
-\paragraph{}We will see that recession cones are cones (in fact, convex cones). Let $\nu$ be the map $\mathbb{R}^m\smallsetminus\{0\}\to \mathbb{S}^{m-1}$ given by $x\mapsto x/\|x\|$, then $\nu$ gives a correspondence between subsets of $\mathbb{S}^{m-1}$ and cones in $\mathbb{R}^m$.
+\paragraph{}We will see that recession cones are convex cones. Let $\nu$ be the map $\mathbb{R}^m\smallsetminus\{0\}\to \mathbb{S}^{m-1}$ given by $x\mapsto x/\|x\|$, then $\nu$ gives a correspondence between subsets of $\mathbb{S}^{m-1}$ and cones in $\mathbb{R}^m$ via direct and inverse images.
 
 \begin{prop}[Yoga of Recession Cones].
 	\label{prop:013-yoga-recession}
 	\begin{enumerate}[label=(\alph*)]
 		\item (Recession Cones are Convex Cones) $R_C$ is a non-empty convex cone.
-		\item (Product Rule) Given convex $(C_i)_{i=1}^k$ where $C_i\subset \mathbb{R}^{m_i}$, write $C=\bigtimes_{i=1}^kC_i$, then $R_C=\bigtimes_{i=1}^kR_{C_i}$.
+		\item (Product Rule) Given non-empty convex $\{C_i\}_{i=1}^k$ where $C_i\subset \mathbb{R}^{m_i}$, then $R_{\bigtimes_i^kC_i}=\bigtimes_{i=1}^kR_{C_i}$.
 	\end{enumerate}
 	Assume $C$ is closed in (c)-(h).
 	\begin{enumerate}[label=(\alph*)]
 		\setcounter{enumi}{2}
-		\item (Closedness Rule) $R_C$ is closed
+		\item (Closedness Rule) $R_C$ is closed.
 		\item (Simplified Recession Direction Criterion) For any $x\in C$, $d\in R_C$ iff $x+\rho_d\subset C$.
 		\item (Compactness Rule) $R_C=\{0\}$ iff $C$ is bounded (hence iff $C$ is compact).
 		\item (Rint Rule) $R_C=R_{\operatorname{rint}(C)}$.
-		\item (Intersection Rule) Given closed convex $(C_i)_{i\in I}$ in $\mathbb{R}^m$ with $\bigcap_i{C_i}\neq\emptyset$, $R_{\bigcap_iC_i}=\bigcap_iR_{C_i}$.
+		\item (Intersection Rule) Given closed convex $\{C_i\}_{i\in I}$ in $\mathbb{R}^m$ with $\bigcap_i{C_i}\neq\emptyset$, $R_{\bigcap_iC_i}=\bigcap_iR_{C_i}$.
 		\item (Inverse Image Rule) Given affine $A:\mathbb{R}^m\to \mathbb{R}^n$, compact convex $W\subset \mathbb{R}^n$,\\we have $R_{A^{-1}W\cap C}=\operatorname{ker}(A)\cap R_C$ if $A^{-1}W\cap C\neq\emptyset$.
 	\end{enumerate}
 \end{prop}
@@ -40,7 +40,7 @@
 	\[
 		C+\rho_{I(d,d';[0,1])}\subset I\left(C+\rho_{d},C+\rho_{d'},[0,1]\right)\subset C
 	\]
-	(b) is straightforward. For (c), given $\{d_i\}_i\to d$ in $R_C$, we have $C+\rho_d\subset \operatorname{cl}\left(\bigcup_i\left(C+\rho_{d_i}\right)\right)\subset \operatorname{cl}(C)=C$.\\
+	(b) is straightforward. For (c), given $R_C\supset \{d_i\}_i\to d\in \operatorname{cl}(R_C)$, $C+\rho_d\subset \operatorname{cl}\left(\bigcup_i\left(C+\rho_{d_i}\right)\right)\subset \operatorname{cl}(C)=C$.\\
 	For (d), for $d\in R_C$, we have: $C+\rho_d=\operatorname{cl}\left(x+\rho_d,C;[0,1]\right)\subset \operatorname{cl}(C)=C$.\\
 	For (e), may assume $\dim C=m$, $0\in C$. We use (d) on $0$. Take $C\supset \{x_i\}_i$ with $\|x_i\|\geq i$. Let $d_i:=\nu(x_i)\in \mathbb{S}^{m-1}$; it has some limit point $d\in \mathbb{S}^{m-1}$, so by rechoosing $x_i$, may assume $\{d_i\}_i\to d$. We show that $d\in R_C$. It suffices to show $\{id\}_i\subset C$, but this is by $C\supset\{id_j\}_{j\geq i}^\infty\to id$, as $id_j\in I(0,x_j;[0,1])$ for $j\geq i$.\\
 	For (f), "$\supset$" is by (d); for "$\subset$", take $x\in \operatorname{rint}(C)$, then given $d\in R_C$, by (b) of \Cref{prop:012-basic-ri}:
@@ -54,7 +54,7 @@
 	\label{prop:013-yoga-linearity}
 	\begin{enumerate}[label=(\alph*)]
 		\item (Linearity Subspaces are Linear Subspaces) $L_C$ is a vector subspace, hence also closed.
-		\item (Product Rule) Given convex $(C_i)_{i=1}^k$ where $C_i\subset \mathbb{R}^{m_i}$, write $C=\bigtimes_{i=1}^kC_i$, then $L_C=\bigtimes_{i=1}^kL_{C_i}$.
+		\item (Product Rule) Given convex $\{C_i\}_{i=1}^k$ where $C_i\subset \mathbb{R}^{m_i}$, write $C=\bigtimes_{i=1}^kC_i$, then $L_C=\bigtimes_{i=1}^kL_{C_i}$.
 	\end{enumerate}
 	Assume $C$ is closed in (c)-(g).
 	\begin{enumerate}[label=(\alph*)]
@@ -62,7 +62,7 @@
 		\item (Simplified Recession Direction Criterion) For any $x\in C$, $d\in L_C$ iff $x+\ell_d\subset C$.
 		\item (Compactness Rule) $L_C=\{0\}$ if $C$ is bounded.
 		\item (Rint Rule) $L_C=L_{\operatorname{rint}(C)}$.
-		\item (Intersection Rule) Given closed convex $(C_i)_{i\in I}$ in $\mathbb{R}^m$ with $\bigcap_i{C_i}\neq\emptyset$, we have $L_{\bigcap_iC_i}=\bigcap_iL_{C_i}$.
+		\item (Intersection Rule) Given closed convex $\{C_i\}_{i\in I}$ in $\mathbb{R}^m$ with $\bigcap_i{C_i}\neq\emptyset$, we have $L_{\bigcap_iC_i}=\bigcap_iL_{C_i}$.
 		\item (Inverse Image Rule) Given affine $A:\mathbb{R}^m\to \mathbb{R}^n$, compact convex $W\subset \mathbb{R}^n$,\\we have $L_{A^{-1}W\cap C}=\operatorname{ker}(A)\cap L_C$ if $A^{-1}W\cap C\neq\emptyset$.
 	\end{enumerate}
 \end{prop}
@@ -74,7 +74,7 @@
 	\]
 \end{proof}
 
-\paragraph{}A first usage of $L_C$ is to decompose convex sets:
+\paragraph{}A cool use of linearity subspace is the following decomposition of convex sets into "linear + nonlinear":
 
 \begin{prop}[Decomposition into Linear plus No Linear]
 	\label{prop:013-decomposition}
@@ -91,98 +91,3 @@
 	It is evident that "$\supset$" holds. For "$\subset$", given $x=s+t\in C$, with $s\in S,t\in S^\perp$, then $t\in C$.
 \end{proof}
 
-\paragraph{}Now let $\{C_i\}_i$ be a descending chain of non-empty closed sets in $\mathbb{R}^m$, and let $C=\bigcap_iC_i$. We know that when some $C_i$ is compact, then $C\neq\emptyset$. For closed convex sets, we seek conditions where $C\neq\emptyset$. One such condition is the "retractive condition" (see \Cref{defn:013-retractiveness}). In some cases, retractive condition can be implied from the sets $R:=\bigcap_i R_{C_i},L:=\bigcap_i L_{C_i}$.
-
-\paragraph{}A modification of the proof of (e) of \Cref{prop:013-yoga-recession} yields the following:
-
-\begin{prop}[Construction of Recession Directions]
-	\label{prop:013-construction-recession}
-	Given $\{x_i\}_i\subset \mathbb{R}^m\smallsetminus \{0\}$ with $\{\|x_i\|\}_i\to\infty$, $x_i\in C_i\smallsetminus \{0\}$, then all limit points of $\{\nu(x_i)\}_i\subset \mathbb{S}^{m-1}$ are contained in $R\cap \mathbb{S}^{m-1}$.
-\end{prop}
-
-\paragraph{}In other words, $\nu(R)$ and hence $R$ can be characterized completely via \Cref{prop:013-construction-recession}. The special case where $C_i=C_0$ for some fixed $C_0$, giving (d) of \Cref{prop:013-yoga-recession}. This motivates the following definition:
-
-\begin{prop}[Asymptotic Sequences]
-	\label{defn:013-asymptotic}
-	A sequence $\{x_i\}_i\subset \mathbb{R}^m\smallsetminus\{0\}$ is an asymptotic sequence of $\{C_i\}_i$ if $\{\|x_i\|\}_i\to\infty$, $x_i\in C_i$, and that $\{\nu_i(x)\}_i\subset \mathbb{S}^{m-1}$ converges to some $d\in \mathbb{S}^{m-1}$.
-\end{prop}
-
-\begin{defn}[Retractiveness]
-	\label{defn:013-retractiveness}
-	An asymptotic sequence $\{x_i\}_i$ with $\{\nu(x_i)\}_i\to d\in R\cap \mathbb{S}^{m-1}$ is retractive if $x_i-d\in C_i$ for all $i\geq i_0$ for some $i_0$. The sequence $\{C_i\}_i$ is retractive if all asymptotic sequences are retractive. A convex set $C_0$ is retractive if $\{C_0\}_i$ is retractive.
-\end{defn}
-
-\paragraph{}Note that a subsequence of a retractive sequence of closed convex sets is still retractive.
-
-\begin{prop}[Non-empty Intersection I]
-	\label{prop:013-non-empt-I}
-	Suppose $\{C_i\}_i$ is retractive, then $C\neq\emptyset$.
-\end{prop}
-
-\paragraph{}Before going into the proof, we introduce the following construction.
-
-\begin{lemm}[Projection Lemma]\label{lemm:013-projection}
-	For a nonempty closed convex set $C_0\subset \mathbb{R}^m$ and a point $x_0\in \mathbb{R}^m$, there is a unique point $x\in C_0$ closest to $x_0$; that is, $\|x-x_0\|^2=\inf_{x\in C_0}\|x-x_0\|^2$.
-\end{lemm}
-
-\begin{proof}
-	May assume that $C_0$ is compact by restricting to a bounded subset. Consider the continuous function $f:\mathbb{R}^m\to \mathbb{R}$ given by $x\mapsto \|x-x_0\|^2$, then $f(C_0)$ is a compact, so we can find $x\in C_0$ with $f(x)=\inf_{y\in C_0}f(y)$. Suppose $x'\in C_0$ is another such point, then let $x''=I(x,x';1/2)\in C_0$; one can show that $f(x'')< f(x)$ unless $x=x'$.
-\end{proof}
-
-\begin{proof}[Proof of \Cref{prop:013-non-empt-I}]
-	Take the sequence $\{x_i\}_i$ defined by $\|x_i\|=\inf_{x\in C_i}\|x\|$. It suffices to show that $\{x_i\}_i$ is bounded - any limit point of this sequence will lie in $C$. Otherwise, we may assume $\{x_i\}_i$ is asymptotic with $\mathbb{S}^{m-1}\supset\{\nu(x_i)\}_i\to d$ by replacing $\{C_i\}_i$ by a subsequence. Replacing again $\{C_i\}_i$ by a subsequence, we may assume that $x_i-d\in C_i$ for each $i$. We have:
-	\[
-		\left(\|x_i\|^2-\|x_i-d\|^2\right)/\|x_i\|=2d^T\nu(x_i)-1/\|x_i\|\to 2\text{, as }i\to\infty
-	\]
-	indicating that $x_i-d$ has smaller norm than $x_i$ eventually, which is a contradiction.
-\end{proof}
-
-\begin{prop}[Non-empty Intersection II]\label{prop:013-non-empt-II}
-	Suppose $C_0\subset \mathbb{R}^m$ is retractive, closed, convex, and that the induced sequence $\{C'_i\}_i:=\{C_0\cap C_i\}_i$ is a sequence of non-empty closed convex subsets, with:
-	\[
-		R_{C_0}\cap R\subset L
-	\]
-	then $\{C'_i\}_i$ is retractive, and that $C':=\bigcap_iC'_i\neq\emptyset$.
-\end{prop}
-
-\begin{coro}[Decomposition into Linear plus Compact]\label{coro:013-decomp-compact}
-	When $R=L$, we have $C\neq\emptyset$, and the decomposition $C=L+C\cap L^\perp$.
-\end{coro}
-
-\paragraph{}Note that $R_L=R=L,R_{C\cap L^{\perp}}=R\cap L^\perp=L\cap L^\perp=\{0\}$. In other words, this is decomposition into a sum of a linear space containing all the recession directions and a compact convex set.
-
-\begin{proof}
-	Use \Cref{prop:013-decomposition} and \Cref{prop:013-non-empt-II} applied to $C_0=\mathbb{R}^m$.
-\end{proof}
-
-\begin{proof}[Proof of \Cref{prop:013-non-empt-II}]
-	Write $R'=\bigcap_iR_{C'_i}$. We have $R'=R_{C_0}\cap R$, so given asymptotic sequence $\{x'_i\}_i$ for $\{C'_i\}_i$ with $\{\nu(x_i)\}_i\to d\in R'\cap \mathbb{S}^{m-1}\subset L$, we have $x'_i-d\in C'_i$ for all $i\geq i_0$ for some $i_0$ by retractiveness of $C'_0$. Non-emptyness of $C'$ is by \Cref{prop:013-non-empt-I}.
-\end{proof}
-
-\paragraph{}Another nice application of retractive sequence is a condition for closedness of image under affine transformation. For now, fix a convex closed subset $C\subset \mathbb{R}^m$.
-
-\begin{coro}[Closedness under Affine]\label{coro:013-closed-affine}
-	Let $C_0\subset \mathbb{R}^m$ be nonempty, retractive, closed, convex, and let $A:\mathbb{R}^m\to \mathbb{R}^n$ be an affine map. If:
-	\[
-		R_{C_0}\cap R_C\cap \operatorname{ker}(A)\subset L_C
-	\]
-	then $A(C_0\cap C)$ is closed.
-\end{coro}
-
-\begin{proof}
-	Given $A(C_0\cap C)\supset\{y_i\}_{i}\to y\in \operatorname{cl}(A(C_0\cap C))$, define $\{C_i\}_i$ by:
-	\[
-		C_i=C\cap A^{-1}\left(\operatorname{cl}\left(B(y;\|y-y_k\|) \right)\right)
-	\]
-	then we have $R_{C_i}=R_C\cap \operatorname{ker}(A),L_{C_i}=L_C\cap \operatorname{ker}(A)$ (see (h) of \Cref{prop:013-yoga-linearity} and \Cref{prop:013-yoga-recession}). Therefore, we have by \Cref{prop:013-non-empt-II} that $C_0\cap \bigcap_iC_i\neq\emptyset$. Given $x$ in this set, $y=Ax\in A(C_0\cap C)$.
-\end{proof}
-
-\begin{coro}[Closedness under Sum]\label{coro:013-closed-sum}
-	Let $\{C_i\}_{i=1}^k$ be convex subsets in $\mathbb{R}^m$. Let $A:(\mathbb{R}^{m})^k\to \mathbb{R}^m$ be summation map $(x_i)_{i=1}^k\mapsto \sum_{i=1}^kx_i$. Suppose $\left(\bigtimes_{i=1}^kR_{C_i}\right)\cap\operatorname{ker}(A)\subset \left(\bigtimes_{i=1}^kL_{C_i}\right)$, then $\sum_{i=1}^kC_i$ is closed.
-\end{coro}
-
-\paragraph{}In other words, if for any given $(d_i)_{i=1}^k\in\bigtimes_{i=1}^kR_{C_i}$ with $\sum_{i=1}^kd_i=0$ that $(d_i)_{i=1}^k\in\bigtimes_{i=1}^kL_{C_i}$, $\sum_{i=1}^kC_i$ is closed. If $k=2$, the condition is the same as $R_{C_1}\cap -R_{C_2}=\{0\}$.
-
-\begin{proof}
-	This is by (b) of \Cref{prop:013-yoga-recession}, \Cref{prop:013-yoga-linearity}, and \Cref{coro:013-closed-affine} with $C_0=\mathbb{R}^{mk}$.
-\end{proof}
