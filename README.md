@@ -19,3 +19,8 @@ Modify the files in `sty` to specify other metadata, and packages.
 Add entries and contents into the directory `src` and input them in `main.tex`.
 
 Add bib entries in `ref.bib`.
+
+## TODO
+
+1. Fix separation theorem typos
+2. Fix upward-closed sets definitions

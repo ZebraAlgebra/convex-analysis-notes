@@ -17,7 +17,7 @@
 
 \paragraph{}Here $\mathbf{M}_{r,m}(\mathbb{R})$ is the space of $r$ by $m$ matrices, and for a given matrix $A$, $A_{i,:}$ is the $i$-th row, $A_{:,i}$ is the $i$-th column, and the inequality is to be interpreted componentwise-ly.
 
-\paragraph{}Note that a polyhedral set is precisely a polyhedral set that is also a cone: suppose a cone $X$ is contained in some $E_{a,b,-}$, then $b\geq 0$ and $X\subset E_{a,0,-}$.
+\paragraph{}Note that a polyhedral cone is precisely a polyhedral set that is also a cone: suppose a cone $X$ is contained in some $E_{a,b,-}$, then $b\geq 0$ and $X\subset E_{a,0,-}$.
 
 \begin{exmp}
 	A "linear programming (LP) problem in standard form" is given as the follows:
@@ -118,12 +118,126 @@
 	If $A$ is injective, then $P$ contains no lines (see \Cref{lemm:016-extreme-existence}). Otherwise, use \Cref{prop:017-characterization-polyhedral-extreme}.
 \end{proof}
 
-\subsection{Polyhedral Cones and Farkas Lemma}
+\subsection{Polyhedral Cones and Finitely-Generated Cones}
 
-\paragraph{}A form of Farkas lemma characterizes polyhedral cones - they are the polars of finitely generated cones, a notion we shall define now.
+\paragraph{}A form of Farkas lemma characterizes polyhedral cones - they are the polars of finitely generated cones, a notion we shall define now. Minkowski-
 
 \begin{defn}[Finitely Generated Cones]\label{defn:017-fg-cones}
 	A convex cone $C$ is called finitely generated if it can be written as $\operatorname{c.conv}(X)$ for some finite subset $X=\{a_i\}_{i=1}^k\subset \mathbb{R}^m$.
 \end{defn}
 
 \paragraph{}Finitely generated cones are closed - they are images of $\mathbb{R}_+^k\subset \mathbb{R}^k$ under some linear map, so by \Cref{coro:014-closed-affine} applied to $C_0=\mathbb{R}_+^k$ (this set is retractive - being a finite intersection of halfspaces which are also retractive) and $C=\mathbb{R}^k$, it is closed.
+
+\begin{prop}[Farkas Lemma - Basic Form]\label{prop:017-farkas}
+	Given a finite set $X\subset \mathbb{R}$, the closed convex cones:
+	\[
+		\bigcap_{a\in X}E_{a,0,-},\;\operatorname{c.cone}(X)
+	\]
+	are polar to each other.
+\end{prop}
+
+\begin{proof}
+	By definition we have $X^\ast=\bigcap_{a\in X}E_{a,0,-}$, so we are done by \Cref{lemm:016-polar-cone-theorem}.
+\end{proof}
+
+\begin{exmp}[An application of Farkas Lemma]
+	Let $X,Y'$ be finite subsets of $\mathbb{R}^m$, then:
+	\[
+		\left(\left(\bigcap_{a\in X}E_{a,0,-}\right)\cap \left(\bigcap_{a'\in X'}H_{a',0}\right)\right)^\ast
+		=\operatorname{lin}(X')+\operatorname{c.cone}(X)
+	\]
+\end{exmp}
+
+\begin{prop}[Minkowski-Weyl Theorem]\label{prop:017-Minkowski-Weyl-Theorem}
+	A convex cone $C\subset \mathbb{R}^m$ is polyhedral iff finitely generated.
+\end{prop}
+\begin{proof}
+	By \Cref{prop:017-farkas} and \Cref{lemm:016-polar-cone-theorem}, it suffices to show that a finitely generated cone is polyhedral. Suppose $X=\{a_i\}_{i=1}^{k}\subset C$ with $C=\operatorname{c.cone}(X)$. If we write $V=\operatorname{lin}(C)$, then by the identity:
+	\[
+		C=(C+V^\perp)\cap V
+	\]
+	we may assume $V=\mathbb{R}^m\neq C$. Given $b\notin C$, by (b) of \Cref{prop:015-hyperplane-sep}, there are $x\in \mathbb{S}^{m-1},y\in \mathbb{R}$ with:
+	\[
+		b\in E_{x,2y,+}^o,\; C\subset E_{x,2y,-}^o
+	\]
+	Since $C$ is a non-trivial cone, we have $y>0$, giving:
+	\[
+		b\in E_{x,y,+},\; C\subset E_{x,0,-}
+	\]
+	In this sense, $x$ belongs to the following polyhedral set:
+	\[
+		P = E_{-b,-y,-}\cap\left(\bigcap_{i=1}^k E_{a_i,0,-}\right)
+	\]
+	In terms of defining equations (where $A_{i,:}=a_i^T$):
+	\[
+		P=
+		\left\{x\in \mathbb{R}^m:\overline{A}x\leq
+		\left[
+			\begin{array}{r}
+				0 \\\hline
+				-y
+			\end{array}
+			\right]
+		,\text{ where }
+		\overline{A}=\left[
+			\begin{array}{r}
+				A \\\hline
+				-b^T
+			\end{array}
+			\right]
+		\right\}
+	\]
+	Extreme points of this set is given by \Cref{prop:017-characterization-polyhedral-extreme}; say $v\in \operatorname{ext}(P)$, and consider the matrix $\overline{A_v}$, which should be injective. As $A$ is injective and $0\notin P$, we have:
+	\[
+		\overline{A_v}=
+		\left[
+			\begin{array}{r}
+				A_v \\\hline
+				-b^T
+			\end{array}
+			\right]
+	\]
+	and $\operatorname{rank}(A_v)=m-1$, giving:
+	\[
+		b\in E^o_{v,0,+},\; \operatorname{im}(A_v)=H_{v,0},\; C\subset E_{v,0,-}
+	\]
+	This gives:
+	\[
+		C = \bigcap_{\substack{
+				v\in \mathbb{R}^{m-1}\smallsetminus\{0\},Y\subset X:\\
+				\dim \operatorname{lin}(Y)=m-1,\;C\subset E_{v,0,-},\\
+				H_{v,0}=\operatorname{lin}(Y)
+			}
+		}E_{v,0,-}=
+		\bigcap_{\substack{
+				v\in \mathbb{S}^{m-1},Y\subset X:\\
+				\dim \operatorname{lin}(Y)=m-1,\;C\subset E_{v,0,-},\\
+				H_{v,0}=\operatorname{lin}(Y)
+			}
+		}E_{v,0,-}
+	\]
+	which is a finite intersection of halfspaces (as for given $Y$ with $\operatorname{dim}\operatorname{lin}(Y)=m-1$, the conditions $C\subset E_{v,0,-},H_{v,0}=\operatorname{lin}(Y)$ determines $v\in \mathbb{S}^{m-1}$ uniquely).
+\end{proof}
+
+\begin{prop}[Minkowski-Weyl Representation]\label{prop:017-Minkowski-Weyl-Representation}
+	A set $P\subset \mathbb{R}^m$ is polyhedral iff it is of the form $\operatorname{c.cone}(X)+\operatorname{conv}(Y)$ for some finite subsets $X,Y$ of $\mathbb{R}^m$.
+\end{prop}
+\begin{proof}
+	If $P=\operatorname{c.cone}(X)+\operatorname{conv}(Y)$, then $P=\overline{P}_{:,1}$ where $\overline{P}\subset \mathbb{R}^{m+1}$ is defined as:
+	\[
+		\overline{P}=\operatorname{c.cone}\left(\{(x,0):x\in X\}\cup\{(y,1):y\in Y\}\right)
+	\]
+	therefore both $\overline{P}$ and $P$ are polyhedral by \Cref{prop:017-Minkowski-Weyl-Theorem}. On the other hand, if $P$ is polyhedral, with:
+	\[
+		P=\left(\bigcap_{x\in X} E_{x,0,-}\right)\cap\left(\bigcap_{y\in Y} E_{y,1,-}\right)\cap \left(\bigcap_{z\in Z} E_{z,-1,-}\right)
+	\]
+	where $X,Y,Z$ are finite subsets of $\mathbb{R}^m\smallsetminus\{0\}$, then $P=\overline{P}_{:,1}$ where $\overline{P}\subset \mathbb{R}^{m+1}$ is defined as:
+	\[
+		\overline{P}=E_{-e_{m+1},0,-}\cap\left(\bigcap_{x\in X} E_{(x,0),0,-}\right)\cap\left(\bigcap_{y\in Y} E_{(y,-1),0,-}\right)\cap \left(\bigcap_{z\in Z} E_{(z,1),0,-}\right)
+	\]
+	By \Cref{prop:017-Minkowski-Weyl-Theorem}, we may write:
+	\[
+		\overline{P}=\operatorname{c.cone}\left(\{(x,0):x\in X'\}\cup \{(y, 1):y\in Y'\}\right)
+	\]
+	for some finite subsets $X',Y'$ in $\mathbb{R}^m$. Under this representation, $P=\overline{P}_{:,1}=\operatorname{c.cone}(X')+\operatorname{conv}(Y')$.
+\end{proof}

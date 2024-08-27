@@ -1,0 +1,31 @@
+\paragraph{}When $f$ is a closed proper function, we have:
+\[
+	\operatorname{epi}(f)=\bigcap_{y\in \mathbb{R}^m}E_{(y,-1),f^\ast(y),-}
+\]
+
+\section{Duality Theorems}
+\paragraph{}Fix $m\in \mathbb{N}$, a subset $M\subset \mathbb{R}^{m+1}$. For an element $y\in \mathbb{R}^m$, write $y^+=(y,1)\in \mathbb{R}^{m+1}$.
+
+\begin{defn}[Min-Common, Max-crossing]\label{defn:031-mc-mc}
+	We define two values $w^\ast_M, q^\ast_M$ in $\mathbb{R}$ as follows:
+	\[
+		w^\ast_M = \operatorname{inf}M_{0^m,:},\;
+		q^\ast_M = \sup_{y\in \mathbb{R}^m, u\in \mathbb{R}:E_{y_+,u,+}\supset M}u
+	\]
+	called the min-common and max-crossing values of $M$. When the context is clear, we write $w^\ast_{M},q^\ast_{M}$ also as $w^\ast,q^\ast$. We also define the "dual function" $q$ (or $q_{M}$):
+	\[
+		q_{M}:\mathbb{R}^m\to \mathbb{R},\; y \mapsto \sup_{u\in \mathbb{R}:E_{y_+,u,+}\supset M}u = \inf y_+^TM
+	\]
+	then we have $q_{M}^\ast=\sup_{y\in \mathbb{R}^m}q_{M}(y)$.
+\end{defn}
+
+\paragraph{}Firstly, we have $w^\ast\geq q^\ast$: after all, we have $w^{\ast}_M=q_{0^m\times M_{0^m,:}}^\ast\geq q_{M}^\ast$, or $w_{M}^\ast=q_{M,+}(0)$; this fact is often refered to as the weak duality. As a function on $\mathbb{R}^m$, $-q_{M}$ is convex and lower-semicontinuous: it is the point-wise supremum of a family of affine functions (indexed by $M$).
+
+\begin{defn}[Upwardification]\label{defn:031-upwardification}
+	We define the upwardification of $M$ as $\overline{M}=M+0_m\times \mathbb{R}_+$.
+\end{defn}
+
+\paragraph{}We have $q_{M}=q_{\overline{M}},q^\ast_M=q^\ast_M,w^\ast_M=w^\ast_M$ by definition.
+
+
+\section{Applications}
