@@ -58,19 +58,25 @@
 
 \paragraph{}Proof of this proposition is left to the readers. The epigraph of a scalar function contains all the set-theoretic information of this function - one can recover the function from its epigraph. To establish a finer correspondence (see \Cref{prop:021-epi-corr-set}), consider the following definition:
 
-\begin{defn}[Upward-Closed Sets, Associated Functions]
+\begin{defn}[Upward-Closed Subsets, Epigraph-Like Subsets, Associated Functions]
 	\label{defn:021-ucset-assfunc}
-	A subset $Z\subset \mathbb{R}^{m+1}$ is upward-closed if for each $x\in \mathbb{R}^m$, $Z_{x,:}$ is either $\emptyset,\mathbb{R}$ or of the form $\mathbb{R}_++u$ for some $u\in \mathbb{R}$. In this case, we define the associated function $Z^\vee:\mathbb{R}^m\to \overline{\mathbb{R}}$ by:
+	We say that a subset $Z\subset \mathbb{R}^{m+1}$ is:
+	\begin{enumerate}[label=(\alph*)]
+		\item Upward-closed if for each $x\in \mathbb{R}^m$, $Z_{x,:}$ is either $\emptyset,\mathbb{R}$ or of the form $\mathbb{R}_++u,\mathbb{R}_{++}+u$ for some $u\in \mathbb{R}$.
+		\item Epigraph-like if for each $x\in \mathbb{R}^m$, $Z_{x,:}$ is either $\emptyset,\mathbb{R}$ or of the form $\mathbb{R}_++u$ for some $u\in \mathbb{R}$.
+	\end{enumerate}
+	If $Z$ is epigraph-like or upward-closed, we define the associated function $Z^\vee:\mathbb{R}^m\to \overline{\mathbb{R}}$ by:
 	\[
 		Z^\vee(x)=\inf Z_{x,:},\;\text{for }x\in \mathbb{R}^m
 	\]
+
 \end{defn}
 
 \paragraph{}The following is straightfoward:
 
 \begin{prop}[Epigraph Correspondence]
 	\label{prop:021-epi-corr-set}
-	There is a bijective correspondence between scalar functions $\mathbb{R}^m\to \overline{\mathbb{R}}$ and upward-closed subsets of $\mathbb{R}^{m+1}$ given by $\operatorname{epi}(\cdot)$ and $(\cdot)^\vee$.
+	There is a bijective correspondence between scalar functions $\mathbb{R}^m\to \overline{\mathbb{R}}$ and epigraph-like subsets of $\mathbb{R}^{m+1}$ given by $\operatorname{epi}(\cdot)$ and $(\cdot)^\vee$.
 \end{prop}
 
 \paragraph{}Some properties of scalar functions can be examined at the level of epigraphs. For example, we show that lower-semicontinuity of functions corresponds to closedness of epigraphs.
@@ -88,24 +94,24 @@
 	May assume $\operatorname{epi}(f)\neq\emptyset$.
 	\begin{itemize}
 		\item (i) implies (ii): Take $\{x_i\}_i\to x$. If $f(x)>u>\underset{i}{\operatorname{liminf}}f(x_i)$, then there is a subsequence contained in $V_{f,u}$, showing $x\in V_{f,u}$ by closedness, a contradiction, so $f(x)\leq \underset{i}{\operatorname{liminf}}f(x_i)$.
-		\item (ii) implies (iii): Take $\operatorname{epi}(f)\supset\{(x_i,w_i)\}_i\to(x,w)$, then $x_i\to x$. We get $(x,w)\in \operatorname{epi}(f)$ by:
+		\item (ii) implies (iii): Take $\operatorname{epi}(f)\supset\{(x_i,w_i)\}_i\to(x,w)$, then $x_i\to x,w_i\to w$, so $(x,w)\in \operatorname{epi}(f)$ by:
 		      \[f(x)\leq\underset{i}{\operatorname{liminf}}f(x_i)\leq \underset{i}{\operatorname{liminf}}w_i=w\]
 		\item  (iii) implies (i): By (a) of \Cref{prop:021-epi-slice-fibers}.\qedhere{}
 	\end{itemize}
 \end{proof}
 
-\paragraph{}Now we define what it means to be a convex or closed function.
+\paragraph{}Now we define what it means for a function to be convex, closed, or polyhedral.
 
-\begin{defn}[Convexity and Closedness of Scalar Functions]
+\begin{defn}[Convex, Closed, Polyhedral of Scalar Functions]
 	\label{defn:021-convex-funcs}
-	We say that $f$ is convex (resp. closed) if its epigraph $\operatorname{epi}(f)$ is convex (resp. closed).
+	We say that $f$ is convex (resp. closed, polyhedral) if its epigraph $\operatorname{epi}(f)$ is convex (resp. closed, polyhedral).
 \end{defn}
 
 \paragraph{}By \Cref{prop:021-epi-slice-fibers}, $\operatorname{dom}(f)$ and the sublevel sets $V_{f,u}$ are convex if $f$ is convex by \Cref{prop:011-conv-yoga}.
 \paragraph{}Without looking at epigraphs, we know that closed functions are realized as lower-semicontinuous functions. Convex functions are also realized as follows.
 
 \begin{defn}[Convex Functions - in the Usual Sense]
-	\label{defn:021-conv-usual}.
+	\label{defn:021-conv-usual}
 	Suppose $f$ is proper, then we say that $f$ is convex in the usual sense if:
 	\[
 		f(I(x,y;\alpha))\leq
@@ -121,7 +127,7 @@
 		\item Properness: $f$ is proper iff $\operatorname{epi}(f)$ contains no vertical lines and is non-empty.
 		\item Dominance: Given another scalar function $g:\mathbb{R}^m\to \overline{\mathbb{R}}$, then $f$ dominates $g$ iff $\operatorname{epi}(g)\subset \operatorname{epi}(f)$.
 		\item Lower-semicontinuity: $f$ is lower-semicontinuous ion iff $\operatorname{epi}(f)$ is closed.
-		\item Convexity: We say that $f$ is a convex function iff $\operatorname{epi}(f)$ is a convex set.
+		\item Convexity (resp. Polyhedral): We say that $f$ is a convex iff $\operatorname{epi}(f)$ is a convex (resp. polyhedral).
 	\end{itemize}
 \end{rmrk}
 
@@ -133,14 +139,20 @@
 		\item (Composition with Affine) Given convex function $f$ on $\mathbb{R}^m$, affine $A:\mathbb{R}^l\to \mathbb{R}^n$, $g:=f\circ A$ is convex.
 		\item (Positive Combinations) Given convex functions $\{f_i\}_{i=1}^k$ on $\mathbb{R}^m$ and some scalars $\{\gamma_i\}_{i=1}^k\subset \mathbb{R}_{+}$, if the combination $f:=\sum_{i=1}^k \gamma_i f_i$ is well-formed, then it is convex.
 		\item (Pointwise Supremum) Given convex functions $\{f_i\}_{i\in I}$ on $\mathbb{R}^m$, then $f:x\mapsto\sup_{i\in I}f_i(x)$ is convex.
+		\item (Partial Inf) Given $n\in \mathbb{N}$, convex function $F$ on $\mathbb{R}^{m+n}$, let $f:\mathbb{R}^m\to \overline{\mathbb{R}}$ be the "partial inf" function:
+		      \[
+			      f(x)=\underset{y\in \mathbb{R}^n}{\operatorname{inf}}f(x,y)
+		      \]
+		      then $f$ is also convex, with $\pi \operatorname{epi}(F)\subset \operatorname{epi}(f)\subset \operatorname{cl}(\pi \operatorname{epi}(F))$, where $\pi:\mathbb{R}^{m+n+1}\to \mathbb{R}^{m+1}$ is the projection map $(x,y,u)\mapsto (x,u)$.
 	\end{enumerate}
 \end{prop}
 
 \begin{proof}
-	For (a), use $\operatorname{epi}(g)_{x,:}=\operatorname{epi}(f)_{Ax,:}$ for $x\in \mathbb{R}^l$. For (b), may assume $ \gamma_i>0$, then we may use $\operatorname{epi}(f)_{x,:}=\sum_{i=1}^k\gamma_i\operatorname{epi}(f_i)_{x,:}$.	For (c), use $\operatorname{epi}(f)=\bigcap_{i\in I}\operatorname{epi}(f_i)$
+	For (a), use $\operatorname{epi}(g)_{x,:}=\operatorname{epi}(f)_{Ax,:}$ for $x\in \mathbb{R}^l$. For (b), may assume $ \gamma_i>0$, then we may use $\operatorname{epi}(f)_{x,:}=\sum_{i=1}^k\gamma_i\operatorname{epi}(f_i)_{x,:}$.	For (c), use $\operatorname{epi}(f)=\bigcap_{i\in I}\operatorname{epi}(f_i)$. For (d), simply note that $\operatorname{epi}(f)_{x,:}=\operatorname{cl}((\pi\operatorname{epi}(F))_{x,:})$.
 \end{proof}
 
 \begin{rmrk}
 	Analogous statement holds with convexity replaced by closedness.
 \end{rmrk}
+
 

@@ -58,13 +58,13 @@
 	\begin{enumerate}[label=(\alph*)]
 		\item (Basic Separation) $C_1,C_2$ can be separated by a hyperplane if $C_1\cap C_2=\emptyset$.
 		\item (Strict Separation) $C_1,C_2$ can be strictly separated by a hyperplane if $C_1\cap C_2=\emptyset$ and $C_2-C_1$ closed.
-		\item (Proper Separation) $C_1,C_2$ can be properly separated by a hyperplane iff $\operatorname{rint}(C_1)\cap \operatorname{rint}(C_2)=\emptyset$.
+		\item (Proper Separation) $C_1,C_2$ can be properly separated by a hyperplane iff $\operatorname{ri}(C_1)\cap \operatorname{ri}(C_2)=\emptyset$.
 	\end{enumerate}
 	In the case where $C_2=\{x_0\}$ for some $x_0\in \mathbb{R}^m$:
 	\begin{enumerate}[label=(\alph*)]
 		\setcounter{enumi}{3}
 		\item (Basic Separation) $C_1,C_2$ can be separated by a hyperplane if $x_0\notin \operatorname{int}(C_1)$.
-		\item (Proper Separation) $C_1,C_2$ can be properly separated by a hyperplane iff $x_0\notin \operatorname{rint}(C_1)$.
+		\item (Proper Separation) $C_1,C_2$ can be properly separated by a hyperplane iff $x_0\notin \operatorname{ri}(C_1)$.
 	\end{enumerate}
 	In the case where $m\geq 2$ and that $C_1$ contains no vertical lines (that is, $(C_{1})_{x,:}\neq \mathbb{R}$ for any $x\in \mathbb{R}^{m-1}$):
 	\begin{enumerate}[label=(\alph*)]
@@ -86,7 +86,7 @@
 	This is by applying (d) to $C_2-C_1$ and the point $\underset{x\in C_2-C_1}{\operatorname{inf}}\|x\|$.
 \end{proof}
 \begin{proof}[Proof of (e)]
-	We show "if". Assume $x_0\notin \operatorname{rint}(C_1)$. If $x_0\notin \operatorname{aff}(C_1)$, apply (b) to the sets $\operatorname{aff}(C_1),\{x_0\}$. Otherwise, one may reduce to the case where $\dim(C_1)=m$, in which case $\operatorname{rint}(C_1)=\operatorname{int}(C_1)$, so (a) gives a basic hyperplane separation; this would be proper as $C_1$ has non-empty interior. For "only if", assume $x_0\in \operatorname{rint}(C_1)$. May reduce to the case $\dim(C_1)=m$, then it suffices to show that $0,B(0;1)$ cannot be separated by a hyperplane; the proof of this is left to the readers.
+	We show "if". Assume $x_0\notin \operatorname{ri}(C_1)$. If $x_0\notin \operatorname{aff}(C_1)$, apply (b) to the sets $\operatorname{aff}(C_1),\{x_0\}$. Otherwise, one may reduce to the case where $\dim(C_1)=m$, in which case $\operatorname{ri}(C_1)=\operatorname{int}(C_1)$, so (a) gives a basic hyperplane separation; this would be proper as $C_1$ has non-empty interior. For "only if", assume $x_0\in \operatorname{ri}(C_1)$. May reduce to the case $\dim(C_1)=m$, then it suffices to show that $0,B(0;1)$ cannot be separated by a hyperplane; the proof of this is left to the readers.
 \end{proof}
 \begin{proof}[Proof of (c)]
 	One applies (d) of \Cref{prop:012-yoga-ri-cl} and (e) to $C_2-C_1,\{0\}$.
@@ -94,11 +94,11 @@
 \begin{proof}[Proof of (f)]
 	We use recession cones. Note that:
 	\[
-		R_{\operatorname{rint}(C_1)}=
+		R_{\operatorname{ri}(C_1)}=
 		R_{\operatorname{cl}(C_1)}=
 		\bigcap_{\substack{a,b\in \mathbb{S}^{m-1}\times \mathbb{R}:\\E_{a,b,+}\supset C_1}}R_{E_{a,b,+}}
 	\]
-	where we used (f), (g) of \Cref{prop:013-yoga-recession} and \Cref{coro:015-halfspaces-intersection}. If all $E_{a,b,+}$ containing $C_1$ has vertical line, then $\{0\}\times\mathbb{R}\subset R_{\operatorname{rint}(C_1)}$, in which case $\operatorname{rint}(C_1)$ and hence $C_1$ will have a vertical line.
+	where we used (f), (g) of \Cref{prop:013-yoga-recession} and \Cref{coro:015-halfspaces-intersection}. If all $E_{a,b,+}$ containing $C_1$ has vertical line, then $\{0\}\times\mathbb{R}\subset R_{\operatorname{ri}(C_1)}$, in which case $\operatorname{ri}(C_1)$ and hence $C_1$ will have a vertical line.
 \end{proof}
 \begin{proof}[Proof of (g)]
 	By (b), (f), may take $(a,b),(a',b')$ in $\mathbb{S}^{m-1}\times \mathbb{R}$ with $C_1\subset E^o_{a,b,+}\cap E_{a',b',+},C_2\subset E^o_{a,b,-}$, where $a'\notin \mathbb{S}^{m-2}\times \{0\}$. May assume $a\in \mathbb{S}^{m-2}\times \{0\}$, or we are done. It suffices to show for some $\varepsilon >0$ that (i) $C_1\subset E^o_{a_\varepsilon,b_\varepsilon,+}$ (ii) $C_2\subset E^o_{a_\varepsilon,b_\varepsilon,-}$, where $a_\varepsilon:=a+\varepsilon a',b_\varepsilon:=b+\varepsilon b'$. (i) holds for all $\varepsilon >0$; (ii) is the same as $a_\varepsilon^T x_0>b_\varepsilon $, but since $a_\varepsilon\to a,b_\varepsilon \to 0$ as $\varepsilon \to 0^+$ and that this holds for $\varepsilon =0$, such $\varepsilon >0$ exists.

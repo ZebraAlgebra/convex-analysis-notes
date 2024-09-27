@@ -1,0 +1,28 @@
+\section{Polyhedral Functions}
+
+\paragraph{}Let $f$ be a scalar function on $\mathbb{R}^m$.
+
+\begin{defn}[Polyhedral Functions]\label{defn:026-polyhedral-functions}
+	We say that $f$ is polyhedral if $f$ is proper and $\operatorname{epi}(f)$ is polyhedral.
+\end{defn}
+
+\paragraph{}It turns out that $f$ has simple descriptions.
+
+\begin{prop}[Representation of Polyhedral Functions]\label{prop:026-polyhedral-function-representation}
+	$f$ is polyhedral iff $\operatorname{dom}(f)$ is polyhedral, with $f(x)=\sup_{i=1}^l (a_i^Tx+b_i)$ on $\operatorname{dom}(f)$ for some $\{a_i\}_{i=1}^l\subset \mathbb{R}^m,\{b_i\}_{i=1}^l\subset \mathbb{R}$, where $l\geq 1$.
+\end{prop}
+\begin{proof}
+	For "only if", write:
+	\[
+		\operatorname{epi}(f) = \left(\bigcap_{i=1}^{l_1}E_{(x_i,1),u_i,+}\right)
+		\cap\left(\bigcap_{j=1}^{l_2}E_{(y_j,0),v_j,+}\right)
+		\cap\left(\bigcap_{k=1}^{l_3}E_{(z_k,-1),w_k,+}\right)
+	\]
+	where $\{x_i\}_{i=1}^{l_1},\{z_k\}_{k=1}^{l_3}$ are subsets of $\mathbb{R}$, $\{y_j\}_{j=1}^{l_2}\subset \mathbb{R}\smallsetminus\{0\}$, $\{u_i\}_{i=1}^{l_1},\{v_j\}_{j=1}^{l_2},\{w_k\}_{k=1}^{l_3}$ are subsets of $\mathbb{R}$. As $\operatorname{epi}(f)$ is non-empty, upward-closed, and contains no vertical lines, we have $l_3=0,l_1\geq 1$. The terms involving $x_i$ gives the representation of $f$ on $\operatorname{dom}(f)$, while $\operatorname{dom}(f)$ is image of $\operatorname{epi}(f)$ under a projection map, hence polyhedral. For "if", we have the following representation of $f$:
+	\[
+		\operatorname{epi}(f) = \left(\operatorname{dom}(f)\times \mathbb{R}\right)\cap\left(\bigcap_{i=1}^lE_{(a_i,1),b_i,+}\right)
+	\]
+	which describes $f$ as a polyhedral set.
+\end{proof}
+
+% TODO: add yoga of polyhedral functions

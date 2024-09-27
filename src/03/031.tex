@@ -1,31 +1,68 @@
-\paragraph{}When $f$ is a closed proper function, we have:
-\[
-	\operatorname{epi}(f)=\bigcap_{y\in \mathbb{R}^m}E_{(y,-1),f^\ast(y),-}
-\]
+\section{MC/MC - Definitions and Basic Facts}
+\label{sect:031}
 
-\section{Duality Theorems}
-\paragraph{}Fix $m\in \mathbb{N}$, a subset $M\subset \mathbb{R}^{m+1}$. For an element $y\in \mathbb{R}^m$, write $y^+=(y,1)\in \mathbb{R}^{m+1}$.
+\paragraph{}For this subsection, let us fix $m\in \mathbb{R}^{m+1}$, and consider a non-empty subset $M\subset \mathbb{R}^{m+1}$. Elements in $\mathbb{R}^{m+1}$ are often expressed as a tuple $(x,s)$ with $x\in \mathbb{R}^m$ and $s\in \mathbb{R}$; in particular, we will often use $a,x,y,z$ to denote points in $\mathbb{R}^m$ and $b,s,t,u,v$ to denote points in $\mathbb{R}^m$. The origin point of $\mathbb{R}^m$ is denoted as $O$.
 
-\begin{defn}[Min-Common, Max-crossing]\label{defn:031-mc-mc}
-	We define two values $w^\ast_M, q^\ast_M$ in $\mathbb{R}$ as follows:
+\begin{defn}[MC/MC]\label{defn:031-mc-mc}
+	The min-common and max-crossing values of $M$, denoted as $w^\ast,q^\ast$, are:
 	\[
-		w^\ast_M = \operatorname{inf}M_{0^m,:},\;
-		q^\ast_M = \sup_{y\in \mathbb{R}^m, u\in \mathbb{R}:E_{y_+,u,+}\supset M}u
+		w^\ast = \inf M_{O,:},\; q^\ast = \sup_{y\in \mathbb{R}^m} q(y)
 	\]
-	called the min-common and max-crossing values of $M$. When the context is clear, we write $w^\ast_{M},q^\ast_{M}$ also as $w^\ast,q^\ast$. We also define the "dual function" $q$ (or $q_{M}$):
+	where $q(y)$ - called the "dual function" - is defined as the function (compare to \Cref{defn:025-conjugate}):
 	\[
-		q_{M}:\mathbb{R}^m\to \mathbb{R},\; y \mapsto \sup_{u\in \mathbb{R}:E_{y_+,u,+}\supset M}u = \inf y_+^TM
+		q(y):= -\inf\left\{ b\in \mathbb{R}: M\subset E_{(y,-1),b,-} \right\} = - \sup_{(x,u)\in M}\left\{y^Tx-u\right\} = \inf (-y,1)^TM
 	\]
-	then we have $q_{M}^\ast=\sup_{y\in \mathbb{R}^m}q_{M}(y)$.
+	When we want to emphasize the role of $M$, we will decorate $q,q^\ast,w^\ast$ as $q_M,q^\ast_M,w^\ast_M$. Note that by the description $q(y) =\inf (-y,1)^TM$, $-q$ is convex and lower-semicontinuous (see (c) of \Cref{prop:021-yoga-convex-functions}). The set of points where $q(y)=q^\ast$ is written as $Q^\ast$.
 \end{defn}
 
-\paragraph{}Firstly, we have $w^\ast\geq q^\ast$: after all, we have $w^{\ast}_M=q_{0^m\times M_{0^m,:}}^\ast\geq q_{M}^\ast$, or $w_{M}^\ast=q_{M,+}(0)$; this fact is often refered to as the weak duality. As a function on $\mathbb{R}^m$, $-q_{M}$ is convex and lower-semicontinuous: it is the point-wise supremum of a family of affine functions (indexed by $M$).
+\begin{rmrk}
+	Our definition of $q$ is a bit different from \cite{bertsekas2009convex}; namely, our $q(y)$ is the same as $q(-y)$ in the book.
+\end{rmrk}
+
+\paragraph{}Geometrically, $q(y)$ describes the intersection of an upwards extremal halfspace with fixed direction $(y,-1)$ containing $M$ with the axis $O\times \mathbb{R}$. This is similar to \Cref{defn:025-conjugate}, except a difference in sign: when $M=\operatorname{epi}(f)$ for some scalar function $f$ on $\mathbb{R}^m$, we get $q_{\operatorname{epi}(f)}=-f^\star$.
+
+\paragraph{}The remaining of this section is dedicated to study the relations between $q^\ast,w^\ast$. In particular:
+
+\begin{itemize}
+	\item We will see shortly (\Cref{prop:031-weak-duality}) that in general, we have $q^\ast\leq w^\ast$ (weak duality).
+	\item When do we have $q^\ast = w^\ast$?
+	\item When does there exist $y\in \mathbb{R}^m$ with $q^\ast=q(y)$?
+	\item If so, what does the set of optimal solutions $Q^\ast$ look like?
+\end{itemize}
+
+\begin{prop}[Weak Duality]\label{prop:031-weak-duality}
+	We have $q^\ast\leq w^\ast$.
+\end{prop}
+
+\begin{proof}
+	This is by:
+	\[
+		w_M^\ast = q^\ast_{\{O\}\times M_{O,:}} \geq q^\ast_M
+		\qedhere
+	\]
+\end{proof}
+
+\paragraph{}Since the halfspaces $E_{(y,-1),b,-}$ are upward-closed, it would make sense to try to make $M$ upward-closed.
 
 \begin{defn}[Upwardification]\label{defn:031-upwardification}
-	We define the upwardification of $M$ as $\overline{M}=M+0_m\times \mathbb{R}_+$.
+	The upwardification of $M$ is defined as:
+	\[
+		M^+= M+\{O\}\times \mathbb{R}_{+}
+	\]
 \end{defn}
 
-\paragraph{}We have $q_{M}=q_{\overline{M}},q^\ast_M=q^\ast_M,w^\ast_M=w^\ast_M$ by definition.
+\paragraph{}Note that if either $M_{x,:}=\emptyset$ or $\inf M_{x,:}\in M_{x,:}$, $M^+$ is epigraph-like.
+
+\paragraph{}The following are some direct consequences of \Cref{defn:031-mc-mc}, \Cref{prop:031-weak-duality}; proofs are omitted.
+
+\begin{lemm}[Basic Consequences of Definitions and Weak Duality].
+	\label{lemm:031-direct-consequences}
+	\begin{enumerate}[label=(\alph*)]
+		\item (When $w^\ast=-\infty$) If $w^\ast=-\infty$, we have $q^\ast=w^\ast$.
+		\item (When $w^\ast=+\infty$) We have $w^\ast=\infty$ iff $M_{O,:}=\emptyset$.
+		\item (Upwardification) We have $w_M^\ast=w_{M^+}^\ast$, $q_M=q_{M^+}$, and hence $q_M^\ast=q_{M^+}^\ast$.
+		\item (Convex Closure) We have $q_{\operatorname{cl}(\operatorname{conv}(M))}=q_{\operatorname{conv}(M)}=q_{\operatorname{cl}(M)}=q_M$.
+	\end{enumerate}
+\end{lemm}
 
 
-\section{Applications}

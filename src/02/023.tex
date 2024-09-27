@@ -15,8 +15,7 @@
 		\operatorname{cl}(\operatorname{conv} (\operatorname{epi}(f)))^\vee
 	\]
 \end{defn}
-\paragraph{}Note it is in general not true that $\operatorname{cl}(\operatorname{conv} (\operatorname{epi}(f)))=\operatorname{conv}(\operatorname{cl} (\operatorname{epi}(f)))$.
-\paragraph{}Let us compare the functions in \Cref{defn:023-closure-funcs} by the following series of propositions.
+\paragraph{}Note it is in general not true that $\operatorname{cl}(\operatorname{conv} (\operatorname{epi}(f)))=\operatorname{conv}(\operatorname{cl} (\operatorname{epi}(f)))$. The set $\operatorname{conv}(\operatorname{epi}(f))$ might also not be epigraph-like. Let us compare the functions in \Cref{defn:023-closure-funcs} by the following series of propositions.
 
 \begin{prop}[Universal properties of cl, conv, clconv]\label{prop:023-closure-univ}
 	The functions $\operatorname{conv}f,\operatorname{cl}f,\operatorname{clconv}f$ are the largest (in the dominance relation) convex, closed, convex and closed function dominated by $f$.
@@ -63,8 +62,8 @@
 		      \[
 			      \operatorname{cl}(\operatorname{dom}(f))=
 			      \operatorname{cl}(\operatorname{dom}(\operatorname{cl}f)),\;
-			      \operatorname{rint}(\operatorname{dom}(f))=
-			      \operatorname{rint}(\operatorname{dom}(\operatorname{cl}f))
+			      \operatorname{ri}(\operatorname{dom}(f))=
+			      \operatorname{ri}(\operatorname{dom}(\operatorname{cl}f))
 		      \]
 		\item (Comparison of Properness) $f$ is proper iff $\operatorname{cl}f$ is proper.
 		\item (Comparison of Values I) $f,\operatorname{cl}f$ coincides on $\operatorname{ri}(\operatorname{dom}(f))$.
@@ -78,25 +77,25 @@
 \paragraph{}In short, the geometry of $\operatorname{dom}(f),\operatorname{dom}(\operatorname{cl}f)$ are not too different by (a), (b), $f,\operatorname{cl}f$ differ only outside of $\operatorname{ri}(\operatorname{dom}(f))$ by (c), and that on those other points, (d) can be used to describe the values of $f$.
 
 \begin{proof}
-	For (a), it suffices to show the statement for rint. Let $\pi:\mathbb{R}^{n+1}\to \mathbb{R}^n,(x,u)\mapsto x$ be projection, then:
+	For (a), it suffices to show the statement for ri. Let $\pi:\mathbb{R}^{n+1}\to \mathbb{R}^n,(x,u)\mapsto x$ be projection, then:
 	\begin{align*}
-		\operatorname{rint}(\operatorname{dom}(f)) & =\operatorname{rint}(\pi \operatorname{epi}(f))                 \\
-		                                           & =\pi\operatorname{rint}(\operatorname{epi}(f))                  \\
-		                                           & =\pi\operatorname{rint}(\operatorname{epi}(\operatorname{cl}f)) \\
-		                                           & =\operatorname{rint}(\pi\operatorname{epi}(\operatorname{cl}f)) \\
-		                                           & =\operatorname{rint}(\operatorname{dom}(\operatorname{cl}f))
+		\operatorname{ri}(\operatorname{dom}(f)) & =\operatorname{ri}(\pi \operatorname{epi}(f))                 \\
+		                                         & =\pi\operatorname{ri}(\operatorname{epi}(f))                  \\
+		                                         & =\pi\operatorname{ri}(\operatorname{epi}(\operatorname{cl}f)) \\
+		                                         & =\operatorname{ri}(\pi\operatorname{epi}(\operatorname{cl}f)) \\
+		                                         & =\operatorname{ri}(\operatorname{dom}(\operatorname{cl}f))
 	\end{align*}
-	where the third "=" is by $\operatorname{cl}(\operatorname{epi}(f))=\operatorname{cl}(\operatorname{epi}(\operatorname{cl}f))$, the first and fifth are by definition of epigraphs, the second and forth are by the slice principle. For (c), we use slice principle. For $x\in \operatorname{rint}(\operatorname{dom}(f))$:
+	where the third "=" is by $\operatorname{cl}(\operatorname{epi}(f))=\operatorname{cl}(\operatorname{epi}(\operatorname{cl}f))$, the first and fifth are by definition of epigraphs, the second and forth are by the slice principle. For (c), we use slice principle. For $x\in \operatorname{ri}(\operatorname{dom}(f))$:
 	\begin{align*}
-		(f(x),+\infty) & =\operatorname{rint}(\operatorname{epi}(f)_{x,:})                  \\
-		               & =\operatorname{rint}(\operatorname{epi}(f))_{x,:}                  \\
-		               & =\operatorname{rint}(\operatorname{epi}(\operatorname{cl}f))_{x,:} \\
-		               & =\operatorname{rint}(\operatorname{epi}(\operatorname{cl}f)_{x,:}) \\
+		(f(x),+\infty) & =\operatorname{ri}(\operatorname{epi}(f)_{x,:})                  \\
+		               & =\operatorname{ri}(\operatorname{epi}(f))_{x,:}                  \\
+		               & =\operatorname{ri}(\operatorname{epi}(\operatorname{cl}f))_{x,:} \\
+		               & =\operatorname{ri}(\operatorname{epi}(\operatorname{cl}f)_{x,:}) \\
 		               & =(\operatorname{cl}f(x),+\infty)
 	\end{align*}
 	where the third "=" is by $\operatorname{cl}(\operatorname{epi}(f))=\operatorname{cl}(\operatorname{epi}(\operatorname{cl}f))$, the first and fifth are by definition of epigraphs, the second and forth are by the slice principle and (a). For (d), we have two cases:
 	\begin{itemize}
-		\item Case $y\in \operatorname{dom}(\operatorname{cl}f)$: by (b) of \Cref{prop:012-basic-ri}, $I(x,y;[0, 1))\subset \operatorname{rint}(\operatorname{dom}(f))$, so we see that $f,\operatorname{cl}f$ coincides on $I(x,y;[0,1))$ by (c). If $\operatorname{cl}f(y)\in \mathbb{R}$, then by \Cref{coro:022-line-continuity}, (d) holds in this case; otherwise, if $\operatorname{cl}f(y)=\infty$, then $\operatorname{cl}f$ is $-\infty$ on $I(x,y;[0,1))$ by the lemma, so (d) holds.
+		\item Case $y\in \operatorname{dom}(\operatorname{cl}f)$: by (b) of \Cref{prop:012-basic-ri}, $I(x,y;[0, 1))\subset \operatorname{ri}(\operatorname{dom}(f))$, so we see that $f,\operatorname{cl}f$ coincides on $I(x,y;[0,1))$ by (c). If $\operatorname{cl}f(y)\in \mathbb{R}$, then by \Cref{coro:022-line-continuity}, (d) holds in this case; otherwise, if $\operatorname{cl}f(y)=\infty$, then $\operatorname{cl}f$ is $-\infty$ on $I(x,y;[0,1))$ by the lemma, so (d) holds.
 		\item Case $y\notin \operatorname{dom}(\operatorname{cl}f)$: since $\operatorname{cl}f$ is closed, we have:
 		      \[
 			      \underset{\alpha \to 0^+}{\operatorname{liminf}}\operatorname{cl}f(I(y,x;\alpha ))\leq \operatorname{cl}f(y)=\infty
@@ -107,4 +106,3 @@
 \end{proof}
 
 % TODO: complete adaptation
-

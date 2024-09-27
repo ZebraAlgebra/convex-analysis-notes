@@ -1,0 +1,53 @@
+\section{Convex Optimization Duality - General Results}
+\label{sect:042}
+
+\paragraph{}As in our discussion in MC/MC framework in \Cref{sect:031}, we can ask the following analogous questions:
+\begin{itemize}
+	\item (Weak Duality) Do we have $f^\ast\geq q^\ast$?
+	\item (Strong Duality) When do we have $f^\ast=q^\ast$?
+	\item (Optimality) Do we have $F^\ast\neq\emptyset,Q^\ast\neq\emptyset$, given information on nonemptiness of $F,Q$? Are they compact? In general, Farkas lemma gives results on $Q^\ast$; the problem is more intricate for $F^\ast$.
+\end{itemize}
+
+\paragraph{}We can first give some partial answers, some of which utilizes both the proof and the statement of the nonlinear Farkas lemma:
+\begin{itemize}
+	\item (Weak duality) By the proof of \Cref{prop:041-farkas-lemma-nonlinear}, $f^\ast$, $q^\ast$ are min-common and max-crossing values, so MC/MC weak duality gives $f^\ast\geq q^\ast$.
+	\item (Strong Duality) The duality gap $f^\ast-q^\ast$ has the following bound:
+	      \[
+		      \underset{(x,y)\in F\times Q}{\operatorname{inf}}\left(f(x)-q(y)\right)\leq
+		      \underset{(x,y)\in F\times Q}{\operatorname{inf}}\left(f(x)-L(x,y)\right)=
+		      \underset{(x,y)\in F\times Q}{\operatorname{inf}}y^Tg(x)
+	      \]
+	      Note that $g(F)\leq O,Q\leq O$. One can replace $F\times Q$ by $F^\ast\times Q^\ast$ if both $F^\ast,Q^\ast$ are nonempty. A particular case is given by the notion of complementary slackness; see \Cref{prop:042-complementary-slackness}.
+	      %TODO: add reference for reachability of linear programs.
+	\item (Optimality) If one applies \Cref{prop:041-farkas-lemma-nonlinear} to \Cref{defn:040-opt-prob} with $f$ being $f-f^\ast$, assuming $f^\ast$ is finite, then the corresponding $Q_0$ is the same as $Q^\ast$. In other words, the "Slater conditions" in fact can be used to give conditions for nonemptiness or compactness of optimal sets. In fact, the situation is even better: Slater conditions gives strong duality, as for $y_0\in Q^\ast$ in this case, we have:
+	      \[
+		      0\leq \underset{x\in X}{\operatorname{inf}} \left(f(x)-f^\ast-y_0^T g(x)\right) \leq q^\ast-f^\ast
+	      \]
+\end{itemize}
+
+\paragraph{}We collect these as propositions.
+
+\begin{prop}[Weak Duality]\label{prop:042-weak-duality}
+	We have $f^\ast\geq q^\ast$. Consequently, if the primal (resp. dual) problem has no optimal values, then the other is infeasible.
+\end{prop}
+
+\begin{prop}[Complementary Slackness]\label{prop:042-complementary-slackness}
+	Given $x_0\in F$ and $y_0\leq O\in \mathbb{R}^r$, then TFAE:
+	\begin{enumerate}[label=(\alph*)]
+		\item (Strong Duality and Reachability) $(x_0,y_0)\in F^\ast\times Q^\ast$ and $f^\ast=q^\ast$.
+		\item (Complementary Slackness) $x_0\in \underset{x\in X}{\operatorname{argmin}}L(x,y_0)$, and $y_0^Tg(x_0)=0$.
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	"(b) implies (a)" is by the bound on $f^\ast - q^\ast$ given above. The converse uses weak duality.
+\end{proof}
+
+\begin{prop}[Slater Condition]\label{prop:042-slater-optimality}
+	Assume $f^\ast<\infty$, then
+	\begin{enumerate}[label=(\alph*)]
+		\item (Slater Condition I) If there is some $x_0\in X$ with $g(x_0)<O$, then $Q^\ast$ is nonempty and compact.
+		\item (Slater Condition II) If $g$ is affine with some $x_0\in \operatorname{ri}(X)$ with $g(x_0)\leq O$, then $Q^\ast$ is nonempty.
+	\end{enumerate}
+	If either of (a) or (b) holds, then $f^\ast=q^\ast$.
+\end{prop}

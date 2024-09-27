@@ -1,0 +1,21 @@
+\chapter{Duality Theory in Optimization}
+\label{chap:04}
+
+\paragraph{}In this section, we utilize MC/MC framework to derive various duality results in convex and linear optimization. First we define what an optimization problem is:
+
+\begin{defn}[Optimization Problem]\label{defn:040-opt-prob}
+	An optimization problem is a problem of the form:
+	\begin{align*}
+		\text{Minimize}\quad   & f(x)                                   \\
+		\text{subject to}\quad & x\in X\subset \mathbb{R}^m, g(x)\leq O
+	\end{align*}
+	where $f$ (resp. $g,X\cap \operatorname{dom}(f)\subset \mathbb{R}^m,\{x\in X:g(x)\leq O\}$) is called the objective function (resp. constraint function, basic feasibility region, feasibility region) of the problem. The optimal value is written as $f^\ast$. The set of feasible solutions is written as $F$, with the optimal points is written as $F^\ast$.
+\end{defn}
+
+\paragraph{}For convex problems, $f,X$ are convex, with $g$ having convex component functions, so $F$ is convex. In linear programming, $f,g$ are affine, with $X=\mathbb{R}^m$, so $F$ is polyhedral. For maximization problems, we regard it as the same as a minimization problem over $-f$ with other components fixed. For this chapter, we will always assume that the problem is convex.
+
+\input{./src/04/041.tex}
+\input{./src/04/042.tex}
+\input{./src/04/043.tex}
+\input{./src/04/044.tex}
+\input{./src/04/045.tex}

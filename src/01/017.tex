@@ -118,6 +118,20 @@
 	If $A$ is injective, then $P$ contains no lines (see \Cref{lemm:016-extreme-existence}). Otherwise, use \Cref{prop:017-characterization-polyhedral-extreme}.
 \end{proof}
 
+\begin{exmp}[Birkhoff-von Neumann Theorem]
+	Fix $m\in \mathbb{N}$. Identify $\mathbf{M}_{m,m}(\mathbb{R})$ with $\mathbb{R}^{m^2}$ via $g:e_{i,j}\mapsto e_{i+m(j-1)}$ (that is, flattening by stacking columns). The space of doubly stochastic matrices - those with entries in $[0,1]$ and with each column and row summing to $1$ - denoted as $P_{m}$, contains the set of permutation matrices - denoted as $X_m$. We show that $\operatorname{ext}(P_m)=X_m$:
+	\begin{itemize}
+		\item $X_m\subset \operatorname{ext}(P_m)$: we have $J(g(P_m))\subset J\left([0,1]^{m^2}\right)$, $g(X_m)\subset \{0,1\}^m=\operatorname{ext}\left([0,1]^{m^2}\right)$.
+		\item $X_m\supset \operatorname{ext}(P_m)$: the idea is to use \Cref{prop:017-characterization-polyhedral-extreme}. Note that $g(P_m)$ can be described as:
+		      \[
+			      g(P_m)=\left\{
+			      x\in \mathbb{R}^{m^2}:x\geq 0,Ax=1
+			      \right\}
+		      \]
+		      where $A\in \mathbf{M}_{2m,m^2}(\mathbb{R})$ has rows encoding the requirement that each row (resp. column) sum to $1$; note that $A$ is not injective, so if $M\in \operatorname{ext}(P_m)$, $M$ has at most $(2m-1)$ zero entries, so $M_{i,j}=1$ for some $i,j$ (pigeon-hole principle). Now we show $M\in X_m$ by induction using this $i,j$: if $m=1$, $i=j=1$, and we are done; otherwise, take $M_{(i,j)}$, defined as $M$ with $i$-th row and $j$-th column removed, lies in $\operatorname{ext}(P_{m-1})$ (by \Cref{lemm:016-extreme-and-hyperlane}), so by inductive hypothesis, $M_{(i,j)}\in X_{m-1}$, and hence $M\in X_m$.
+	\end{itemize}
+\end{exmp}
+
 \subsection{Polyhedral Cones and Finitely-Generated Cones}
 
 \paragraph{}A form of Farkas lemma characterizes polyhedral cones - they are the polars of finitely generated cones, a notion we shall define now. Minkowski-
@@ -252,8 +266,8 @@
 \paragraph{}We formulated several hyperplane separation notions and facts in \Cref{sect:015} (see \Cref{prop:015-hyperplane-sep}). When dealing with polyhedral sets, some of these have interesting implications in the polyhedral settings:
 
 \begin{enumerate}[label=(\arabic*)]
-	\item For strict separation theorem ((b) of \Cref{prop:015-hyperplane-sep}), the condition $C_1-C_2$ can be checked in several different ways, utilizing results from \Cref{sect:014} and this section.
-	\item For proper separation theorem ((c) of \Cref{prop:015-hyperplane-sep}), the condition $\operatorname{ri}(C_1)\cap\operatorname{ri}(C_2)=\emptyset$ can be relaxed if one of them is polyhedral.
+	\item For strict separation theorem ((b) of \Cref{prop:015-hyperplane-sep}), the condition $C_1-C_2$ can be automatically verifeid in some cases, utilizing results from \Cref{sect:014} and this section (see \Cref{prop:017-closedness-vec-diff}).
+	\item For proper separation theorem ((c) of \Cref{prop:015-hyperplane-sep}), the condition $\operatorname{ri}(C_1)\cap\operatorname{ri}(C_2)=\emptyset$ can be relaxed if one of them is polyhedral (see \Cref{prop:017-polyhedral-proper-sep}).
 \end{enumerate}
 
 \paragraph{}The following fact was mentioned previously (see \Cref{defn:017-fg-cones}).
@@ -272,7 +286,7 @@
 \end{prop}
 
 \begin{proof}
-	For (c), use (a). For (d), use (e) of \Cref{prop:017-polyhedral-yoga}. For (a), use \Cref{coro:014-closed-sum}. For (b), use \Cref{coro:014-closed-affine}, \Cref{lemm:017-polyhedral-retractive} with $C_0=C_1\times \mathbb{R}^{m}$, $C=\mathbb{R}^m\times C_2$, $A:\mathbb{R}^{m}\times \mathbb{R}^m\to \mathbb{R}^m$ be $(x,y)\mapsto x-y$..
+	For (c), use (a). For (d), use (e) of \Cref{prop:017-polyhedral-yoga}. For (a), use \Cref{coro:014-closed-sum}. For (b), use \Cref{coro:014-closed-affine}, \Cref{lemm:017-polyhedral-retractive} with $C_0=C_1\times \mathbb{R}^{m}$, $C=\mathbb{R}^m\times C_2$, $A:\mathbb{R}^{m}\times \mathbb{R}^m\to \mathbb{R}^m$ be $(x,y)\mapsto x-y$.
 \end{proof}
 
 \begin{prop}[Polyhedral Proper Separation]\label{prop:017-polyhedral-proper-sep}
@@ -286,7 +300,7 @@
 \end{lemm}
 
 \begin{proof}
-	We only show "If". May assume $0\in \operatorname{ri}(C)\cap H_{a,b}$ (so $b=0$). Write $V=\operatorname{lin}(C),\dim(V)=l$. We show $V\subset H_{a,0}$. Otherwise, take $v\in V\cap E_{a,0,+}$, then $\varepsilon v\subset \operatorname{ri}(C)$ for some $\varepsilon >0$, giving $\operatorname{ri}(C)\cap E_{a,0,+}\neq\emptyset$, a contradiction.
+	It suffices to show "If". May assume $0\in \operatorname{ri}(C)\cap H_{a,b}$ (so $b=0$). Write $V=\operatorname{lin}(C),\dim(V)=l$. We show $V\subset H_{a,0}$: otherwise, take $v\in V\cap E_{a,0,+}$, then $\varepsilon v\subset \operatorname{ri}(C)$ for some $\varepsilon >0$, giving $\operatorname{ri}(C)\cap E_{a,0,+}\neq\emptyset$, a contradiction.
 \end{proof}
 
 \begin{proof}[Proof of \Cref{prop:017-polyhedral-proper-sep}]
@@ -294,45 +308,46 @@
 	\[
 		\operatorname{ri}(C)\cap P\subset \operatorname{ri}(C)\cap E_{a,b,+}=\operatorname{ri}(C)\cap H_{a,b}=\emptyset
 	\]
-	"Only if" is the difficult part. For what follows, given two subsets $X,Y$ in $\mathbb{R}^m$, the subset $X_Y$ is defined to be $X\cap Y$. Write $V=\operatorname{aff}(C)$, which is an affine subset (hence polyhedral; later after translation, this will be a subspace).
+	"Only if" is the difficult part. For what follows, given two subsets $X,Y$ in $\mathbb{R}^m$, the subset $X_Y$ is defined to be $X\cap Y$. Write $V=\operatorname{aff}(C)$, which is also affine (hence polyhedral; later after translation, this subset will become a subspace).
 	\begin{itemize}
-		\item Consider separation between $P_V,C$.
+		\item Consider separation between $P_V,C$, which are both subsets of $V$; both of them are polyhedral.
 		      \begin{itemize}
-			      \item If $P_V=\emptyset$, strict separation (for the polyhedral sets $P,V$) between $P,C$ is possible; see (d) of \Cref{prop:017-closedness-vec-diff} and (b) of \Cref{prop:015-hyperplane-sep}.
-			      \item Otherwise, we still have $\operatorname{ri}(P_V)\cap \operatorname{ri}(C)\subset P\cap \operatorname{ri}(C)=\emptyset$, so we can properly separate $P_V,C$; say the separating hyperplanes and the halfspaces are $H,E_{\pm}$.
-			      \item As $\operatorname{aff}(P_V)\subset\operatorname{aff}(C)$ and $H$ is affine, by properness, may say $H\nsupset C\subset  E_{-},P_V\subset E_+$.
+			      \item If $P_V=\emptyset$, strict separation (for the polyhedral sets $P,V$) between $P,C$ is possible; see (d) of \Cref{prop:017-closedness-vec-diff} and (b) of \Cref{prop:015-hyperplane-sep}. Therefore, we may assum $P_V\neq\emptyset$.
+			      \item Otherwise, we still have $\operatorname{ri}(P_V)\cap \operatorname{ri}(C)\subset P\cap \operatorname{ri}(C)=\emptyset$, so we can properly separate $P_V,C$; say the separating hyperplane and the separating halfspaces are $H,E_{\pm}$.
+			      \item As $\operatorname{aff}(P_V)\subset\operatorname{aff}(C)$ and $H$ is affine, by properness, may write $H\nsupset C\subset  E_{-},P_V\subset E_+$.
 		      \end{itemize}
-		      In order to keep track of the various subsets that we will use, we have this diagram of inclusions:
+		      In order to keep track of the various subsets that we will use, we have this diagram:
 		      \[
-			      \begin{tikzcd}
+			      \begin{tikzcd}[column sep=2ex,row sep=2ex]
 				      H\rar{}&E_-\rar{}&\mathbb{R}^m&\lar{}E_+&\lar{}P\\
 				      H_V\rar{}\uar{}&E_{-,V}\rar{}\uar{}&V\uar{}&\lar{}E_{+,V}\uar{}&\lar{}P_V\uar{}\\
-				      H_C\rar{}\uar{}&C\rar{=}\uar{}&C\uar{}&\lar{}E_{+,C}\uar{}&\lar{}P_C\uar{}\\
+				      H_C\rar{}\uar{}&C\rar{=}\uar{}&C\uar{}&\lar{}H_{C}\uar{}&\lar{}P_C\uar{}\\
 			      \end{tikzcd}
 		      \]
-		      with the property that for each subgraph $A\leftarrow B\rightarrow C$, we have $B=A\cap C$. Note that the second and third rows are just the intersection of the first row with $V$ or $C$.
-		\item Consider separation between $P,E_{-,V}$; we may think of $E_{-,V}\supset C$ as a "conified $C$".
+		      with the property that for each subgraph $A\to B$, $A\subset B$, and for each subgraph $A\leftarrow B\rightarrow C$, we have $B=A\cap C$. Note that the second and third rows are just the intersection of the first row with $V$ or $C$.
+		\item Consider separation between $P,E_{-,V}$; note that $E_{-,V}\supset C$ is a polyhedral cone (after translation).
 		      \begin{itemize}
 			      \item We have $P\cap \operatorname{ri}(E_{-,V})=\emptyset$, using \Cref{lemm:017-criterion-hyperplane-containment} (on $E_{-,V}\subset E_{-}$).
 			      \item If $P\cap E_{-,V}=\emptyset$, then strict separation between $P,C$ is possible.
-			      \item Therefore, may assume $0\in P\cap E_{-,V}$ (possibly by translation). Note that in this case, $H$ is a linear subspace.
+			      \item Therefore, may assume $0\in P\cap E_{-,V}$ by translation; in this case, $H$, $V$ are linear.
 		      \end{itemize}
-		\item Consider separation between $K:=\operatorname{cone}(P)+H_V,E_{-,V}$; we may think of $K$ as a "conified $P$".
+		\item Consider separation between $K:=\operatorname{cone}(P)+H_V,E_{-,V}$; note that $K\supset P$ is a cone (in fact polyhedral).
 		      \begin{itemize}
-			      \item Firstly, $\operatorname{cone}(P)$ and hence (see (e) of \Cref{prop:017-polyhedral-yoga}) $K$ is a polyhedral cone. To see this, write:
+			      \item Firstly, $\operatorname{cone}(P)$ and hence (see (e) of \Cref{prop:017-polyhedral-yoga}) $K$ is a polyhedral cone: write
 			            \[
 				            P=\left(\bigcap_{x\in X}E_{x,0,-}\right)\cap\left(\bigcap_{y\in Y}E_{y,1,-}\right)
 			            \]
-			            for some finite subsets $X,Y$ in $\mathbb{R}^m$; this is possible as $0\in P$. This gives:
+			            for some finite subsets $X,Y$ in $\mathbb{R}^m\smallsetminus \{0\}$ (this is possible as $0\in P$), which gives:
 			            \[
 				            \operatorname{cone}(P)=\left(\bigcap_{x\in X}\operatorname{cone}(E_{x,0,-})\right)\cap\left(\bigcap_{y\in Y}\operatorname{cone}(E_{y,1,-})\right)
 				            =\left(\bigcap_{x\in X}E_{x,0,-}\right)
 			            \]
 			      \item Next, we have $K\cap \operatorname{ri}(E_{-,V})=K\cap V\cap E_{-}^o=\emptyset$. If not, take an element in the intersection:
 			            \[
-				            \alpha x+y,\;\text{ where }\alpha \in \mathbb{R}_{++}, x\in P, y\in H_V\;(\text{note }0\in P)
+				            \alpha x+y,\;\text{ where }\alpha \in \mathbb{R}_{++}, x\in P, y\in H_V\;\text{(note that }0\in P\text{)}
 			            \]
-			            Since $H_V=H\cap V\subset L_{E^o_-}\cap L_{V}$, $x\in P\cap \operatorname{ri}(E_{-,V})=\emptyset$, a contradiction.
+			            Since $H_V=H\cap V\subset L_{E^o_-}\cap L_{V}=L_{\operatorname{ri}(E_{-,V})}$, we have $\alpha x\in \operatorname{cone}(P) \cap \operatorname{ri}(E_{-,V})$.\\
+			            Since $\operatorname{ri}(E_{-,V})=E_-^o\cap V$, we have $x\in P\cap \operatorname{ri}(E_{-,V})$.
 			      \item Express the polyhedral cone $K$ as $K=\bigcap_{z\in Z}E_{z,0,-}$ for some finite subset $Z\subset \mathbb{R}^m$.
 			            \begin{itemize}
 				            \item For fixed $z\in Z$, if $E_{z,0,-}\cap \operatorname{ri}(E_{-,V})\neq\emptyset$, then as $H_V\subset K\subset E_{z,0,-}$, $E_{-,V}\subset E_{z,0,-}$.

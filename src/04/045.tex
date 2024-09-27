@@ -1,0 +1,67 @@
+\section{Theory of Subgradiants (WIP \faWrench)}
+\label{sect:045}
+
+\paragraph{}We will define subgradients via MC/MC. For this section, fix a proper convex function $f$ on $\mathbb{R}^m$, write $X=\operatorname{dom}(f)$. In the case where $f$ is differentiable, a property that holds for $\nabla f(x)$ at some $x\in X$ is that the following holds:
+\[
+	f(z)-f(x)\geq \nabla f(x)^T(z-x),\; \text{ for all }z\in \mathbb{R}^m
+\]
+which motivates the following definition (written in MC/MC formalism):
+
+\begin{defn}[Subgradients]\label{defn-subgradients}
+	For $x\in X$, define $\operatorname{epi}(f)(x) = \operatorname{epi}(f) - (x,f(x))$. Define:
+	\[
+		\partial f(x) = \left\{
+		y\in \mathbb{R}^m,
+		\operatorname{epi}(f)(x)\subset E_{(y,-1),0,-}
+		\right\}
+	\]
+	as the "subgradient of $f$ at $x$". Note: since $w^\ast_{\operatorname{epi}(f)(x)}=0$, $\partial f(x)=Q^\ast_{\operatorname{epi}(f)(x)}$ (weak duality). Therefore:
+	\[
+		\partial f(x) = \left\{y:\inf\left\{(-y,1)^T \operatorname{epi}(f)(x)\right\}=0\right\}=\left\{y:\sup_z \left\{ z^Ty-f(z)\right\}=x^Ty-f(x)\right\}
+	\]
+\end{defn}
+
+\paragraph{}One can show that when $f$ is differentiable at $x$, $\partial f(x)=\{\nabla f(x)\}$. Also, \Cref{prop:032-optimal-set} translates to:
+
+\begin{prop}[Decomposition of Set of Subgradients]\label{prop:045-set-of-subgrad}
+	Write $V=\operatorname{lin}(X)$. For $x\in \operatorname{ri}(X)$, $\partial f(x) = V^\perp + V\cap \partial f(x)$ with $V\cap \partial f(x)$ compact and convex. In particular, if $x\in \operatorname{int}(X)$, $\partial f(x)$ is compact.
+\end{prop}
+
+\paragraph{}Subgradients can be classified via conjugate functions. By \Cref{defn:025-conjugate}, we have Fenchel's inequality:
+\[
+	f(x) + f^\star(y) = f(x) + \sup_{x}(x^Ty-f(x)) \geq x^Ty
+\]
+
+\begin{prop}[Subgradients v.s. Conjugate Functions]\label{prop:045-subgrad-conjugate}
+	Consider the conditions:
+	\begin{enumerate}[label=(\alph*)]
+		\item $f(x) + f^\star(y) = x^Ty$
+		\item $y\in \partial f(x)$
+		\item $x\in \partial f^\star(x)$
+	\end{enumerate}
+	then (a) and (b) are equivalent, and they are equivalent to (c) if $f$ is closed.
+\end{prop}
+
+\begin{proof}
+	"(a) iff (b)": use $\partial f(x) = \left\{y:f^\star(y)=x^Ty-f(x)\right\}$. For (c), use (d) of \Cref{prop:025-conjugacy-theorem}.
+\end{proof}
+
+\paragraph{}Subgradients of $f$ can be used to infer smootheness conditions of $f$.
+
+\begin{prop}[Subgradients and Smootheness]\label{prop:045-subgradients-and-smoothness}.
+	TBD
+\end{prop}
+
+\paragraph{}We can now formulate two yogas for subgradients:
+
+\begin{prop}[Yoga of Subgradients]\label{prop:045-yoga-subgradients}.
+	\begin{enumerate}[label=(\alph*)]
+		\item (Chain Rule) We have $A^T\partial f(Ax)\subset \partial F(x)$.
+		\item
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	For (a), use \Cref{prop:045-subgrad-conjugate}: for $y\in \partial f(Ax)$, $F(x)+F^\star(A^Ty)\leq f(Ax)+f^\star(y)=x^TA^Ty$.
+\end{proof}
+

@@ -1,0 +1,59 @@
+\section{Convex Optimization Duality - Case of Linear Programs}
+\label{sect:043}
+
+\paragraph{}Assume the optimization problem in \Cref{defn:041-lagrangian-dual-prob} is linear in this section. Let the objective, constraints be $f(x)=c^Tx,g(x)=Ax-b$, with $c\in \mathbb{R}^m,A\in \mathbf{M}_{r,m}(\mathbb{R})$, rows of $A$ being $a_1^T,\dotsc,a_r^T$; note the basic feasibility region $X=\mathbb{R}^m$. We have the following description of the Lagrangian and the dual function:
+
+\[
+	L(x,y) = (c-A^Ty)^Tx+b^Ty
+\]
+\[
+	q(y) = \inf_{x\in \mathbb{R}^m} (c-A^Ty)^Tx + b^Ty=\begin{cases}
+		-\infty & \text{ if }A^Ty\neq c \\
+		b^Ty    & \text{ if }A^Ty=c
+	\end{cases}
+\]
+
+\paragraph{}Therefore, the dual problem is still a linear program, the same as:
+\begin{align*}
+	\text{Maximize}\quad   & b^Ty           \\
+	\text{subject to}\quad & y\leq O,A^Ty=c
+\end{align*}
+
+\paragraph{}Note that the dual problem of the dual problem is "essentially the same" as the primal problem (try verifying this yourself!). Now we will study the relations between $f^\ast,q^\ast$, as well as $F^\ast,Q^\ast$.
+
+\begin{prop}[Reachability]\label{prop:042-linear-reachability}
+	Suppose $f^\ast\in \mathbb{R}$ (resp. $q^\ast\in \mathbb{R}$), then $F^\ast\neq\emptyset$ (resp. $Q^\ast\neq\emptyset$).
+\end{prop}
+
+\begin{proof}
+	We only show the statement for $f,F$. Note that $F^\ast=V_{f,f^\ast}\cap F=\left(\bigcap_{k\in \mathbb{N}}V_{f,f^\ast+ k^{-1}}\right)\cap F$. We will use \Cref{prop:014-non-empt-II} to show $F^\ast\neq\emptyset$ - using the same notation as in that proposition, we let:
+	\[
+		C_0=F,\;C_k=V_{f,f^\ast+k^{-1}}\;\text{ for }k\geq 1
+	\]
+	then $C_0$ is polyhedral (hence retractive, closed, convex), $R=R_f=E_{c,0;-}$, $L=L_f=H_{c,0}$. As $f^\ast>-\infty$, we have $R_F\cap E_{c,0;-}\subset H_{c,0}$, so \Cref{prop:014-non-empt-II} applies to show that $F^\ast\neq\emptyset$.
+\end{proof}
+
+\begin{prop}[Linear Programming Duality]\label{prop:042-linear-strong-duality}For linear programs, we have the following:
+	\begin{enumerate}[label=(\alph*)]
+		\item (Weak Duality) We have $f^\ast\geq q^\ast$.
+		\item (Strong Duality) If any of $f^\ast$ or $q^\ast$ is finite, $f^\ast=q^\ast$.
+		\item (Optimality) Given $(x_0,y_0)\in F\times Q$, we have $(x_0,y_0)\in F^\ast\times Q^\ast$ iff $y_0^Tg(x_0)=0$.
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	(a) is given before. For (b), we show that if $f^\ast\in \mathbb{R}$, then \Cref{prop:042-complementary-slackness} is satisfied; the proof for $q^\ast$ is similar. We have $F\neq \emptyset$. By \Cref{prop:042-linear-reachability}, we have some $x_0\in F^\ast$. We will construct a particular $y_0\in Q$ using linear Farkas lemma, then use complementary slackness to show strong duality. Define:
+	\[
+		J=\{j:a_j^Tx_0=b_j\}
+	\]
+	Since $x_0\in F^\ast$, we have the Farkas condition: $a_j^Tx\geq 0$ for all $j\in J$ implies $c^Tx\geq 0$; otherwise, $x_0+\delta x$ would be a better feasible solution than $x$ for some small $\delta>0$. Therefore, we may write:
+	\[
+		A^Ty_0=c,\; \text{ with }y_0\leq O,\;(y_0)_j=0\text{ if }j\notin J
+	\]
+	Complementary slackness is satisfied in this case, giving (b):
+	\[
+		c^Tx_0-b^Ty_0=(Ax_0-b)^Ty_0=\left(\sum_{j\in J}+\sum_{j\notin J}\right)(a_j^Tx_0-b_j)y_{0,j}=0
+	\]
+	For (c), $F\times Q\neq\emptyset$ implies $f^\ast,q^\ast$ are both in $\mathbb{R}$ by (a), (b); now use $f^\ast-q^\ast\leq f(x_0)-q(y_0)=y_0^Tg(x_0)$.
+\end{proof}
+

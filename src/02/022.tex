@@ -38,11 +38,11 @@
 
 \begin{prop}[Continuity Theorem]
 	\label{prop:022-continuity}
-	Suppose $f$ is proper, convex, then $f$ is continuous on $\operatorname{rint}(\operatorname{dom}(f))$.
+	Suppose $f$ is proper, convex, then $f$ is continuous on $\operatorname{ri}(\operatorname{dom}(f))$.
 \end{prop}
 
 \begin{proof}
-	Let $C=\operatorname{rint}(\operatorname{dom}(f))$. It suffices to show under the assumptions $\dim C=m$, $X:=[-1,1]^n\subset C$ that $f$ is continuous at $0$. By convexity, $f$ is bounded on $X$ as $X=\operatorname{conv}(\{-1,1\}^n)$. Take $X\smallsetminus\{0\}\supset \{x_i\}_i\to 0$, then we take:
+	Let $C=\operatorname{ri}(\operatorname{dom}(f))$. It suffices to show under the assumptions $\dim C=m$, $X:=[-1,1]^n\subset C$ that $f$ is continuous at $0$. By convexity, $f$ is bounded on $X$ as $X=\operatorname{conv}(\{-1,1\}^n)$. Take $X\smallsetminus\{0\}\supset \{x_i\}_i\to 0$, then we take:
 	\[
 		y_i=\frac{x_i}{\|x_i\|_\infty}\in \operatorname{bdy}(X),\;
 		z_i:=-y_i\in \operatorname{bdy}(X)
