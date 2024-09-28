@@ -1,67 +1,36 @@
-\section{Theory of Subgradiants (WIP \faWrench)}
+\section{Primal Reachability}
 \label{sect:045}
 
-\paragraph{}We will define subgradients via MC/MC. For this section, fix a proper convex function $f$ on $\mathbb{R}^m$, write $X=\operatorname{dom}(f)$. In the case where $f$ is differentiable, a property that holds for $\nabla f(x)$ at some $x\in X$ is that the following holds:
-\[
-	f(z)-f(x)\geq \nabla f(x)^T(z-x),\; \text{ for all }z\in \mathbb{R}^m
-\]
-which motivates the following definition (written in MC/MC formalism):
+\paragraph{}Recall that one of the question we posted in \Cref{sect:042} asks whether $Q^\ast,F^\ast$ are nonempty. The case of $Q^\ast$ (dual reachability) can be obtained in some cases via the Slater's conditions or complementary slackness. The case of $F^\ast$ as mentioned before is more intricate. In the case of linear programs, we have given one such result in \Cref{prop:043-linear-reachability}: when $f^\ast\in \mathbb{R}$, $F^\ast\neq\emptyset$.
 
-\begin{defn}[Subgradients]\label{defn-subgradients}
-	For $x\in X$, define $\operatorname{epi}(f)(x) = \operatorname{epi}(f) - (x,f(x))$. Define:
-	\[
-		\partial f(x) = \left\{
-		y\in \mathbb{R}^m,
-		\operatorname{epi}(f)(x)\subset E_{(y,-1),0,-}
-		\right\}
-	\]
-	as the "subgradient of $f$ at $x$". Note: since $w^\ast_{\operatorname{epi}(f)(x)}=0$, $\partial f(x)=Q^\ast_{\operatorname{epi}(f)(x)}$ (weak duality). Therefore:
-	\[
-		\partial f(x) = \left\{y:\inf\left\{(-y,1)^T \operatorname{epi}(f)(x)\right\}=0\right\}=\left\{y:\sup_z \left\{ z^Ty-f(z)\right\}=x^Ty-f(x)\right\}
-	\]
-\end{defn}
+\paragraph{}In this section, we will extend both the proof and the result of \Cref{prop:043-linear-reachability}, to derive the fundamental theorem of linear programming, as well as giving a condition where primal optimal set is nonempty (or compact) via recession cones.
 
-\paragraph{}One can show that when $f$ is differentiable at $x$, $\partial f(x)=\{\nabla f(x)\}$. Also, \Cref{prop:032-optimal-set} translates to:
-
-\begin{prop}[Decomposition of Set of Subgradients]\label{prop:045-set-of-subgrad}
-	Write $V=\operatorname{lin}(X)$. For $x\in \operatorname{ri}(X)$, $\partial f(x) = V^\perp + V\cap \partial f(x)$ with $V\cap \partial f(x)$ compact and convex. In particular, if $x\in \operatorname{int}(X)$, $\partial f(x)$ is compact.
-\end{prop}
-
-\paragraph{}Subgradients can be classified via conjugate functions. By \Cref{defn:025-conjugate}, we have Fenchel's inequality:
-\[
-	f(x) + f^\star(y) = f(x) + \sup_{x}(x^Ty-f(x)) \geq x^Ty
-\]
-
-\begin{prop}[Subgradients v.s. Conjugate Functions]\label{prop:045-subgrad-conjugate}
-	Consider the conditions:
+\begin{prop}[Primal Optimal Set - Linear Case]\label{prop:045-linear-primal-optimality}
+	Suppose $f$ is affine in \Cref{defn:040-opt-prob} and $f^\ast\in \mathbb{R}$.
 	\begin{enumerate}[label=(\alph*)]
-		\item $f(x) + f^\star(y) = x^Ty$
-		\item $y\in \partial f(x)$
-		\item $x\in \partial f^\star(x)$
+		\item If $F^\ast \cap \operatorname{ri}(F)\neq\emptyset$, then $f$ is constant on $F$.
+		\item (Fundamenal Theorem of Linear Programming) If $F$ is polyhedral, $\operatorname{ext}(F)\neq\emptyset$, then $F^\ast\cap\operatorname{ext}(F)\neq\emptyset$.
 	\end{enumerate}
-	then (a) and (b) are equivalent, and they are equivalent to (c) if $f$ is closed.
 \end{prop}
 
 \begin{proof}
-	"(a) iff (b)": use $\partial f(x) = \left\{y:f^\star(y)=x^Ty-f(x)\right\}$. For (c), use (d) of \Cref{prop:025-conjugacy-theorem}.
+	For both items, by replacing the basic feasibility region, we may assume that there are no constraints and that the basic feasibility region is $F$. For (a), take $x_0\in F^\ast \cap \operatorname{ri}(F)$, and take $x\in F$. By (b) of \Cref{prop:012-basic-ri}, may express $x_0=I(x,x'; \alpha )$ for some $x\in F$, $\alpha \in (0,1)$, giving:
+	\[
+		f^\ast \leq I(f(x),f(x');\alpha )=f(I(x,x';\alpha ))=f(x_0)=f^\ast
+	\]
+	giving $x\in F^\ast$. For (b), note that $F^\ast\neq\emptyset$ by \Cref{prop:043-linear-reachability}; take a point $x_0\in F^\ast$. If $x_0\in \operatorname{ri}(F)$, then we are done by (a); otherwise, by (e) of \Cref{prop:015-hyperplane-sep}, $x_0, F$ can be properly separated; say for some $(a,b)\in \mathbb{S}^{m-1}\times \mathbb{R}$, $F\subset E_{a,b,+},x_0\in E_{a,b,-}$. Note $x_0\in H_{a,b}$ (as $x_0\in F$). Now we use \Cref{lemm:016-extreme-and-hyperlane}, and replace $F$ by $F\cap H_{a,b}$; this process continue indefinitely (consider $\dim(F)$), giving the assertion.
 \end{proof}
 
-\paragraph{}Subgradients of $f$ can be used to infer smootheness conditions of $f$.
-
-\begin{prop}[Subgradients and Smootheness]\label{prop:045-subgradients-and-smoothness}.
-	TBD
-\end{prop}
-
-\paragraph{}We can now formulate two yogas for subgradients:
-
-\begin{prop}[Yoga of Subgradients]\label{prop:045-yoga-subgradients}.
+\begin{prop}[Primal Optimal set via Recession Cones]
+	Suppose in \Cref{defn:040-opt-prob}, $X,f$ are closed convex, $g$ has closed convex components, and that $F\neq\emptyset$.
 	\begin{enumerate}[label=(\alph*)]
-		\item (Chain Rule) We have $A^T\partial f(Ax)\subset \partial F(x)$.
-		\item
+		\item If $R_X\cap R_f=L_X\cap L_f$, then $F^\ast\neq\emptyset$, and $F^\ast=L_X\cap L_f+X'$ with $X'$ compact.
+		\item If $R_X\cap R_f\subset L_f$ with $X$ polyhedral, then $F^\ast\neq\emptyset$.
 	\end{enumerate}
+	Notable cases that will imply (a): when $f$ has a nonempty compact level set or when $\operatorname{dom}(f)$ is bounded.
 \end{prop}
 
 \begin{proof}
-	For (a), use \Cref{prop:045-subgrad-conjugate}: for $y\in \partial f(Ax)$, $F(x)+F^\star(A^Ty)\leq f(Ax)+f^\star(y)=x^TA^Ty$.
+	These follows from applying \Cref{coro:014-decomp-compact} (for (a)) or \Cref{prop:014-non-empt-II} (for (b)), with the nested sequence of closed convex sets $\{C_i\}_{i=1}^{\infty}$ given by $C_i=F\cap V_{f,\gamma_i}$ where $\{\gamma_i\}_{i=1}^{\infty}\to f^{\ast,+}$.
 \end{proof}
 

@@ -1,4 +1,4 @@
-\section{Convex Optimization Duality - Case of Linear Programs}
+\section{Duality for Linear Programs}
 \label{sect:043}
 
 \paragraph{}Assume the optimization problem in \Cref{defn:041-lagrangian-dual-prob} is linear in this section. Let the objective, constraints be $f(x)=c^Tx,g(x)=Ax-b$, with $c\in \mathbb{R}^m,A\in \mathbf{M}_{r,m}(\mathbb{R})$, rows of $A$ being $a_1^T,\dotsc,a_r^T$; note the basic feasibility region $X=\mathbb{R}^m$. We have the following description of the Lagrangian and the dual function:
@@ -21,7 +21,7 @@
 
 \paragraph{}Note that the dual problem of the dual problem is "essentially the same" as the primal problem (try verifying this yourself!). Now we will study the relations between $f^\ast,q^\ast$, as well as $F^\ast,Q^\ast$.
 
-\begin{prop}[Reachability]\label{prop:042-linear-reachability}
+\begin{prop}[Primal Reachability]\label{prop:043-linear-reachability}
 	Suppose $f^\ast\in \mathbb{R}$ (resp. $q^\ast\in \mathbb{R}$), then $F^\ast\neq\emptyset$ (resp. $Q^\ast\neq\emptyset$).
 \end{prop}
 
@@ -33,7 +33,7 @@
 	then $C_0$ is polyhedral (hence retractive, closed, convex), $R=R_f=E_{c,0;-}$, $L=L_f=H_{c,0}$. As $f^\ast>-\infty$, we have $R_F\cap E_{c,0;-}\subset H_{c,0}$, so \Cref{prop:014-non-empt-II} applies to show that $F^\ast\neq\emptyset$.
 \end{proof}
 
-\begin{prop}[Linear Programming Duality]\label{prop:042-linear-strong-duality}For linear programs, we have the following:
+\begin{prop}[Linear Programming Duality]\label{prop:043-linear-strong-duality}For linear programs, we have the following:
 	\begin{enumerate}[label=(\alph*)]
 		\item (Weak Duality) We have $f^\ast\geq q^\ast$.
 		\item (Strong Duality) If any of $f^\ast$ or $q^\ast$ is finite, $f^\ast=q^\ast$.
@@ -42,7 +42,7 @@
 \end{prop}
 
 \begin{proof}
-	(a) is given before. For (b), we show that if $f^\ast\in \mathbb{R}$, then \Cref{prop:042-complementary-slackness} is satisfied; the proof for $q^\ast$ is similar. We have $F\neq \emptyset$. By \Cref{prop:042-linear-reachability}, we have some $x_0\in F^\ast$. We will construct a particular $y_0\in Q$ using linear Farkas lemma, then use complementary slackness to show strong duality. Define:
+	(a) is given before. For (b), we show that if $f^\ast\in \mathbb{R}$, then \Cref{prop:042-complementary-slackness} is satisfied; the proof for $q^\ast$ is similar. We have $F\neq \emptyset$. By \Cref{prop:043-linear-reachability}, we have some $x_0\in F^\ast$. We will construct a particular $y_0\in Q$ using linear Farkas lemma, then use complementary slackness to show strong duality. Define:
 	\[
 		J=\{j:a_j^Tx_0=b_j\}
 	\]
