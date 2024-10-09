@@ -15,8 +15,6 @@
 	where $A\in \mathbf{M}_{r,m}(\mathbb{R}),b\in \mathbb{R}^r$ given by $A_{i,:}=a_i^T,b_i=b_i$. Under such representation, we call $Av\leq b$ a defining equation of $P$. A polyhedral set is a polyhedral cone if the $b_i$'s can be taken to be $0$.
 \end{defn}
 
-\paragraph{}Here $\mathbf{M}_{r,m}(\mathbb{R})$ is the space of $r$ by $m$ matrices, and for a given matrix $A$, $A_{i,:}$ is the $i$-th row, $A_{:,i}$ is the $i$-th column, and the inequality is to be interpreted componentwise-ly.
-
 \paragraph{}Note that a polyhedral cone is precisely a polyhedral set that is also a cone: suppose a cone $X$ is contained in some $E_{a,b,-}$, then $b\geq 0$ and $X\subset E_{a,0,-}$.
 
 \begin{exmp}
@@ -37,7 +35,7 @@
 		\left[
 			\begin{array}{r}
 				b \\\hline
-				0
+				O
 			\end{array}
 			\right]
 	\]
@@ -45,14 +43,18 @@
 
 \subsection{Extreme Points of Polyhedral Sets}
 
-\paragraph{}Extreme points of polyhedral sets admits quite explicit descriptions:
+\paragraph{}Extreme points of polyhedral sets admits quite explicit descriptions. We first define a notation:
+
+\begin{defn}[A Submatrix Construction]\label{defn:017-submatrix}
+	Given $A\in \mathbf{M}_{r,m}(\mathbb{R}),b\in \mathbb{R}^r,v\in \mathbb{R}^m$ with $Av\leq b$, we denote $A_{v; b}$ as the matrix given by keeping the rows of $A$ where $"="$ holds.
+\end{defn}
 
 \begin{prop}[Characterization of Extreme points of Polyhedral Sets]\label{prop:017-characterization-polyhedral-extreme}
-	Given a defining equation $Ax\leq b$ of a polyhedral set $P$ for some $A\in \mathbf{M}_{r,m}(\mathbb{R}),b\in \mathbb{R}^m$, a point $v\in P$ satisfies $v\in \operatorname{ext}(P)$ iff the matrix $A_v$ given by keeping rows in $A$ where "$=$" holds in $Av\leq b$ is non-empty and injective.
+	Given a defining equation $Ax\leq b$ of a polyhedral set $P$ for some $A\in \mathbf{M}_{r,m}(\mathbb{R}),b\in \mathbb{R}^m$, given $v\in P$, $v\in \operatorname{ext}(P)$ iff $A_{v; b}$ is non-empty, injective.
 \end{prop}
 
 \begin{proof}
-	Let $I_v$ be a subset of row indices $\{i:A_{i,:}v=b_i\}$. If $A_v$ is injective, then:
+	Let $I_v$ be a subset of row indices $\{i:A_{i,:}v=b_i\}$. If $A_{v; b}$ is injective, then:
 	\[
 		\operatorname{ext}(P)\cap\left(\bigcap_{i\in I_v}H_{a_i,b_i}\right)=
 		\operatorname{ext}\left(P\cap\bigcap_{i\in I_v}H_{a_i,b_i}\right)=\operatorname{ext}\left(\{v\}\right)=\{v\}
@@ -61,11 +63,11 @@
 	\[
 		v\in\left(\bigcap_{i\notin I_v}E_{a_i,b_i,-}^o\right)\cap\left(\bigcap_{i\in I_v}H_{a_i,b_i}\right)\subset P
 	\]
-	If $I_v$ (and hence $A_v$) is empty, then $P$ contains an open neighborhood of $v$. If $A_v$ is not injective, take $w\in \operatorname{ker}(A_v)\smallsetminus\{0\}$, then there is some $\varepsilon >0$ with $\{v\pm \varepsilon w\}\subset P$. In each case, $v$ cannot be extreme.
+	If $I_v$ (and hence $A_{v;b}$) is empty, then $P$ contains an open neighborhood of $v$. If $A_{v;b}$ is not injective, take $w\in \operatorname{ker}(A_{v;b})\smallsetminus\{0\}$, then there is some $\varepsilon >0$ with $\{v\pm \varepsilon w\}\subset P$. In each case, $v$ cannot be extreme.
 \end{proof}
 
 \begin{coro}[Variants]\label{coro:017-char-variants}
-	Let $P$ be a polyhedral set, $A\in \mathbf{M}_{r,m}(\mathbb{R}),b,c,d\in \mathbb{R}^m$,
+	Let $P$ be a polyhedral set, $A\in \mathbf{M}_{r,m}(\mathbb{R}),b\in \mathbb{R}^r,c,d\in \mathbb{R}^m$,
 	\begin{enumerate}[label=(\alph*)]
 		\item Suppose $P=\{x\in \mathbb{R}^m:Ax=b,x\geq 0\}$. Given $v\in P$, we have $v\in \operatorname{ext}(P)$ iff the matrix $A'_v$ given by keeping columns in $A$ corresponding to indices of $v$ where $v> 0$ is empty or injective.
 		\item Suppose $P=\{x\in \mathbb{R}^m:Ax=b,c\leq x\leq d\}$. Given $v\in P$, we have $v\in \operatorname{ext}(P)$ iff the matrix $A'_v$ given by keeping columns in $A$ corresponding to indices of $v$ where $c<v<d$ is empty or injective.
@@ -115,7 +117,7 @@
 	Suppose $P\subset \mathbb{R}^m$ is nonempty, polyhedral with defining equation $Ax\leq b$, then $\operatorname{ext}(P)\neq\emptyset$ iff $A$ is injective and nonempty.
 \end{coro}
 \begin{proof}
-	If $A$ is injective, then $P$ contains no lines (see \Cref{lemm:016-extreme-existence}). Otherwise, use \Cref{prop:017-characterization-polyhedral-extreme}.
+	If $A$ is injective, nonempty, $P$ has no lines (see \Cref{lemm:016-extreme-existence}). Otherwise, use \Cref{prop:017-characterization-polyhedral-extreme}.
 \end{proof}
 
 \begin{exmp}[Birkhoff-von Neumann Theorem]
@@ -134,15 +136,15 @@
 
 \subsection{Polyhedral Cones and Finitely-Generated Cones}
 
-\paragraph{}A form of Farkas lemma characterizes polyhedral cones - they are the polars of finitely generated cones, a notion we shall define now. Minkowski-
+\paragraph{}Polyhedral cones has some unexpected structures.
 
 \begin{defn}[Finitely Generated Cones]\label{defn:017-fg-cones}
-	A convex cone $C$ is called finitely generated if it can be written as $\operatorname{c.conv}(X)$ for some finite subset $X=\{a_i\}_{i=1}^k\subset \mathbb{R}^m$.
+	A convex cone $C$ is called finitely generated if it can be written as $\operatorname{c.cone}(X)$ for some finite subset $X=\{a_i\}_{i=1}^k\subset \mathbb{R}^m$.
 \end{defn}
 
 \paragraph{}Finitely generated cones are closed - they are images of $\mathbb{R}_+^k\subset \mathbb{R}^k$ under some linear map, so by \Cref{coro:014-closed-affine} applied to $C_0=\mathbb{R}_+^k$ (this set is retractive - being a finite intersection of halfspaces which are also retractive) and $C=\mathbb{R}^k$, it is closed.
 
-\begin{prop}[Farkas Lemma - Basic Form]\label{prop:017-farkas}
+\begin{prop}[Farkas' Cone Lemma]\label{prop:017-farkas}
 	Given a finite set $X\subset \mathbb{R}$, the closed convex cones:
 	\[
 		\bigcap_{a\in X}E_{a,0,-},\;\operatorname{c.cone}(X)
@@ -155,10 +157,10 @@
 \end{proof}
 
 \begin{exmp}[An application of Farkas Lemma]
-	Let $X,Y'$ be finite subsets of $\mathbb{R}^m$, then:
+	Let $X,Y$ be finite subsets of $\mathbb{R}^m$, then:
 	\[
-		\left(\left(\bigcap_{a\in X}E_{a,0,-}\right)\cap \left(\bigcap_{a'\in X'}H_{a',0}\right)\right)^\ast
-		=\operatorname{lin}(X')+\operatorname{c.cone}(X)
+		\left(\left(\bigcap_{a\in X}E_{a,0,-}\right)\cap \left(\bigcap_{a'\in Y}H_{a',0}\right)\right)^\ast
+		=\operatorname{lin}(Y)+\operatorname{c.cone}(X)
 	\]
 \end{exmp}
 
@@ -173,37 +175,37 @@
 	In terms of defining equations (where $A_{i,:}=a_i^T$; note that $A$ is injective, as $V=\mathbb{R}^m$):
 	\[
 		P=
-		\left\{x\in \mathbb{R}^m:\overline{A}x\leq
-		\left[
-			\begin{array}{r}
-				0 \\\hline
-				-y
-			\end{array}
-			\right]
+		\left\{x\in \mathbb{R}^m:\overline{A}x\leq\overline{O}
 		,\text{ where }
 		\overline{A}=\left[
 			\begin{array}{r}
 				A \\\hline
 				-b^T
 			\end{array}
+			\right],\;
+		\overline{O}=\left[
+			\begin{array}{r}
+				O \\\hline
+				-y
+			\end{array}
 			\right]
 		\right\}
 	\]
-	Existence and characterziations of extreme points of this set are given by \Cref{prop:017-characterization-polyhedral-extreme}, \Cref{coro:017-extreme-existence-poly}. Take $v\in \operatorname{ext}(P)$, and consider $\overline{A_v}$, which should be injective. As $0\notin P$, we have:
+	Existence and characterziations of extreme points of this set are given by \Cref{prop:017-characterization-polyhedral-extreme}, \Cref{coro:017-extreme-existence-poly}. Take $v\in \operatorname{ext}(P)$, and consider $\overline{A}_{v;\overline{O}}$, which should be injective. As $O\notin P$, we have:
 	\[
-		\overline{A_v}=
+		\overline{A}_{v;\overline{O}}=
 		\left[
 			\begin{array}{r}
-				A_v \\\hline
+				A_{v;O} \\\hline
 				-b^T
 			\end{array}
 			\right]
 	\]
-	and $\operatorname{rank}(A_v)=m-1$, giving:
+	and $\operatorname{rank}(A_{v;O})=m-1$, giving separation between $b$ and $C$:
 	\[
-		b\in E^o_{v,0,+},\; \operatorname{im}(A_v)=H_{v,0},\; C\subset E_{v,0,-}
+		b\in E^o_{v,0,+},\; \operatorname{im}(A^T_{v;O})=H_{v,0},\; C\subset E_{v,0,-}
 	\]
-	This gives:
+	Note that $\operatorname{im}(A^T_{v;O})$ is $\operatorname{lin}(Y)$ for some $Y\subset X$. This gives:
 	\[
 		C = \bigcap_{\substack{
 				v\in \mathbb{R}^{m-1}\smallsetminus\{0\},Y\subset X:\\
@@ -218,7 +220,7 @@
 			}
 		}E_{v,0,-}
 	\]
-	which is a finite intersection of halfspaces (as for given $Y$ with $\operatorname{dim}\operatorname{lin}(Y)=m-1$, the conditions $C\subset E_{v,0,-},H_{v,0}=\operatorname{lin}(Y)$ determines $v\in \mathbb{S}^{m-1}$ uniquely).
+	which is a finite intersection of halfspaces (as for given $Y\subset X$ with $\operatorname{dim}\operatorname{lin}(Y)=m-1$, the conditions $C\subset E_{v,0,-},H_{v,0}=\operatorname{lin}(Y)$ determines $v\in \mathbb{S}^{m-1}$ uniquely).
 \end{proof}
 
 \begin{prop}[Minkowski-Weyl Representation]\label{prop:017-Minkowski-Weyl-Representation}
@@ -237,7 +239,7 @@
 	\[
 		\overline{P}=E_{-e_{m+1},0,-}\cap\left(\bigcap_{x\in X} E_{(x,0),0,-}\right)\cap\left(\bigcap_{y\in Y} E_{(y,-1),0,-}\right)\cap \left(\bigcap_{z\in Z} E_{(z,1),0,-}\right)
 	\]
-	By \Cref{prop:017-Minkowski-Weyl-Theorem}, we may write:
+	which is a polyhedral cone. By \Cref{prop:017-Minkowski-Weyl-Theorem}, we may write:
 	\[
 		\overline{P}=\operatorname{c.cone}\left(\{(x,0):x\in X'\}\cup \{(y, 1):y\in Y'\}\right)
 	\]
@@ -253,12 +255,12 @@
 		\item (Finite Intersection) Given polyhedral sets $\{P_i\}_{i=1}^{k}\subset \mathbb{R}^m$, $\bigcap_{i=1}^kP_i$ is polyhedral.
 		\item (Finite Product) Given polyhedral sets $\{P_i\}_{i=1}^{k}$ with $P_i\subset \mathbb{R}^{m_i}$, $\bigtimes_{i=1}^kP_i$ is polyhedral.
 		\item (Direct Image) Given affine map $A:\mathbb{R}^m\to \mathbb{R}^n$, polyhedral $P\subset \mathbb{R}^m$, $AP$ is polyhedral.
-		\item (Inverse Image) Given affine map $A:\mathbb{R}^l\to \mathbb{R}^m$, polyhedral $P\subset \mathbb{R}^m$, $A^{-1}P$ is polyhedral.
+		\item (Inverse Image) Given affine map $A:\mathbb{R}^l\to \mathbb{R}^m$, polyhedral $P\subset \mathbb{R}^m$, $A^{-1}P$ is polyhedral if nonempty.
 		\item (Linear Combination) Given polyhedral sets $\{P_i\}_{i=1}^{k}\subset \mathbb{R}^m$ and $\{a_i\}_{i=1}^k\subset \mathbb{R}^m$, $\sum_{i=1}^ka_iP_i$ is polyhedral.
 	\end{enumerate}
 \end{prop}
 \begin{proof}
-	For (a), note that a finite intersection of finite intersection of halfspaces is a finite intersection of halfspaces. For (b), may assume $k=2$, then use the identity $E_{a,b,-}\times \mathbb{R}^{m_2}=E_{(a,0_{m_2}),b,-}$. For (c), use \Cref{prop:017-Minkowski-Weyl-Representation}. For (d), note that the inverse image of a halfspace under an affine map is still a halfspace. For (e), use (b), (c).
+	For (a), note that a finite intersection of finite intersection of halfspaces is a finite intersection of halfspaces. For (b), may assume $k=2$, then use the identity $E_{a,b,-}\times \mathbb{R}^{m_2}=E_{(a,O),b,-}$. For (c), use \Cref{prop:017-Minkowski-Weyl-Representation}. For (d), one can verify it by writing out the defining equation of $A^{-1}P$ using a defining equation of $P$ and an explicit representation of $A$. For (e), use (b), (c).
 \end{proof}
 
 \subsection{Polyhedral Sets and Separation Theorems}
@@ -266,8 +268,8 @@
 \paragraph{}We formulated several hyperplane separation notions and facts in \Cref{sect:015} (see \Cref{prop:015-hyperplane-sep}). When dealing with polyhedral sets, some of these have interesting implications in the polyhedral settings:
 
 \begin{enumerate}[label=(\arabic*)]
-	\item For strict separation theorem ((b) of \Cref{prop:015-hyperplane-sep}), the condition $C_1-C_2$ can be automatically verifeid in some cases, utilizing results from \Cref{sect:014} and this section (see \Cref{prop:017-closedness-vec-diff}).
-	\item For proper separation theorem ((c) of \Cref{prop:015-hyperplane-sep}), the condition $\operatorname{ri}(C_1)\cap\operatorname{ri}(C_2)=\emptyset$ can be relaxed if one of them is polyhedral (see \Cref{prop:017-polyhedral-proper-sep}).
+	\item For strict separation theorem ((b) of \Cref{prop:015-hyperplane-sep}), the condition $C_1-C_2$ can be automatically verified in some cases, utilizing results from \Cref{sect:014} and this section (see \Cref{prop:017-closedness-vec-diff}).
+	\item For proper separation theorem ((c) of \Cref{prop:015-hyperplane-sep}), the condition $\operatorname{ri}(C_1)\cap\operatorname{ri}(C_2)=\emptyset$ has some interesting variants if one of them is polyhedral (see \Cref{prop:017-polyhedral-proper-sep}); in particular, one can control that the separating hyperplane to not contain the non-polyhedral convex set (in other words: the "properness" can be fine-tuned).
 \end{enumerate}
 
 \paragraph{}The following fact was mentioned previously (see \Cref{defn:017-fg-cones}).
@@ -293,14 +295,49 @@
 	Let $C_1=C,C_2=P$ be nonempty convex subsets of $\mathbb{R}^m$ with $P$ polyhedral, then $\operatorname{ri}(C)\cap P=\emptyset$ iff there are $a\in \mathbb{S}^{m-1},b\in \mathbb{R}^m$ with $H_{a,b}\nsupset C\subset E_{a,b,-},P\subset E_{a,b,+}$.
 \end{prop}
 
-\paragraph{}The proof of this proposition is quite involved. One important fact that we will use is the following:
+\paragraph{}The proof of this proposition is quite involved. We introduce some lemmas before going into the proof:
 
 \begin{lemm}[Hyperplane Containment Criterion]\label{lemm:017-criterion-hyperplane-containment}
 	Given nonempty convex set $C\subset \mathbb{R}^m$, $a\in \mathbb{S}^{m-1},b\in \mathbb{R}$, with $C\subset E_{a,b,-}$, then $C\subset H_{a,b}$ iff $\operatorname{ri}(C)\cap H_{a,b}\neq\emptyset$.
 \end{lemm}
 
 \begin{proof}
-	It suffices to show "If". May assume $0\in \operatorname{ri}(C)\cap H_{a,b}$ (so $b=0$). Write $V=\operatorname{lin}(C),\dim(V)=l$. We show $V\subset H_{a,0}$: otherwise, take $v\in V\cap E_{a,0,+}$, then $\varepsilon v\subset \operatorname{ri}(C)$ for some $\varepsilon >0$, giving $\operatorname{ri}(C)\cap E_{a,0,+}\neq\emptyset$, a contradiction.
+	We just show "If". May assume $O\in \operatorname{ri}(C)\cap H_{a,b}$ (so $b=0$). Write $V=\operatorname{lin}(C)$, then $V\subset H_{a,0}$: otherwise take $v\in V\cap E_{a,0,-}$, then $\varepsilon v\subset \operatorname{ri}(C)$ for some $\varepsilon >0$, giving $\operatorname{ri}(C)\cap E_{a,0,-}\neq\emptyset$, a contradiction.
+\end{proof}
+
+\begin{lemm}[Cone of Polyhedral Set]\label{lemm:017-polyhedral-cone-cone-lemma}
+	For a polyhedral set $P$ with $O\in P$, $\operatorname{cone}(P)$ is a polyhedral cone.
+\end{lemm}
+\begin{proof}
+	If $P=\left(\bigcap_{x\in X}E_{x,0,-}\right)\cap \left(\bigcap_{y\in Y}E_{y,1,-}\right)$ for finite subsets $X,Y$ of $\mathbb{R}^m$, $\operatorname{cone}(P)=\bigcap_{x\in X}E_{x,0,-}$.
+\end{proof}
+
+\begin{lemm}[Polyhedral Proper Separation - Special Cases]\label{lemm:017-polyhedral-proper-sep-special-case}
+	In the settings of \Cref{prop:017-polyhedral-proper-sep}, write $V= \operatorname{aff}(C)$. We can properly separate $C, P$ by a hyperplane not containing $C$ in any of the following cases:
+	\begin{enumerate}[label=(\alph*)]
+		\item If $P\subset V$.
+		\item If we know we can do so with $C$ replaced by some convex $C'$ for some $C\subset C'\subset V$.
+		\item If $C'\cap P=\emptyset$ for some polyhedral $C'$ with $C\subset C'\subset V$.
+		\item If the following conditions are all satisfied:
+		      \begin{itemize}
+			      \item both $P,C$ are polyhedral cones
+			      \item $C$ has a representation $C=AE_{e_1,0,-}$ for some linear injection $A:\mathbb{R}^d\to \mathbb{R}^m$
+			      \item and that $P\supset AH_{e_1,0}$, the "relative boundary" of $C$; here we denote this as $\operatorname{rb}(C)$.
+		      \end{itemize}
+		      In this case, we can take the separating hyperplane to pass $O$.
+	\end{enumerate}
+\end{lemm}
+
+\begin{proof}
+	For (a), use (e) of \Cref{prop:017-polyhedral-proper-sep}, and note that a hyperplane containing $C$ contains $P$. For (b), note that a hyperplane containing $C$ contains $C'$. For (c), one can use (d) of \Cref{prop:017-closedness-vec-diff} and (b) of \Cref{prop:015-hyperplane-sep} to find a strict separation for $C', P$, and apply (b). For (d), write $P=\bigcap_{x\in X}E_{x,0,-}$ for some finite subset $X\subset \mathbb{R}^m\smallsetminus \{O\}$, then:
+	\[
+		P\cap \operatorname{ri}(C)=\bigcap_{x\in X}\left(E_{x,0,-}\cap \operatorname{ri}(C)\right)=\emptyset
+	\]
+	The intersection $\left(E_{x,0,-}\cap \operatorname{ri}(C)\right)$ is either empty or contains $C$, as for any $y\in E_{x,0,-}\cap\operatorname{ri}(C)$, we have:
+	\[
+		E_{x,0,-}\supset \operatorname{c.cone}\left(\operatorname{rb}(C)\cup \{y\}\right) = A\operatorname{c.cone}\left(H_{e_1,0} \cup \{A^{-1}y\}\right) = AE_{e_1,0,-} = C
+	\]
+	Therefore, $E_{x_0,0,-}\cap \operatorname{ri}(C)=\emptyset$ for some $x_0\in X$, giving $H\nsupset C\subset E_{x_0,0,+}$ and $P\subset E_{x_0,0,-}$.
 \end{proof}
 
 \begin{proof}[Proof of \Cref{prop:017-polyhedral-proper-sep}]
@@ -308,52 +345,39 @@
 	\[
 		\operatorname{ri}(C)\cap P\subset \operatorname{ri}(C)\cap E_{a,b,+}=\operatorname{ri}(C)\cap H_{a,b}=\emptyset
 	\]
-	"Only if" is the difficult part. For what follows, given two subsets $X,Y$ in $\mathbb{R}^m$, the subset $X_Y$ is defined to be $X\cap Y$. Write $V=\operatorname{aff}(C)$, which is also affine (hence polyhedral; later after translation, this subset will become a subspace).
+	Now we consider "Only if". For what follows, given subsets $X,Y$ in $\mathbb{R}^m$, $X_Y:=X\cap Y$. Write $V=\operatorname{aff}(C)$.
 	\begin{itemize}
-		\item Consider separation between $P_V,C$, which are both subsets of $V$; both of them are polyhedral.
-		      \begin{itemize}
-			      \item If $P_V=\emptyset$, strict separation (for the polyhedral sets $P,V$) between $P,C$ is possible; see (d) of \Cref{prop:017-closedness-vec-diff} and (b) of \Cref{prop:015-hyperplane-sep}. Therefore, we may assum $P_V\neq\emptyset$.
-			      \item Otherwise, we still have $\operatorname{ri}(P_V)\cap \operatorname{ri}(C)\subset P\cap \operatorname{ri}(C)=\emptyset$, so we can properly separate $P_V,C$; say the separating hyperplane and the separating halfspaces are $H,E_{\pm}$.
-			      \item As $\operatorname{aff}(P_V)\subset\operatorname{aff}(C)$ and $H$ is affine, by properness, may write $H\nsupset C\subset  E_{-},P_V\subset E_+$.
-		      \end{itemize}
-		      In order to keep track of the various subsets that we will use, we have this diagram:
+		\item Separate $P_V,C$: By (c) of \Cref{lemm:017-polyhedral-proper-sep-special-case}, may assume $P_V\neq\emptyset$. By (a) of \Cref{lemm:017-polyhedral-proper-sep-special-case}, we get hyperplane and halfspaces $H,E_{\pm}$ with $H\nsupset C\subset E_-,P_V\subset E_+$.
+		      % \[
+		      %  \begin{tikzcd}[column sep=2ex,row sep=2ex]
+		      %   H\rar{}&E_-\rar{}&\mathbb{R}^m&\lar{}E_+&\lar{}P_V\\
+		      %   H_V\rar{}\uar{}&E_{-,V}\rar{}\uar{}&V\uar{}&\lar{}E_{+,V}\uar{}&\lar{}P_V\uar{}\\
+		      %   H_C\rar{}\uar{}&C\rar{}\uar{}&C\uar{}&\lar{}H_{C}\uar{}&\lar{}P_C\uar{}\\
+		      %  \end{tikzcd}
+		      % \]
+		      % with the property that for each subgraph $A\to B$, $A\subset B$, and for each subgraph $A\leftarrow B\rightarrow C$, we have $B=A\cap C$. Note that the second and third rows are just the intersection of the first row with $V$ or $C$.
+		\item Separate $P,E_{-,V}$: Note that $E_{-,V}\supset C$ is a polyhedral cone (after translation), with:
 		      \[
-			      \begin{tikzcd}[column sep=2ex,row sep=2ex]
-				      H\rar{}&E_-\rar{}&\mathbb{R}^m&\lar{}E_+&\lar{}P\\
-				      H_V\rar{}\uar{}&E_{-,V}\rar{}\uar{}&V\uar{}&\lar{}E_{+,V}\uar{}&\lar{}P_V\uar{}\\
-				      H_C\rar{}\uar{}&C\rar{=}\uar{}&C\uar{}&\lar{}H_{C}\uar{}&\lar{}P_C\uar{}\\
-			      \end{tikzcd}
+			      P\cap \operatorname{ri}(E_{-,V})=P_V\cap E^o_{-} =\emptyset,\;\text{ as }P_V\subset E_+
 		      \]
-		      with the property that for each subgraph $A\to B$, $A\subset B$, and for each subgraph $A\leftarrow B\rightarrow C$, we have $B=A\cap C$. Note that the second and third rows are just the intersection of the first row with $V$ or $C$.
-		\item Consider separation between $P,E_{-,V}$; note that $E_{-,V}\supset C$ is a polyhedral cone (after translation).
-		      \begin{itemize}
-			      \item We have $P\cap \operatorname{ri}(E_{-,V})=\emptyset$, using \Cref{lemm:017-criterion-hyperplane-containment} (on $E_{-,V}\subset E_{-}$).
-			      \item If $P\cap E_{-,V}=\emptyset$, then strict separation between $P,C$ is possible.
-			      \item Therefore, may assume $0\in P\cap E_{-,V}$ by translation; in this case, $H$, $V$ are linear.
-		      \end{itemize}
-		\item Consider separation between $K:=\operatorname{cone}(P)+H_V,E_{-,V}$; note that $K\supset P$ is a cone (in fact polyhedral).
-		      \begin{itemize}
-			      \item Firstly, $\operatorname{cone}(P)$ and hence (see (e) of \Cref{prop:017-polyhedral-yoga}) $K$ is a polyhedral cone: write
-			            \[
-				            P=\left(\bigcap_{x\in X}E_{x,0,-}\right)\cap\left(\bigcap_{y\in Y}E_{y,1,-}\right)
-			            \]
-			            for some finite subsets $X,Y$ in $\mathbb{R}^m\smallsetminus \{0\}$ (this is possible as $0\in P$), which gives:
-			            \[
-				            \operatorname{cone}(P)=\left(\bigcap_{x\in X}\operatorname{cone}(E_{x,0,-})\right)\cap\left(\bigcap_{y\in Y}\operatorname{cone}(E_{y,1,-})\right)
-				            =\left(\bigcap_{x\in X}E_{x,0,-}\right)
-			            \]
-			      \item Next, we have $K\cap \operatorname{ri}(E_{-,V})=K\cap V\cap E_{-}^o=\emptyset$. If not, take an element in the intersection:
-			            \[
-				            \alpha x+y,\;\text{ where }\alpha \in \mathbb{R}_{++}, x\in P, y\in H_V\;\text{(note that }0\in P\text{)}
-			            \]
-			            Since $H_V=H\cap V\subset L_{E^o_-}\cap L_{V}=L_{\operatorname{ri}(E_{-,V})}$, we have $\alpha x\in \operatorname{cone}(P) \cap \operatorname{ri}(E_{-,V})$.\\
-			            Since $\operatorname{ri}(E_{-,V})=E_-^o\cap V$, we have $x\in P\cap \operatorname{ri}(E_{-,V})$.
-			      \item Express the polyhedral cone $K$ as $K=\bigcap_{z\in Z}E_{z,0,-}$ for some finite subset $Z\subset \mathbb{R}^m$.
-			            \begin{itemize}
-				            \item For fixed $z\in Z$, if $E_{z,0,-}\cap \operatorname{ri}(E_{-,V})\neq\emptyset$, then as $H_V\subset K\subset E_{z,0,-}$, $E_{-,V}\subset E_{z,0,-}$.
-				            \item Therefore, in view of $K\cap \operatorname{ri}(E_{-,V})=\emptyset$, $E_{z,0,-}\cap \operatorname{ri}(E_{-,V})=\emptyset$ for some $z\in Z$; in other words, we have $\operatorname{ri}(E_{-,V})\subset E_{-,V}\subset E_{z,0,+}$
-				            \item Note that for this $E_{z,0,-}$, we would have $P\subset E_{z,0,-},C\subset E_{z,0,+}$. To see $H_{z,0}\nsupset C$, say if $H_{z,0}\supset C$, then $H_{z,0}\supset V\supset E_{-,V}$, giving $E_{z,0,-}\cap \operatorname{ri}(E_{-,V})=\operatorname{ri}(E_{-,V})=\emptyset$, a contradiction. In short, $H_{z,0}$ properly separates $C,P$.\qedhere{}
-			            \end{itemize}
-		      \end{itemize}
+		      By (c) of \Cref{lemm:017-polyhedral-proper-sep-special-case}, may assume $O\in P\cap E_{-,V}=P\cap H_{-,V}\neq\emptyset$ to make $H$, $V$ linear.
+		\item Separate $K:=\operatorname{cone}(P)+H_V,E_{-,V}$: Note that $K\supset P$ and $E_{-,V}\supset C$ are polyhedral cones (see (e) of \Cref{prop:017-polyhedral-yoga} and \Cref{lemm:017-polyhedral-cone-cone-lemma}). We are done by (d) and (c) of \Cref{lemm:017-polyhedral-proper-sep-special-case} once we know $K\cap \operatorname{ri}(E_{-,V})=\emptyset$. This is by:
+		      \[
+			      K\cap \operatorname{ri}(E_{-,V}) = \operatorname{cone}(P) \cap \operatorname{ri}(E_{-,V}) = \operatorname{cone}(P \cap \operatorname{ri}(E_{-,V})) = \emptyset
+			      \qedhere
+		      \]
 	\end{itemize}
 \end{proof}
+%
+% \begin{rmrk}
+% 	The proof of this proposition is rather technical, but the implications are useful (both the "if" and "only if"). In particular, we will use this to study Slater's condition (to be introduced in \Cref{chap:04}), where polyhedral proper separation is used for the study of affine constraints. It is worth mentioning some possible motivations of the steps in the proof of the "only if" part:
+% 	\begin{itemize}
+% 		\item Recal that the main goal is to find a hyperplane separation such that the hyperplane $H$ does not contain $C$. Ordinary proper separation shows that we can find proper separation, but with no guaranteeing that there is no containment of the hyperplane and $C$.
+% 		\item The consideration for a proper separation between $C,P_V$ has some implications:
+% 		      \begin{itemize}
+% 			      \item Since $P_V\subset V=\operatorname{aff}(C)$, a hyperplane separating these two sets cannot contain $C$.
+% 			      \item However, this hyperplane needn't separate $P$ and $C$, so one proceeds with the next idea.
+% 		      \end{itemize}
+% 		\item
+% 	\end{itemize}
+% \end{rmrk}

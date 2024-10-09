@@ -21,11 +21,11 @@
 \begin{proof}
 	Assuming (2), and $\{(x_k,u_k)\}_{k}\subset M$ with $x_k\to 0$. Want to show (1) holds. It suffices to show $q(y)\leq \underset{k}{\operatorname{liminf}}u_k$. This is by applying $\underset{k}{\operatorname{liminf}}$ to:
 	\[
-		q(y)=\inf (-y,1)^TM \leq -x_ky+u_k
+		q(y)=\inf (-y,1)^TM \leq -x_k^Ty+u_k
 	\]
 	Assuming (1), want to show (2). If $w^\ast=-\infty$, we are done by \Cref{prop:031-weak-duality}. Otherwise, it suffices to show for $v<w^\ast$, $(O,v)$ and $\operatorname{cl}(M^+)$ can be non-verticallly strictly separated (which would imply $q^\ast >v$).
 	\begin{enumerate}[label=(\roman*)]
-		\item $(O,v)\notin \operatorname{cl}(M^+)$: otherwise, take sequences $M^+\supset\{(x_k,v_k)\}_{k}\to (O,u)$, $M\supset \{(x_k,u_k\}_{k}$ with $u_k\leq v_k$, then $\underset{k}{\operatorname{liminf}}u_k\leq v<w^\ast$, contradicting assumption (1).
+		\item $(O,v)\notin \operatorname{cl}(M^+)$: otherwise, take sequences $M^+\supset\{(x_k,v_k)\}_{k}\to (O,v)$, $M\supset \{(x_k,u_k)\}_{k}$ with $u_k\leq v_k$, then $\underset{k}{\operatorname{liminf}}u_k\leq v<w^\ast$, contradicting assumption (1).
 		\item $M^+$ has no vertical lines: there are two cases -
 		      \begin{itemize}
 			      \item $w^\ast=\infty$: then this is true by assumption (a).
@@ -75,7 +75,7 @@
 	Suppose (a)-(c) of \Cref{prop:032-reachability} holds. Let $V=\operatorname{lin}(\pi M)$, then:
 	\begin{enumerate}[label=(\alph*)]
 		\item $L_{Q^\ast}=R_{Q^\ast}=V^\perp$.
-		\item $Q^\ast = V^\perp + V\cap Q^\ast$, with $V\cap Q^\ast$ compact.
+		\item $Q^\ast = V^\perp + V\cap Q^\ast$, with $V\cap Q^\ast$ nonempty, convex, compact.
 		\item In particular, if $O\in \operatorname{int}(\pi M)$, $Q^\ast$ is compact.
 	\end{enumerate}
 \end{prop}

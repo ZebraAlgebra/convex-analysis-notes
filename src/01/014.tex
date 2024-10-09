@@ -19,16 +19,12 @@
 \end{lemm}
 
 \begin{proof}
-	By translation, may assume $x=0$, then we are looking at points in $C$ with minimal norm. Let $f:\mathbb{R}^m\to \mathbb{R}$ be the function $y\mapsto \|y\|^2$. To show existence, one can assume $C$ is nonempty compact by restricting to a bounded subset, then $f(C)$ is compact, so a minimum is attained. For optimality condition, note first that $\nabla f(y_0)=2y_0$, so by Taylor's theorem, an optimal $y_0$ satisfies the given optimal condition. Once uniqueness is established, we are done. If $y_0,y'_0$ are two optimal points, let $y_0''=I(y_0,y_0';1/2)$, then:
+	By translation, may assume $x=0$, then we are looking at points in $C$ with minimal norm. Let $f:\mathbb{R}^m\to \mathbb{R}$ be the function $y\mapsto \|y\|^2$. To show existence, one can assume $C$ is nonempty compact by restricting to a bounded subset, then $f(C)$ is compact, so a minimum is attained. For optimality condition ($(y-y_0)^Ty_0\geq 0$ for $y\in C$), suppose $y_0$ is optimal and $y\in C$, then for $\alpha \in(0,1]$:
 	\[
-		f(y_0'')=\|y_0+y_0'\|^2/4\leq (\|y_0\|+\|y_0'\|)^2/4 =f(y_0)
+		\alpha^{-1}\left(f(I(y_0,y; \alpha ))-f(y_0)\right) = (2y_0 + \alpha (y-y_0))^T(y-y_0)\geq0
 	\]
-	with "$=$" holding iff $y_0=y_0'$ (by triangle inequality); this says $y_0$ and $y'_0$ must be the same.
+	so by taking $\alpha \to 0^+$, we see that an optimal $y_0$ satisfies the given optimal condition. Once uniqueness is established, we are done. If $y_0,y'_0$ are both optimal, let $y_0''=I(y_0,y_0';1/2)$, then by triangle inequality, we have $f(y_0'')=\|y_0+y_0'\|^2/4\leq (\|y_0\|+\|y_0'\|)^2/4 =f(y_0)$ with "$=$" holding iff $y_0=y_0'$.
 \end{proof}
-
-\begin{rmrk}
-	A quick proof can be given using ADDREF/
-\end{rmrk}
 
 \subsection{Intersection Theorems}
 
@@ -37,7 +33,7 @@
 
 \begin{prop}[Construction of Recession Directions]
 	\label{prop:014-construction-recession}
-	Given $\{x_i\}_i\subset \mathbb{R}^m\smallsetminus \{0\}$ with $\{\|x_i\|\}_i\to\infty$, $x_i\in C_i\smallsetminus \{0\}$, then all limit points of $\{\nu(x_i)\}_i\subset \mathbb{S}^{m-1}$ are contained in $R\cap \mathbb{S}^{m-1}$.
+	Given $\{x_i\}_i\subset \mathbb{R}^m\smallsetminus \{0\}$ with $\{\|x_i\|\}_i\to\infty$, $x_i\in C_i$, then all limit points of $\{\nu(x_i)\}_i\subset \mathbb{S}^{m-1}$ are contained in $R\cap \mathbb{S}^{m-1}$.
 \end{prop}
 
 \paragraph{}In other words, $\nu(R)$ and hence $R$ can be characterized completely via \Cref{prop:014-construction-recession}. The special case where $C_i=C_0$ for some fixed $C_0$ gives (d) of \Cref{prop:013-yoga-recession}. This motivates the following definition:
@@ -66,7 +62,7 @@
 \begin{proof}
 	Take the sequence $\{x_i\}_i$ defined by $\|x_i\|=\inf_{x\in C_i}\|x\|$ (see \Cref{lemm:014-projection}). It suffices to show that $\{x_i\}_i$ is bounded - any limit point of this sequence will lie in $C$. Otherwise, we may assume $\{x_i\}_i$ is asymptotic with $\mathbb{S}^{m-1}\supset\{\nu(x_i)\}_i\to d$ by replacing $\{C_i\}_i$ by a subsequence. Replacing again $\{C_i\}_i$ by a subsequence, we may assume that $x_i-d\in C_i$ for each $i$. We have:
 	\[
-		\left(\|x_i\|^2-\|x_i-d\|^2\right)/\|x_i\|=2d^T\nu(x_i)-1/\|x_i\|\to 2\text{, as }i\to\infty
+		\|x_i\|^{-1}\left(\|x_i\|^2-\|x_i-d\|^2\right)=2d^T\nu(x_i)-\|x_i\|^{-1}\to 2\text{, as }i\to\infty
 	\]
 	indicating that $x_i-d$ has smaller norm than $x_i$ eventually, which is a contradiction.
 \end{proof}
@@ -83,7 +79,7 @@
 	Write $R'=\bigcap_iR_{C'_i}$. We have $R'=R_{C_0}\cap R$, so given asymptotic sequence $\{x'_i\}_i$ for $\{C'_i\}_i$ with $\{\nu(x_i)\}_i\to d\in R'\cap \mathbb{S}^{m-1}\subset L$, we have $x'_i-d\in C'_i$ for all $i\geq i_0$ for some $i_0$ by retractiveness of $C'_0$. Non-emptyness of $C'$ is by \Cref{prop:014-non-empt-I}.
 \end{proof}
 
-\paragraph{}In this scenario, we have the following "linear + compact" decomposition.
+\paragraph{}In this scenario, we have the following "linear + compact" decomposition; compare with \Cref{prop:013-decomposition}.
 
 \begin{coro}[Decomposition into Linear plus Compact]\label{coro:014-decomp-compact}
 	When $R=L$, we have $C\neq\emptyset$, and the decomposition $C=L+C\cap L^\perp$.
@@ -95,7 +91,7 @@
 	Use \Cref{prop:013-decomposition} and \Cref{prop:014-non-empt-II} applied to $C_0=\mathbb{R}^m$.
 \end{proof}
 
-\subsection{Image of Closed Convex Sets}
+\subsection{Image, Summations of Closed Convex Sets}
 
 \paragraph{}A nice application of retractive sequence is a condition for closedness of image under affine transformation. For this subsection, fix a convex closed subset $C\subset \mathbb{R}^m$.
 
@@ -119,7 +115,7 @@
 	Let $\{C_i\}_{i=1}^k$ be nonempty convex subsets in $\mathbb{R}^m$. Let $A:(\mathbb{R}^{m})^k\to \mathbb{R}^m$ be summation map $(x_i)_{i=1}^k\mapsto \sum_{i=1}^kx_i$. Suppose $\left(\bigtimes_{i=1}^kR_{C_i}\right)\cap\operatorname{ker}(A)\subset \left(\bigtimes_{i=1}^kL_{C_i}\right)$, then $\sum_{i=1}^kC_i$ is closed.
 \end{coro}
 
-\paragraph{}In other words, if for any given $(d_i)_{i=1}^k\in\bigtimes_{i=1}^kR_{C_i}$ with $\sum_{i=1}^kd_i=0$ that $(d_i)_{i=1}^k\in\bigtimes_{i=1}^kL_{C_i}$, $\sum_{i=1}^kC_i$ is closed. If $k=2$, the condition is the same as $R_{C_1}\cap -R_{C_2}=\{0\}$.
+\paragraph{}In other words, if for any given $(d_i)_{i=1}^k\in\bigtimes_{i=1}^kR_{C_i}$ with $\sum_{i=1}^kd_i=0$ that $(d_i)_{i=1}^k\in\bigtimes_{i=1}^kL_{C_i}$, then $\sum_{i=1}^kC_i$ is closed. If $k=2$, the condition is the same as $R_{C_1}\cap -R_{C_2}=\{0\}$.
 
 \begin{proof}
 	This is by (b) of \Cref{prop:013-yoga-recession}, \Cref{prop:013-yoga-linearity}, and \Cref{coro:014-closed-affine} with $C_0=\mathbb{R}^{mk}$.

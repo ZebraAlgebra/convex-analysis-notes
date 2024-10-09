@@ -6,13 +6,13 @@
 	Given $a\in \mathbb{R}^{m}\smallsetminus \{0\},b\in \mathbb{R}$, we define:
 	\[
 		H_{a,b}=\{x\in \mathbb{R}^m:a^Tx=b\},\;
-		E_{a,b,+}=\{x\in \mathbb{R}^m:a^Tx-b\geq 0\},\;
-		E_{a,b,-}=\{x\in \mathbb{R}^m:a^Tx-b\leq 0\},\;
+		E_{a,b,+}=\{x\in \mathbb{R}^m:a^Tx\geq b\},\;
+		E_{a,b,-}=\{x\in \mathbb{R}^m:a^Tx\leq b\},\;
 	\]
 	called the hyperplane, closed halfspaces corresponding to $(a,b)$. The open halfspaces are denoted as:
 	\[
-		E_{a,b,+}^o=\{x\in \mathbb{R}^m:a^Tx-b> 0\},\;
-		E_{a,b,-}^o=\{x\in \mathbb{R}^m:a^Tx-b< 0\},\;
+		E_{a,b,+}^o=\{x\in \mathbb{R}^m:a^Tx> b\},\;
+		E_{a,b,-}^o=\{x\in \mathbb{R}^m:a^Tx< b\},\;
 	\]
 \end{defn}
 
@@ -32,7 +32,7 @@
 \paragraph{}In the case where $m\geq 2$, we can consider whether halfspaces are "vertical"; such notion is important in the context of min-common / max-crossing geometric duality of convex sets.
 
 \begin{defn}[Vertical, Upward]\label{defn:015-verticality}
-	Suppose $m\geq 2$, write $e_m=(0,0,\dotsc,0,1)\in \mathbb{R}^m$. We say that:
+	Suppose $m\geq 2$. We say that:
 	\begin{enumerate}[label=(\alph*)]
 		\item A hyperplane $H$ (resp. halfspace $E$) is vertical if $e_m\in L_H$ (resp. $e_m\in L_E$).
 		\item A non-vertical halfspace $E$ is upwards if $e_m\in R_E$; otherwise it is called downwards.
@@ -79,7 +79,7 @@
 	\[
 		a^Tx_0\leq \underset{x\in C_1}{\operatorname{inf}}a^Tx
 	\]
-	To this end, take $\mathbb{R}^m\smallsetminus \operatorname{cl}(C_1)\supset \{x_i\}_i\to x_0$ (this sequence exists in the case where $x_0\notin \operatorname{aff}(C_1)$; otherwise, use (a) of \Cref{prop:012-yoga-ri-cl}). Let $\operatorname{cl}(C_1)\supset\{y_i\}_i$ with $y_i$ being the projection of $x_i$ on $\operatorname{cl}(C_1)$, and let $\mathbb{S}^{m-1}\supset \{a_i\}_i$ with $a_i$ being $\nu(y_i-x_i)$. By rechoosing a subsequence, may assume $\{a_i\}_i\to a$ for some $a\in \mathbb{S}^{m-1}$. Now since $y_i$ is projection of $x_i$ to $C$, we have $a_i^Tx_i\leq a_i^Tx$ for each $i$ and each $x\in C$; this would suffice.
+	Take $\mathbb{R}^m\smallsetminus \operatorname{cl}(C_1)\supset \{x_i\}_i\to x_0$ (this sequence exists: by (a) of \Cref{prop:012-yoga-ri-cl}, either $x_0\notin \operatorname{cl}(C_1)$, or $\operatorname{dim}(C_1)<m$, or $x_0\in\operatorname{bdy}(\operatorname{cl}(C_1))$). Let $\operatorname{cl}(C_1)\supset\{y_i\}_i$ with $y_i$ being the projection of $x_i$ on $\operatorname{cl}(C_1)$, and let $\mathbb{S}^{m-1}\supset \{a_i\}_i$ with $a_i$ being $\nu(y_i-x_i)$. By rechoosing a subsequence, may assume $\{a_i\}_i\to a$ for some $a\in \mathbb{S}^{m-1}$. As $y_i$ is projection of $x_i$ to $C$, we have $a_i^Tx_i\leq a_i^Tx$ for each $i$ and $x\in C$; this would suffice.
 \end{proof}
 
 \begin{proof}[Proof of (a) and (b)]
@@ -98,7 +98,7 @@
 		R_{\operatorname{cl}(C_1)}=
 		\bigcap_{\substack{a,b\in \mathbb{S}^{m-1}\times \mathbb{R}:\\E_{a,b,+}\supset C_1}}R_{E_{a,b,+}}
 	\]
-	where we used (f), (g) of \Cref{prop:013-yoga-recession} and \Cref{coro:015-halfspaces-intersection}. If all $E_{a,b,+}$ containing $C_1$ has vertical line, then $\{0\}\times\mathbb{R}\subset R_{\operatorname{ri}(C_1)}$, in which case $\operatorname{ri}(C_1)$ and hence $C_1$ will have a vertical line.
+	where we used (f), (g) of \Cref{prop:013-yoga-recession} and \Cref{coro:015-halfspaces-intersection}. If all $E_{a,b,+}$ containing $C_1$ has vertical line, then $\{O\}\times\mathbb{R}\subset R_{\operatorname{ri}(C_1)}$, in which case $\operatorname{ri}(C_1)$ and hence $C_1$ will have a vertical line.
 \end{proof}
 \begin{proof}[Proof of (g)]
 	By (b), (f), may take $(a,b),(a',b')$ in $\mathbb{S}^{m-1}\times \mathbb{R}$ with $C_1\subset E^o_{a,b,+}\cap E_{a',b',+},C_2\subset E^o_{a,b,-}$, where $a'\notin \mathbb{S}^{m-2}\times \{0\}$. May assume $a\in \mathbb{S}^{m-2}\times \{0\}$, or we are done. It suffices to show for some $\varepsilon >0$ that (i) $C_1\subset E^o_{a_\varepsilon,b_\varepsilon,+}$ (ii) $C_2\subset E^o_{a_\varepsilon,b_\varepsilon,-}$, where $a_\varepsilon:=a+\varepsilon a',b_\varepsilon:=b+\varepsilon b'$. (i) holds for all $\varepsilon >0$; (ii) is the same as $a_\varepsilon^T x_0>b_\varepsilon $, but since $a_\varepsilon\to a,b_\varepsilon \to 0$ as $\varepsilon \to 0^+$ and that this holds for $\varepsilon =0$, such $\varepsilon >0$ exists.
@@ -115,5 +115,5 @@
 \end{proof}
 
 \begin{rmrk}[Supporting Hyperplane]
-	In the setting of (d) of \Cref{prop:015-hyperplane-sep}, one can take the hyperplane to pass $x_0$; in such case, this hyperplane is called "supporting".
+	In the setting of (d), (e) of \Cref{prop:015-hyperplane-sep}, one can take the hyperplane to pass $x_0$; in such case, this hyperplane is called "supporting" if $x_0\in C_1$.
 \end{rmrk}

@@ -1,32 +1,32 @@
-\section{Continuity of Convex Functions, 1st and 2nd Order Convexity Condition}
+\section{Smoothness Conditions and Convexity}
 \label{sect:022}
 
-\paragraph{}In the following we give other characterizations of convex functions in the case where the function has some smoothness condition. Let us fix a function $f:\mathbb{R}^m\to \overline{\mathbb{R}}$.
+\paragraph{}Let us fix a proper scalar function $f$ on $\mathbb{R}^m$ with $\operatorname{dom}(f)=X$. We aim to illustrate several results relating smoothness conditions (such as continuity, 1st, 2nd differentaibility) and convexity. First we define a common construction:
+
+\begin{defn}[Slope of Secant, Directional Derivatives]\label{defn:022-secant-slope}
+	Fix a point $x\in X$, a direction $d\in \mathbb{R}^m$, a scalar $\gamma \in \mathbb{R}_{++}$, we define the slope of secant $S(x; d; \alpha)=\alpha^{-1}(f(x+\alpha d)-f(x))$, and the directional derivative $f'(x; d)=\lim_{\alpha \to 0^+}S(x;d; \alpha )$ provided that this limit exists.
+\end{defn}
+
+\begin{rmrk}Suppose $f$ is convex, given fixed $x, d$, $S(f,x; d; \alpha)$ is increasing in $\alpha$ (using the convention $\infty\leq \infty$), so it makes sense to talk about $\lim_{\alpha \to0^+},\lim_{\alpha \to\infty}$ of $S(f,x; d; \alpha )$ (might go to $\pm\infty$), which corresponds to $\inf$, $\sup$ of $S(f,x; d; \alpha )$ over $\alpha \in \mathbb{R}_{++}$. Taking $\lim_{\alpha \to 0^+}$ gives the directional derivative, while taking $\lim_{\alpha \to +\infty}$ gives "recession functions" (see \Cref{sect:024}) in some cases.
+\end{rmrk}
 
 \begin{prop}[First and Second Order Condition for Convexity]
 	\label{prop:022-ordered-conditions-convexity}
-	Given nonempty convex $C\subset \mathbb{R}^m$, $U$ an open set containing $C$, with $f(U)\subset \mathbb{R}$.
-	\begin{enumerate}[label=(\roman*)]
+	Suppose $\emptyset\neq C\subset U\subset X$ with $U$ open, $C$ convex,
+	\begin{enumerate}[label=(\alph*)]
 		\item If $f\in\mathscr{C}^1(U)$, then $f$ is convex on $C$ iff $f(y)\geq f(x)+\nabla f(x)^T(y-x)$ for $x,y\in C$.
 		\item If $f\in\mathscr{C}^2(U)$, then $f$ is convex on $C$ if $f(z)$ is positive semidefinite on $C$. "Only if" holds if $C$ is open.
 	\end{enumerate}
 \end{prop}
-\begin{proof}[Proof of (i)]
+
+\begin{proof}[Proof of (a)]
 	Fix $x,y\in C,\alpha \in [0, 1]$. For "if", let $z=I(x,y; \alpha )$. We have:
 	\[
 		I(f(x),f(y);\alpha )  \geq I(f(z)+\nabla f(z)^T(x-z),f(z)+\nabla f(z)^T(y-z);\alpha ) = f(z)
 	\]
-	For "only if", define $g(t)$ as:
-	\[
-		g(t)=\frac{f(x+t(y-x))-f(x)}{t}=\frac{f(I(x,y;t))-f(x)}{t},\;t\in(0, 1]
-	\]
-	then we have $g(1)=f(y)-f(x)$, $\lim_{t\to0^+}g(t)=\nabla f(x)^T(y-x)$, so it suffices to show that $g$ is monotonically increasing on $(0, 1]$. By rechoosing $y$, it suffices to show that $g$ obtain maximum at $1$. Take $t\in(0,1]$:
-	\[
-		tg(t)=f(I(x,y;t))-f(x)\leq I(f(x),f(y);t)-f(x)=tg(1)
-	\]
-	This concludes the proof of (i).
+	The "only if" part is the same as $\lim_{\alpha \to0^+}S(f,x; y-x; \alpha )\leq S(f,x; y-x; 1)$, which is given above.
 \end{proof}
-\begin{proof}[Proof of (ii)]
+\begin{proof}[Proof of (b)]
 	Fix $x,y\in C,\alpha \in [0, 1]$. For "if", we have by mean value theorem that:
 	\[
 		f(y)=f(x)+\nabla f(x)^T(y-x)+\frac{1}{2}(y-x)^T\nabla^2f(I(x,y,\alpha ))(y-x)\geq f(x)+\nabla f(x)^T(y-x)
@@ -38,14 +38,14 @@
 
 \begin{prop}[Continuity Theorem]
 	\label{prop:022-continuity}
-	Suppose $f$ is proper, convex, then $f$ is continuous on $\operatorname{ri}(\operatorname{dom}(f))$.
+	Suppose $f$ is proper, convex, then $f$ is continuous on $\operatorname{ri}(X)$.
 \end{prop}
 
 \begin{proof}
-	Let $C=\operatorname{ri}(\operatorname{dom}(f))$. It suffices to show under the assumptions $\dim C=m$, $X:=[-1,1]^n\subset C$ that $f$ is continuous at $0$. By convexity, $f$ is bounded on $X$ as $X=\operatorname{conv}(\{-1,1\}^n)$. Take $X\smallsetminus\{0\}\supset \{x_i\}_i\to 0$, then we take:
+	Let $C=\operatorname{ri}(X)$. It suffices to show under the assumptions $\dim C=m$, $E:=[-1,1]^n\subset C$ that $f$ is continuous at $0$. By convexity, $f$ is bounded on $E=\operatorname{conv}(\{-1,1\}^n)$. Take $E\smallsetminus\{0\}\supset \{x_i\}_i\to 0$, and take:
 	\[
-		y_i=\frac{x_i}{\|x_i\|_\infty}\in \operatorname{bdy}(X),\;
-		z_i:=-y_i\in \operatorname{bdy}(X)
+		y_i=\frac{x_i}{\|x_i\|_\infty}\in \operatorname{bdy}(E),\;
+		z_i:=-y_i\in \operatorname{bdy}(E)
 	\]
 	so we have $0\in I(x_i,z_i;[0,1])$, $x_i\in I(0,y_i;[0,1])$. Now we estimate $f(0)$: Firstly,
 	\[
@@ -60,7 +60,7 @@
 
 \begin{coro}
 	\label{coro:022-continuity-real-valued}
-	Suppose $f$ is convex and real-valued, then $f$ is continuous.
+	Suppose $f$ is convex and $X=\mathbb{R}^m$, then $f\in \mathscr{C}^0(\mathbb{R}^m)$.
 \end{coro}
 
 \begin{coro}[Line Continuity Theorem]
@@ -75,4 +75,24 @@
 	\]
 	which gives $\underset{i}{\operatorname{limsup}}f(x_i)\leq f(0)$.
 \end{proof}
+
+\paragraph{}Suppose $f$ is convex, given $x\in X$, the gradient of $f$ at $x$ might not be well-defined. As a compromise, we can still consider the set of subgradients, which is the set of vectors that has the property given in (a) of \Cref{prop:022-ordered-conditions-convexity}. They are essential in optimization (e.g. subgradient descent).
+
+\begin{defn}[Subgradients]\label{defn:022-subgradients}
+	Given convex $f$ and $x\in X$, define $\partial f(x)$ as:
+	\[
+		\partial f(x) = \{
+		y\in \mathbb{R}^m: f(z) - f(x) \geq y^T(z- x)\;\text{ for all }z\in \mathbb{R}^m
+		\}
+	\]
+	called the subgradient of $f$ at $x$. Alternatively, subgradients can be defined via directional derivatives:
+	\begin{align*}
+		\partial f(x) & = \{y\in \mathbb{R}^m: f(x+d \alpha )-f(x) \geq \alpha y^Td \text{ for all }d \in \mathbb{R}^m, \alpha\in \mathbb{R}_{++} \} \\
+		              & = \{y\in \mathbb{R}^m: S(f,x; d; \alpha) \geq y^Td \text{ for all }d \in \mathbb{R}^m, \alpha\in \mathbb{R}_{++} \}          \\
+		              & = \{y\in \mathbb{R}^m: f'(x; d) \geq y^T d \text{ for all }d \in \mathbb{R}^m \}
+	\end{align*}
+	We also define $\partial f(x)=\emptyset$ if $x\notin X$.
+\end{defn}
+
+\paragraph{}Properties of subgradients will be established later in \Cref{sect:046}, using MC/MC framework.
 

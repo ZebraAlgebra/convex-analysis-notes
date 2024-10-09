@@ -29,7 +29,7 @@
 \end{lemm}
 
 \begin{proof}
-	The equivalence with the statement regarding line containment is (c) of \Cref{prop:013-yoga-linearity}. We now prove by induction, with the case $m=1$ being clear. For the inductive step, by inductive hypothesis, may assume $\dim(C)=m$, then by choosing a supporting separating hyperplane $H$ (see remark after \Cref{prop:015-hyperplane-sep}) crossing a point in $\operatorname{C}\smallsetminus \operatorname{int}(C)$ (such point exists, as $\mathbb{R}^m$ is connected and $C$ is closed), we get by inductive hypothesis applied to $C\cap H$ and \Cref{lemm:016-extreme-and-hyperlane} that $\operatorname{ext}(C)\neq\emptyset$.
+	The equivalence with the statement regarding line containment is (c) of \Cref{prop:013-yoga-linearity}. We now prove by induction, with the case $m=1$ being clear. For the inductive step, by inductive hypothesis, may assume $\dim(C)=m$, then by choosing a supporting separating hyperplane $H$ (see remark after \Cref{prop:015-hyperplane-sep}) crossing a point in $\operatorname{bdy}(C)$ (such point exists, as $\mathbb{R}^m$ is connected and $C$ is closed), we get by inductive hypothesis applied to $C\cap H$, \Cref{lemm:016-extreme-and-hyperlane}, and (f) of \Cref{prop:013-yoga-recession} that $\operatorname{ext}(C)\neq\emptyset$.
 \end{proof}
 
 \paragraph{}Now we consider the construction of polar cones.
@@ -47,11 +47,11 @@
 \paragraph{}By definition, since $E_{a,0,-}$ are closed, convex, cones, we have:
 
 \[
-	X^\ast = \operatorname{cl}(X)^\ast =
-	\operatorname{cone}(X)^\ast = \operatorname{c.conv}(X)^\ast = \operatorname{cl}(\operatorname{c.conv}(X))^\ast
+	X^\ast = \operatorname{cl}(X)^\ast = \operatorname{conv}(X)^\ast =
+	\operatorname{cone}(X)^\ast = \operatorname{c.cone}(X)^\ast = \operatorname{cl}(\operatorname{c.cone}(X))^\ast
 \]
 
-\paragraph{}Also, when $X=-X$, then $X^\ast=\operatorname{lin}(X)^\perp$, as $E_{a,0,-}\cap E_{-a,0,-}=H_{a,0}$. In this sense, know that when $X=\operatorname{lin}(X)$ - that is, when $X$ is a linear subspace - then $X^\perp=X^\ast$, so we have $X^{\ast\ast}=X^{\perp\perp}=X$. In fact, $X=X^{\ast\ast}$ holds for nonempty closed convex cones:
+\paragraph{}Also, when $X=-X$, then $X^\ast=\operatorname{lin}(X)^\perp$, as $E_{a,0,-}\cap E_{-a,0,-}=H_{a,0}$. In this sense, we know that when $X=\operatorname{lin}(X)$ - that is, when $X$ is a linear subspace - $X^\perp=X^\ast$, so we have $X^{\ast\ast}=X^{\perp\perp}=X$. In fact, $X=X^{\ast\ast}$ holds for nonempty closed convex cones:
 
 \begin{lemm}[Polar Cone Theorem]\label{lemm:016-polar-cone-theorem}
 	Let $X\subset \mathbb{R}^m$ be nonempty, then $X^{\ast\ast}=\operatorname{cl}(\operatorname{c.cone}(X))$.

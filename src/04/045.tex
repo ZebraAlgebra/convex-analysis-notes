@@ -18,7 +18,7 @@
 	\[
 		f^\ast \leq I(f(x),f(x');\alpha )=f(I(x,x';\alpha ))=f(x_0)=f^\ast
 	\]
-	giving $x\in F^\ast$. For (b), note that $F^\ast\neq\emptyset$ by \Cref{prop:043-linear-reachability}; take a point $x_0\in F^\ast$. If $x_0\in \operatorname{ri}(F)$, then we are done by (a); otherwise, by (e) of \Cref{prop:015-hyperplane-sep}, $x_0, F$ can be properly separated; say for some $(a,b)\in \mathbb{S}^{m-1}\times \mathbb{R}$, $F\subset E_{a,b,+},x_0\in E_{a,b,-}$. Note $x_0\in H_{a,b}$ (as $x_0\in F$). Now we use \Cref{lemm:016-extreme-and-hyperlane}, and replace $F$ by $F\cap H_{a,b}$; this process continue indefinitely (consider $\dim(F)$), giving the assertion.
+	giving $x\in F^\ast$. For (b), note that $F^\ast\neq\emptyset$ by \Cref{prop:043-linear-reachability}; take a point $x_0\in F^\ast$. If $x_0\in \operatorname{ri}(F)$, then we are done by (a); otherwise, by (e) of \Cref{prop:015-hyperplane-sep} and the remarks following it, we have for some $(a,b)\in \mathbb{S}^{m-1}\times \mathbb{R}$, that $F\subset E_{a,b,+},x_0\in H_{a,b,-}$. Now we use \Cref{lemm:016-extreme-and-hyperlane}, and replace $F$ by $F\cap H_{a,b}$; this process cannot continue indefinitely (consider $\dim(F)$), giving the assertion.
 \end{proof}
 
 \begin{prop}[Primal Optimal set via Recession Cones]

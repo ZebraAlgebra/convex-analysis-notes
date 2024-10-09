@@ -1,7 +1,7 @@
 \section{Recession Cones, Linearity Subspace}
 \label{sect:013}
 
-\paragraph{}Recession cones, linearity subspaces are tools for studying limiting behaviors of convex sets. Fix a nonempty convex set $C\subset \mathbb{R}^m$. For $d\in \mathbb{R}^m$, we write the ray and the line with direction $d$ as:
+\paragraph{}Recession cones, linearity subspaces are used for the study of limiting behaviors of convex sets. Fix a nonempty convex $C\subset \mathbb{R}^m$. In this section, given $d\in \mathbb{R}^m$, write the ray and the line with direction $d$ as:
 \[
 	\rho_d=I(0,d;\mathbb{R}_{+}),\;\ell_d=I(0,d;\mathbb{R})
 \]
@@ -11,7 +11,7 @@
 	Given $d\in \mathbb{R}^m$, we say that $d$ is a direction of recession of $C$ if $C+\rho_d\subset C$.	The set of recession directions of $C$ is the recession cone $R_C$. The linearity subspace of $C$ is given as $L_C:=R_C\cap R_{-C}$; equivalently, $d\in L_C$ iff $C+\ell_d\subset C$.
 \end{defn}
 
-\paragraph{}We will see that recession cones are convex cones. Let $\nu$ be the map $\mathbb{R}^m\smallsetminus\{0\}\to \mathbb{S}^{m-1}$ given by $x\mapsto x/\|x\|$, then $\nu$ gives a correspondence between subsets of $\mathbb{S}^{m-1}$ and cones in $\mathbb{R}^m$ via direct and inverse images.
+\paragraph{}We will see that recession cones are convex cones. Recall the map $\nu:\mathbb{R}^m\smallsetminus\{0\}\to \mathbb{S}^{m-1}$ given by $x\mapsto x/\|x\|$; this map gives a correspondence between subsets of $\mathbb{S}^{m-1}$ and cones in $\mathbb{R}^m$ via direct and inverse images.
 
 \begin{prop}[Yoga of Recession Cones].
 	\label{prop:013-yoga-recession}
@@ -41,8 +41,8 @@
 		C+\rho_{I(d,d';[0,1])}\subset I\left(C+\rho_{d},C+\rho_{d'},[0,1]\right)\subset C
 	\]
 	(b) is straightforward. For (c), given $R_C\supset \{d_i\}_i\to d\in \operatorname{cl}(R_C)$, $C+\rho_d\subset \operatorname{cl}\left(\bigcup_i\left(C+\rho_{d_i}\right)\right)\subset \operatorname{cl}(C)=C$.\\
-	For (d), for $d\in R_C$, we have: $C+\rho_d=\operatorname{cl}\left(x+\rho_d,C;[0,1]\right)\subset \operatorname{cl}(C)=C$.\\
-	For (e), may assume $\dim C=m$, $0\in C$. We use (d) on $0$. Take $C\supset \{x_i\}_i$ with $\|x_i\|\geq i$. Let $d_i:=\nu(x_i)\in \mathbb{S}^{m-1}$; it has some limit point $d\in \mathbb{S}^{m-1}$, so by rechoosing $x_i$, may assume $\{d_i\}_i\to d$. We show that $d\in R_C$. It suffices to show $\{id\}_i\subset C$, but this is by $C\supset\{id_j\}_{j\geq i}^\infty\to id$, as $id_j\in I(0,x_j;[0,1])$ for $j\geq i$.\\
+	For "if" of (d), for $d\in R_C$, we have: $C+\rho_d=\operatorname{cl}\left(x+\rho_d,C;[0,1]\right)\subset \operatorname{cl}(C)=C$. "Only if" is trivial.\\
+	For "only if" of (e), may assume $\dim C=m$, $0\in C$. We use (d) on $0$. Take $C\supset \{x_i\}_i$ with $\|x_i\|\geq i$. Let $d_i:=\nu(x_i)\in \mathbb{S}^{m-1}$; it has some limit point $d\in \mathbb{S}^{m-1}$, so by rechoosing $x_i$, may assume $\{d_i\}_i\to d$. We show that $d\in R_C$. It suffices to show $\{id\}_i\subset C$, but this is by $C\supset\{id_j\}_{j\geq i}^\infty\to id$, as $id_j\in I(0,x_j;[0,1])$ for $j\geq i$. "If" is trivial for (e).\\
 	For (f), "$\supset$" is by (d); for "$\subset$", take $x\in \operatorname{ri}(C)$, then given $d\in R_C$, by (b) of \Cref{prop:012-basic-ri}:
 	\[
 		x+\rho_d = I(x,x+\rho_d;[0, 1))\subset \operatorname{ri}(C)
@@ -70,7 +70,7 @@
 \begin{proof}
 	We only show (a); (b)-(g) are direct consequences of (b),(d)-(h) of \Cref{prop:013-yoga-recession} and the definition of $L_C$ as in \Cref{defn:013-recessioncone}. For (a), by $L_C=-L_{-C}$ and (a) of \Cref{prop:013-yoga-recession}:
 	\[
-		\operatorname{lin}(L_C)=\operatorname{c.conv}(L_C)\subset\operatorname{c.conv}(R_C)\cap \operatorname{c.conv}(R_{-C})=R_C\cap R_{-C}=L_C\qedhere{}
+		\operatorname{lin}(L_C)=\operatorname{c.cone}(L_C)\subset\operatorname{c.cone}(R_C)\cap \operatorname{c.cone}(R_{-C})=R_C\cap R_{-C}=L_C\qedhere{}
 	\]
 \end{proof}
 

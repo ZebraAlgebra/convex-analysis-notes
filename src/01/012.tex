@@ -1,7 +1,7 @@
 \section{Relative Interiors and Closures}
 \label{sect:012}
 
-\paragraph{}A nonempty convex set might have empty interior, but if one restricts attention to the affine hull, then it is a fact that in this subspace its interior is not empty. This subset is called the relative interior. Another nice fact is that convex functions (to be defined in the next chapter) is continuous on the relative interior. We will define relative interiors and give an alternative characterization of such sets (see (b), (c) of \Cref{prop:012-basic-ri}). After that, we formulate a list of yogas for the closure and relative interior operations for convex sets. For this section, fix a nonempty convex sets $C,C'$ of $\mathbb{R}^m$, write $Y=\operatorname{aff}(C)$ with $\dim(Y)=d\leq m$.
+\paragraph{}A nonempty convex set might have empty interior, but if one restricts attention to the affine hull, then it is a fact that in this subspace its interior is not empty. This subset is called the relative interior. Another nice fact is that convex functions (to be defined in the next chapter) is continuous on the relative interior. We will define relative interiors and give an alternative characterization of such sets (see (b), (c) of \Cref{prop:012-basic-ri}). After that, we formulate a list of yogas for the closure and relative interior operations for convex sets. For this section, fix nonempty convex sets $C,C'$ of $\mathbb{R}^m$, write $Y=\operatorname{aff}(C)$ with $\dim(Y)=d\leq m$.
 
 \begin{defn}[Relative Interior]
 	\label{defn:012-relint}
@@ -19,7 +19,7 @@
 \end{prop}
 
 \begin{proof}
-	For (a), let $(e_i)_{i=1}^d$ be the standard basis of $\mathbb{R}^d$ and let $e_0=0$. Take $\{x_i\}_{i=0}^d\subset C$ with $\operatorname{aff}(\{x_i\}_{i=0}^d)=Y$, define affine map $T:\mathbb{R}^d\to \mathbb{R}^m$ by $T(e_i)=x_i$ for $i=0,\dotsc,d$; this is a surjection to $Y$. We have:
+	For (a), consider $(e_i)_{i=1}^d$ and $e_0=O$. Take $\{x_i\}_{i=0}^d\subset C$ with $\operatorname{aff}(\{x_i\}_{i=0}^d)=Y$, and define an affine map $T:\mathbb{R}^d\to \mathbb{R}^m$ by $T(e_i)=x_i$ for $i=0,\dotsc,d$; this is a surjection to $Y$. We have:
 	\[
 		\operatorname{aff}(\operatorname{ri}(C)) \supset T\left(\operatorname{aff}\left(\operatorname{int}\left(\operatorname{conv}\left(\{e_i\}_{i=0}^d\right)\right)\right)\right)=T(\mathbb{R}^d)=Y
 	\]
@@ -27,7 +27,7 @@
 	\[
 		B(z_i;(1-\alpha )\varepsilon )\subset I(B(x;\varepsilon ),y_i;\alpha)\subset C
 	\]
-	By taking $i$ large enough with $B(z;(1-\alpha )\varepsilon /2)\subset B(z_i;(1-\alpha )\varepsilon )$, we get what we want.\\
+	By taking $i$ large enough with $B(z;(1-\alpha )\varepsilon /2)\subset B(z_i;(1-\alpha )\varepsilon )$, we get what we want: $z\in \operatorname{int}(C)$.\\
 	For (c), (b) gives $I(\operatorname{ri}(C),\operatorname{ri}(C),[0, 1))\subset I(\operatorname{ri}(C),\operatorname{cl}(C);[0,1))=\operatorname{ri}(C)$; (a) shows $\operatorname{dim}(\operatorname{ri}(C))=d$.\\
 	For (d), "only if" is easy after reduction to the case $d=m$. For "if", given $y\in \operatorname{ri}(C)$, $\varepsilon>0$ with $z=I(y,x;1+\varepsilon )\in C$, we have $x\in I(y,z;[0,1))\subset \operatorname{ri}(C)$ by (b).
 \end{proof}
@@ -86,7 +86,7 @@
 			      \item $\operatorname{cl}(C)\subset \operatorname{cl}(\operatorname{ri}(C))$: For $y\in \operatorname{cl}(C)$, $y\in \operatorname{cl}(I(x,y,[0, 1)))\subset \operatorname{cl}(\operatorname{ri}(C))$ ((b) of \Cref{prop:012-basic-ri}).
 			      \item $\operatorname{ri}(\operatorname{cl}(C))\subset \operatorname{ri}(C)$: For $y\in \operatorname{ri}(\operatorname{cl}(C))$, take $\varepsilon>0$ with $I(x,y;[0,1+\varepsilon ])\subset \operatorname{cl}(C)$ ((d) of \Cref{prop:012-basic-ri}); let $I(x,y;1+\varepsilon)=z$, by (b) of \Cref{prop:012-basic-ri}, $y\in I(x,z;[0, 1))\subset \operatorname{ri}(C)$.
 		      \end{itemize}
-		      This concludes (i) and (ii). Item (iii) is straight-forward from (i) and (ii).
+		      These gives (i) and (ii). Item (iii) is straight-forward from (i) and (ii).
 		\item
 		      \begin{itemize}
 			      \item[(ii)] For "$\subset$", note that for $C\supset \{x_i\}_i\to x\in \operatorname{cl}(C)$, we have $AC\supset \{Ax_i\}_{i}\to Ax\in A\operatorname{cl}(C)$. Conversely, when $C$ is bounded, given $AC\supset \{Ax_i\}_i\to z\in \operatorname{cl}(AC)$, boundedness of $C$ gives a subsequence of $x_i$ converging to some $x\in \operatorname{cl}(C)$, making $Ax=z\in A\operatorname{cl}(C)$.
@@ -125,7 +125,7 @@
 		      \]
 		      where $g$ is the map $x\mapsto (x,Ax)$, $\pi$ is the map $(x, y)\mapsto y$. Write $\Gamma_A$ as the image of $g$ - this is sometimes referred to as the graph of $A$. We have:
 		      \[
-			      A^{-1}C=\pi (\Gamma_A\cap \mathbb{R}^m\times C)
+			      A^{-1}C=\pi (\Gamma_A\cap \mathbb{R}^l\times C)
 		      \]
 		      We will use this description of inverse images as well as (b), (c), (e) to proceed.
 		      \begin{enumerate}[label=(\roman*)]

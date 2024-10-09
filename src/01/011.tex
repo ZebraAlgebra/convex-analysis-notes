@@ -21,18 +21,18 @@
 \end{defn}
 
 \begin{defn}[Linear Hull, Affine Hull, Convex Hull, Cones, Convex Cones]\label{defn:011-hull}
-	We write $\operatorname{lin}(X)$ (resp. $\operatorname{aff}(X)$, $\operatorname{conv}(X)$, $\operatorname{cone}(X)$, $\operatorname{c.conv}(X)$) as the set of linear (resp. affine, convex, non-negative rescaling, non-negative) combinations of elements in $X$. We say that $X$ is linear (resp. affine, convex, cone, convex cone) if $X=\operatorname{lin}(X)$ (resp. $\operatorname{aff}(X)$, $\operatorname{conv}(X)$, $\operatorname{cone}(X)$, $\operatorname{c.conv}(X)$).
+	We write $\operatorname{lin}(X)$ (resp. $\operatorname{aff}(X)$, $\operatorname{conv}(X)$, $\operatorname{cone}(X)$, $\operatorname{c.cone}(X)$) as the set of linear (resp. affine, convex, non-negative rescaling, non-negative) combinations of elements in $X$. We say that $X$ is linear (resp. affine, convex, cone, convex cone) if $X=\operatorname{lin}(X)$ (resp. $\operatorname{aff}(X)$, $\operatorname{conv}(X)$, $\operatorname{cone}(X)$, $\operatorname{c.cone}(X)$).
 \end{defn}
 
 \paragraph{}One can show that $\operatorname{lin}(X)$ is linear, and is the smallest linear set containing $X$. Analogous statements holds for $\operatorname{aff,conv,cone,c.cone}$.
 
-\paragraph{}Affine sets are not far from being linear - if $X$ is affine, then $X-x$ is linear for any $x\in X$, and that this set is independent of the choice of $x\in X$. From this, we define the dimension of a convex set as follows.
+\paragraph{}Affine sets are not far from being linear - if $X$ is affine, then $X-x$ is linear for any $x\in X$; this set is independent of the choice of $x\in X$. Hencforth, we may define the dimension of a convex set as follows.
 
 \begin{defn}[Dimension]\label{defn:011-dim}
 	Suppose $X$ is convex. Let $Y:=\operatorname{aff}(X)$, we define $\dim(X)=\operatorname{dim}(Y-Y)$.
 \end{defn}
 
-\paragraph{}The construction of $\operatorname{lin}(X),\operatorname{aff}(X),\operatorname{conv}(X),\operatorname{c.conv}(X)$ in \Cref{defn:011-hull} requires certain combinations of indefinite amount of elements in $X$ as in \Cref{defn:011-comb}. However, verifying that $X$ is linear, affine, convex, convex cone only requires considering combinations of two elements in $X$. We state it as follows.
+\paragraph{}The construction of $\operatorname{lin}(X),\operatorname{aff}(X),\operatorname{conv}(X),\operatorname{c.cone}(X)$ in \Cref{defn:011-hull} requires certain combinations of indefinite amount of elements in $X$ as in \Cref{defn:011-comb}. However, verifying that $X$ is linear, affine, convex, convex cone only requires considering combinations of two elements in $X$. We state it as follows.
 
 \begin{prop}\label{prop:011-bi}
 	The set $X$ is linear (resp. affine, convex, convex cone) iff any linear (resp. affine, convex, non-negative) combination of $2$ elements in $X$ is in $X$.
@@ -55,9 +55,9 @@
 \begin{exmp}\label{defn:011-I-exmpl}
 	Suppose $X,Y$ are one-point sets with elements $x, y$.
 	\begin{itemize}
-		\item If $C=0$ (resp. $1$), we get $I(x,y;C)=x$ (resp. $y$).
-		\item If $C=[0,1]$, we get $I(x,y;C)$ the line segment connecting $x, y$.
-		\item If $C=\mathbb{R}$, we get $I(x,y;C)$ the whole line connecting $x, y$.
+		\item If $Z=0$ (resp. $1$), we get $I(x,y;Z)=x$ (resp. $y$).
+		\item If $Z=[0,1]$, we get $I(x,y;Z)$ the line segment connecting $x, y$.
+		\item If $Z=\mathbb{R}$, we get $I(x,y;Z)$ the whole line connecting $x, y$.
 	\end{itemize}
 \end{exmp}
 
@@ -72,13 +72,13 @@
 	Convex sets are closed under various operations:
 	\begin{enumerate}[label=(\alph*)]
 		\item (Intersection) For convex sets $\{C_i\}_{i\in I}$ in $\mathbb{R}^m$, $\bigcap_iC_i$ is convex.
-		\item (Union of Ascending Chain) For convex sets $\{C_i\}_{i}$ in $\mathbb{R}^m$ with $C_1\subset C_2\subset\dotsc$, $\bigcup_iC_i$ convex.
+		\item (Union of Ascending Chain) For convex sets $\{C_i\}_{i}$ in $\mathbb{R}^m$ with $C_1\subset C_2\subset\dotsc$, $\bigcup_iC_i$ is convex.
 		\item (Product) For convex sets $\{C_i\}_{i=1}^k$ with $C_i\subset \mathbb{R}^{m_i}$, $\bigtimes_{i=1}^kC_i$ is convex.
-		\item (Linear Combination) For convex sets $\{C_i\}_{i=1}^k$ in $\mathbb{R}^m$ and $\{\alpha_i\}_{i=1}^k\subset \mathbb{R}$, $\sum_{i=1}^k\alpha_iC_i$ convex.
-		\item (Closure and Interior) For convex set $C$ in $\mathbb{R}^m$, $\operatorname{cl}(C),\operatorname{int}(C)$ convex.
-		\item (Direct Image) For convex set $C\subset \mathbb{R}^m$ and affine $A:\mathbb{R}^m\to \mathbb{R}^n$, $A(C)$ convex.
-		\item (Inverse Image) For convex set $C\subset \mathbb{R}^m$ and affine $A:\mathbb{R}^l\to \mathbb{R}^m$, $A^{-1}(C)$ convex.
-		\item (Slice and Fibers) For convex set $C\subset \mathbb{R}^m$ and $(x,y)\in \mathbb{R}^l\times \mathbb{R}^{m-l}$, $C_{x,:},C_{:,y}$ convex.
+		\item (Linear Combination) For convex sets $\{C_i\}_{i=1}^k$ in $\mathbb{R}^m$ and $\{\alpha_i\}_{i=1}^k\subset \mathbb{R}$, $\sum_{i=1}^k\alpha_iC_i$ is convex.
+		\item (Closure and Interior) For a convex set $C$ in $\mathbb{R}^m$, $\operatorname{cl}(C),\operatorname{int}(C)$ is convex.
+		\item (Direct Image) For a convex set $C\subset \mathbb{R}^m$ and an affine $A:\mathbb{R}^m\to \mathbb{R}^n$, $A(C)$ is convex.
+		\item (Inverse Image) For a convex set $C\subset \mathbb{R}^m$ and an affine $A:\mathbb{R}^l\to \mathbb{R}^m$, $A^{-1}(C)$ is convex.
+		\item (Slice and Fibers) For a convex set $C\subset \mathbb{R}^m$ and $(x,y)\in \mathbb{R}^l\times \mathbb{R}^{m-l}$, $C_{x,:},C_{:,y}$ is convex.
 	\end{enumerate}
 \end{prop}
 \begin{proof}For (a), let $C=\bigcap_iC_i$, then $I(C,C;[0,1])\subset I(C_i,C_i;[0,1])=C_i$ for $i\in I$, giving (a).\\
@@ -116,8 +116,8 @@
 
 \paragraph{}The following is useful for controlling representations of elements in $\operatorname{conv}(X),\operatorname{c.cone}(X)$. A nice application is given in item (c) below.
 
-\begin{prop}[Caratheodory]\label{prop:011-cara}
-	Consider elements in $\operatorname{c.conv}(X),\operatorname{conv}(X)$:
+\begin{prop}[Carath\'{e}odory]\label{prop:011-cara}
+	Consider elements in $\operatorname{c.cone}(X),\operatorname{conv}(X)$:
 	\begin{enumerate}[label=(\alph*)]
 		\item Every element in $\operatorname{c.cone}(X)$ is a non-negative combination of linear independent elements in $X$.
 		\item Every element in $\operatorname{conv}(X)$ is a convex combination of no more than $m+1$ elements in $X$.
@@ -126,7 +126,7 @@
 \end{prop}
 
 \begin{proof}
-	For (a), take $0\neq x=\sum_{i=1}^k\alpha_ix_i$, a positive combination of elements in $X$. If $\{x_i\}_{i=1}^k$ are linearly dependent, then one can represent $x$ as a positive combination of fewer elements in $X$ by subtracting $\sum_{i=1}^k \alpha_ix_i$ by a linear relation among $x_i$. This process cannot continue indefinitely, giving (a). For (b), take $x\in \operatorname{conv}(X)$. Apply (a) to $Y=X\times\{1\}\subset \mathbb{R}^{m+1}$, then we can express $(x,1)$:
+	For (a), take $0\neq x=\sum_{i=1}^k\alpha_ix_i$, a positive combination of elements in $X$. If $\{x_i\}_{i=1}^k$ are linearly dependent, then one can represent $x$ as a positive combination of fewer elements in $X$ by subtracting $\sum_{i=1}^k \alpha_ix_i$ by a linear relation among $x_i$. This process cannot continue indefinitely, giving (a). For (b), take $x\in \operatorname{conv}(X)$. Apply (a) to $Y=X\times\{1\}\subset \mathbb{R}^{m+1}$, then we can express $(x,1)$ as:
 	\[
 		(x,1) = \sum_{i=1}^k \alpha_i (x_i,1)= \left(\sum_{i=1}^k \alpha_i x_i, \sum_{i=1}^k\alpha_i \right)
 	\]

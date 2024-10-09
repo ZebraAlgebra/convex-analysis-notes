@@ -1,7 +1,7 @@
 \section{Conjugate Functions}
 \label{sect:025}
 
-\paragraph{}Fix a scalar function $f$ on $\mathbb{R}^m$ for this section. We can consider its conjugate functions.
+\paragraph{}Fix a scalar function $f$ on $\mathbb{R}^m$ for this section. We can consider its conjugate functions. For a possible explanation of the motivation of this definition, one can look at the example following \Cref{defn:025-indicator-function}, which shows how polar cones, subgradients arises from conjugate transforms.
 
 \begin{defn}[Conjugate]\label{defn:025-conjugate}
 	The conjugate $f^\star$ is defined as $f^\star(y)=\underset{x\in \mathbb{R}^m}{\operatorname{sup}}x^Ty-f(x)$. Equivalently:
@@ -62,3 +62,34 @@
 		                                                                                 & =\bigcap_{y\in \mathbb{R}^m}E_{(y,-1),f^\star(y),-}\qedhere{}
 	\end{align*}
 \end{proof}
+
+\paragraph{}To end this section, we introduce the "support function" construction.
+
+\begin{defn}[Indicator Function, Support Functions]\label{defn:025-indicator-function}
+	Given $X\subset \mathbb{R}^m$, define $\delta_X$ to be a scalar function on $X$ with $\delta_X(x)=0$ for $x\in X$, otherwise $\infty$. The support function of $X$ is defined to be $\sigma_X:=\delta_X^{\star}$. Explicitly, we have $\sigma_X(y)=\sup y^TX$.
+\end{defn}
+
+\begin{exmp}We can realize some previously introduced constructions in the language of conjugate transforms:
+	\begin{itemize}
+		\item (Polar Cone) Suppose $X$ is a convex cone, then $\sigma_X=\delta_{X^\ast}$, as $y^TX\subset \mathbb{R}$ is a cone for any $y\in \mathbb{R}^m$.
+		\item (Subgradients as Supports) Suppose $f$ is a convex function on $\mathbb{R}^m$ with $\operatorname{dom}(f)=X$. We have:
+		      \[
+			      f'(x;-)^\star(y) = \sup \{y^Td - f'(x; d):d\in \mathbb{R}^m\}
+		      \]
+		      Note that the set on the right is a cone, therefore:
+		      \[
+			      f'(x;-)^\star(y) = \begin{cases}
+				      0      & \text{ if }y^Td \leq f'(x;d)\text{ for all }d\in \mathbb{R}^m;\text{ equivalently: }y\in\partial f(x) \\
+				      \infty & \text{ otherwise}
+			      \end{cases}
+		      \]
+		      \begin{itemize}
+			      \item In other words: $f'(x;-)^\star = \delta_{\partial f(x)}$.
+			      \item We will see that by \Cref{prop:046-set-of-subgrad}, for $x\in \operatorname{ri}(X)$, $\partial f(x)\neq\emptyset$, so (d) of \Cref{prop:025-conjugacy-theorem} gives $\sigma_{\partial f(x)}=\operatorname{cl}(f'(x;-))$.
+			      \item Also, when $x\in \operatorname{ri}(X)$, then $f'(x;-)$ is closed, giving $\sigma_{\partial f(x)}=f'(x;-)$. The idea is to use (c) of \Cref{prop:023-compare-func-closure}, and note that $\operatorname{dom}(f'(x;-))=\operatorname{aff}(X)-x$ in this case, which is affine.
+		      \end{itemize}
+	\end{itemize}
+\end{exmp}
+
+\paragraph{}More relations between conjugates and subgradients are established in \Cref{sect:046}.
+
