@@ -9,10 +9,7 @@
 		\item (Recession Cones of Epigraphs) The recession cone $R_{\operatorname{epi}(f)}$ is epigraph-like; we define $r_f:=R_{\operatorname{epi}(f)}^\vee$.
 		\item (Recession Cones of Level Sets are Slices) The recession cones of $V_{f,u}$ can be described as follows:
 		      \[
-			      R_{V_{f,u}}=\begin{cases}
-				      \mathbb{R}^m                                 & \text{ if }V_{f,u}=\emptyset    \\
-				      \left(R_{\operatorname{epi}}(f)\right)_{:,0} & \text{ if }V_{f,u}\neq\emptyset
-			      \end{cases}
+			      R_{V_{f,u}}=(R_{\operatorname{epi}(f)})_{:,0},\;\text{if }V_{f,u}\neq\emptyset    \\
 		      \]
 		      Note: when $V_{f,u}\neq\emptyset$, $R_{V_{f,u}}$ is independent of $u$; we denote it as $R_f$. Similarly, write $L_{f}=R_f\cap -R_f$. We call $R_f,L_f$ the recession cone and constancy space of $f$.
 		\item (Recession Function Characterizes Recession Cone and Constancy Space) Suppose $f$ is closed, then:
@@ -29,12 +26,12 @@
 \end{prop}
 
 \begin{proof}
-	For (a), use the fact that $\operatorname{epi}(f)$ is epigraph-like and closed.	For (b), use $V_{f,u}=\operatorname{epi}(f)_{:,u}=\operatorname{epi}(f)\cap \left(\mathbb{R}^m\times \{u\}\right)$ and \Cref{prop:013-yoga-recession} (giving $R_{V_{f,u}}=R_{\operatorname{epi}(f)}\cap \mathbb{R}^m\times\{0\})$. For (c), (b) gives:
+	For (a), use the fact that $\operatorname{epi}(f)$ is epigraph-like and closed.	For (b), use $V_{f,u}=\operatorname{epi}(f)_{:,u}=\operatorname{epi}(f)\cap \left(\mathbb{R}^m\times \{u\}\right)$ and \Cref{prop:013-yoga-recession} (giving $R_{V_{f,u}}=R_{\operatorname{epi}(f)}\cap \mathbb{R}^m\times\{0\})$. For (c), we have by (a) and (b) that:
 		\[
 			R_f=r_f^{-1}\left(-\mathbb{R}_{+}\right),\;
 			L_f=\left(r_f^{-1}\left(-\mathbb{R}_{+}\right)\right)\cap\left(-r_f^{-1}(-\mathbb{R}_{+})\right)
 		\]
-		For $L_f=\left(r_f^{-1}(0)\right)\cap\left(-r_f^{-1}(0)\right)$, use convexity of $f$ and $r_f(0)=0$. For (d), given fixed $d$ and $x\in \operatorname{dom}(f)$, we have by properness and closedness that:
+		For $L_f=\left(r_f^{-1}(0)\right)\cap\left(-r_f^{-1}(0)\right)$, use convexity of $r_f$ and $r_f(O)=0$ (as $f$ is proper). For (d), given fixed $d$ and $x\in \operatorname{dom}(f)$, we have by properness and closedness that:
 	\begin{align*}
 		r_f(d) & =\inf \left\{u\in \mathbb{R}:(x,f(x))+\rho_{(d,u)}\subset \operatorname{epi}(f)\right\}                  \\
 		       & = \inf \left\{u\in \mathbb{R}:f(x+\alpha d)\leq f(x)+\alpha u\text{ for }\alpha \in \mathbb{R}_+\right\} \\

@@ -1,14 +1,14 @@
 \section{MC/MC - Definitions and Basic Facts}
 \label{sect:031}
 
-\paragraph{}For this subsection, let us fix $m\in \mathbb{R}^{m+1}$, and consider a non-empty subset $M\subset \mathbb{R}^{m+1}$. Elements in $\mathbb{R}^{m+1}$ are often expressed as a tuple $(x,s)$ with $x\in \mathbb{R}^m$ and $s\in \mathbb{R}$; in particular, we will often use $a,x,y,z$ to denote points in $\mathbb{R}^m$ and $b,s,t,u,v$ to denote points in $\mathbb{R}^m$. The origin point of $\mathbb{R}^m$ is denoted as $O$.
+\paragraph{}For this subsection, let us fix $m\in \mathbb{N}$, and consider a non-empty subset $M\subset \mathbb{R}^{m+1}$. Elements in $\mathbb{R}^{m+1}$ are often expressed as a tuple $(x,s)$ with $x\in \mathbb{R}^m$ and $s\in \mathbb{R}$.
 
 \begin{defn}[MC/MC]\label{defn:031-mc-mc}
 	The min-common and max-crossing values of $M$, denoted as $w^\ast,q^\ast$, are:
 	\[
 		w^\ast = \inf M_{O,:},\; q^\ast = \sup_{y\in \mathbb{R}^m} q(y)
 	\]
-	where $q(y)$ - called the "dual function" - is defined as the function (compare to \Cref{defn:025-conjugate}):
+	where $q(y)$ - is called the "dual function" - defined as the function (compare to \Cref{defn:025-conjugate}):
 	\[
 		q(y):= -\inf\left\{ b\in \mathbb{R}: M\subset E_{(y,-1),b,-} \right\} = - \sup_{(x,u)\in M}\left\{y^Tx-u\right\} = \inf (-y,1)^TM
 	\]
@@ -21,13 +21,12 @@
 
 \paragraph{}Geometrically, $q(y)$ describes the intersection of an upwards extremal halfspace with fixed direction $(y,-1)$ containing $M$ with the axis $O\times \mathbb{R}$. This is similar to \Cref{defn:025-conjugate}, except a difference in sign: when $M=\operatorname{epi}(f)$ for some scalar function $f$ on $\mathbb{R}^m$, we get $q_{\operatorname{epi}(f)}=-f^\star$.
 
-\paragraph{}The remaining of this section is dedicated to study the relations between $q^\ast,w^\ast$. In particular:
+\paragraph{}The remainder of this section is dedicated to the study of the relations between $q^\ast,w^\ast$. In particular:
 
 \begin{itemize}
-	\item We will see shortly (\Cref{prop:031-weak-duality}) that in general, we have $q^\ast\leq w^\ast$ (weak duality).
-	\item When do we have $q^\ast = w^\ast$?
-	\item When does there exist $y\in \mathbb{R}^m$ with $q^\ast=q(y)$?
-	\item If so, what does the set of optimal solutions $Q^\ast$ look like?
+	\item (Weak Duality) We will see shortly (\Cref{prop:031-weak-duality}) that in general, we have $q^\ast\leq w^\ast$.
+	\item (Strong Duality) When do we have $q^\ast = w^\ast$?
+	\item (Dual Reachability) Is the set of dual optimal solutions $Q^\ast$ nonempty, or even compact?
 \end{itemize}
 
 \begin{prop}[Weak Duality]\label{prop:031-weak-duality}
@@ -35,11 +34,7 @@
 \end{prop}
 
 \begin{proof}
-	This is by:
-	\[
-		w_M^\ast = q^\ast_{\{O\}\times M_{O,:}} \geq q^\ast_M
-		\qedhere
-	\]
+	This is by $w_M^\ast = q^\ast_{\{O\}\times M_{O,:}} \geq q^\ast_M$.
 \end{proof}
 
 \paragraph{}Since the halfspaces $E_{(y,-1),b,-}$ are upward-closed, it would make sense to try to make $M$ upward-closed.
@@ -51,14 +46,14 @@
 	\]
 \end{defn}
 
-\paragraph{}Note that if either $M_{x,:}=\emptyset$ or $\inf M_{x,:}\in M_{x,:}$, $M^+$ is epigraph-like.
+\paragraph{}Note that if for each $x\in \mathbb{R}^m$ that either $M_{x,:}=\emptyset$ or $\inf M_{x,:}\in M_{x,:}$, then $M^+$ is epigraph-like.
 
 \paragraph{}The following are some direct consequences of \Cref{defn:031-mc-mc}, \Cref{prop:031-weak-duality}; proofs are omitted.
 
 \begin{lemm}[Basic Consequences of Definitions and Weak Duality].
 	\label{lemm:031-direct-consequences}
 	\begin{enumerate}[label=(\alph*)]
-		\item (When $w^\ast=-\infty$) If $w^\ast=-\infty$, we have $q^\ast=w^\ast$.
+		\item (When $w^\ast=-\infty$ or $q^\ast=\infty$) If $w^\ast=-\infty$ or $q^\ast=\infty$, we have $q^\ast=w^\ast$.
 		\item (When $w^\ast=+\infty$) We have $w^\ast=\infty$ iff $M_{O,:}=\emptyset$.
 		\item (Upwardification) We have $w_M^\ast=w_{M^+}^\ast$, $q_M=q_{M^+}$.
 		\item (Convex Closure) We have $q_{\operatorname{cl}(\operatorname{conv}(M))}=q_{\operatorname{conv}(M)}=q_{\operatorname{cl}(M)}=q_M$.

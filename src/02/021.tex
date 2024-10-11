@@ -16,7 +16,7 @@
 
 \paragraph{}Epigraphs gives a good way to associate a geometric / topological object of a scalar function. For this section, let us fix a scalar function $f:\mathbb{R}^m\to \overline{\mathbb{R}}$.
 
-\begin{defn}[Epigraph, Domain, Sublevel sets]
+\begin{defn}[Epigraph, Effective Domain, Sublevel sets]
 	\label{defn:012-epi-dom-sublvl}
 	The epigraph of $f$ is the following:
 	\[
@@ -26,7 +26,7 @@
 	\[
 		V_{f,u}=\{x\in \mathbb{R}^m :f(x)\leq u\}=f^{-1}[-\infty,u]\subset \mathbb{R}^m
 	\]
-	Note also that as $u$ grows, the set grows.	The effective domain is:
+	Note also that as $u$ grows, the set grows.	The effective domain is defined as:
 	\[
 		\operatorname{dom}(f)=\{x\in \mathbb{R}^m:f(x)<+\infty\}=f^{-1}[-\infty,+\infty)\subset \mathbb{R}^m
 	\]
@@ -64,7 +64,7 @@
 		\item Upward-closed if for each $x\in \mathbb{R}^m$, $Z_{x,:}$ is either $\emptyset,\mathbb{R}$ or of the form $\mathbb{R}_++u,\mathbb{R}_{++}+u$ for some $u\in \mathbb{R}$.
 		\item Epigraph-like if for each $x\in \mathbb{R}^m$, $Z_{x,:}$ is either $\emptyset,\mathbb{R}$ or of the form $\mathbb{R}_++u$ for some $u\in \mathbb{R}$.
 	\end{enumerate}
-	If $Z$ is epigraph-like or upward-closed, we define the associated function $Z^\vee:\mathbb{R}^m\to \overline{\mathbb{R}}$ by:
+	Given $Z\subset \mathbb{R}^{m+1}$, we define the associated function $Z^\vee:\mathbb{R}^m\to \overline{\mathbb{R}}$ by:
 	\[
 		Z^\vee(x)=\inf Z_{x,:},\;\text{for }x\in \mathbb{R}^m
 	\]
@@ -119,14 +119,14 @@
 	We say that $f$ is strict if "$<$" holds whenever $x\neq y,\alpha\in(0,1)$.
 \end{defn}
 
-\paragraph{}Note that when $f$ is proper, the term $I(f(x),f(y);\alpha)$ is well-defined for $\alpha \in(0,1)$, and convexity of $f$ is the same as convexity of $f$ in the usual sense. One can impose weaker condition for this term to be well-defined (e.g. image not containing both $\{\pm\infty\}$), but properness gives enough flexibility for us.
+\paragraph{}Note that when $f$ is proper, the term $I(f(x),f(y);\alpha)$ is well-defined for $\alpha \in(0,1)$, and convexity of $f$ is the same as convexity of $f$ in the usual sense. One can impose weaker conditions for this term to be well-defined (e.g. image not containing both $\{\pm\infty\}$), but properness gives enough flexibility for us.
 
 \begin{rmrk}We give a small list of function properties and their counterparts for epigraphs.
 	\begin{itemize}
 		\item Properness: $f$ is proper iff $\operatorname{epi}(f)$ contains no vertical lines and is non-empty.
 		\item Dominance: Given another scalar function $g:\mathbb{R}^m\to \overline{\mathbb{R}}$, then $f$ dominates $g$ iff $\operatorname{epi}(g)\subset \operatorname{epi}(f)$.
-		\item Lower-semicontinuity: $f$ is lower-semicontinuous ion iff $\operatorname{epi}(f)$ is closed.
-		\item Convexity (resp. Polyhedral): We say that $f$ is a convex iff $\operatorname{epi}(f)$ is a convex (resp. polyhedral).
+		\item Lower-semicontinuity: $f$ is lower-semicontinuous iff $\operatorname{epi}(f)$ is closed.
+		\item Convexity (resp. Polyhedral): We say that $f$ is convex (resp. polyhedral) iff $\operatorname{epi}(f)$ is.
 	\end{itemize}
 \end{rmrk}
 
@@ -136,7 +136,7 @@
 	Convex functions retains convexity under several operations:
 	\begin{enumerate}[label=(\alph*)]
 		\item (Composition with Affine) Given convex function $f$ on $\mathbb{R}^m$, affine $A:\mathbb{R}^l\to \mathbb{R}^n$, $g:=f\circ A$ is convex.
-		\item (Positive Combinations) Given convex functions $\{f_i\}_{i=1}^k$ on $\mathbb{R}^m$ and some scalars $\{\gamma_i\}_{i=1}^k\subset \mathbb{R}_{+}$, if the combination $f:=\sum_{i=1}^k \gamma_i f_i$ is well-formed, then it is convex.
+		\item (Nonnegative Combinations) Given convex functions $\{f_i\}_{i=1}^k$ on $\mathbb{R}^m$ and some scalars $\{\gamma_i\}_{i=1}^k\subset \mathbb{R}_{+}$, if the combination $f:=\sum_{i=1}^k \gamma_i f_i$ is well-formed, then it is convex.
 		\item (Pointwise Supremum) Given convex functions $\{f_i\}_{i\in I}$ on $\mathbb{R}^m$, then $f:x\mapsto\sup_{i\in I}f_i(x)$ is convex.
 		\item (Partial Inf) Given $n\in \mathbb{N}$, convex function $F$ on $\mathbb{R}^{m+n}$, let $f:\mathbb{R}^m\to \overline{\mathbb{R}}$ be the "partial inf" function:
 		      \[
