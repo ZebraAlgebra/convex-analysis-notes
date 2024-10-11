@@ -22,5 +22,8 @@ Add bib entries in `ref.bib`.
 
 ## TODO
 
-1. Fix separation theorem typos
-2. Fix upward-closed sets definitions
+1. Proofread chapter 3, 4.
+2. Add contents on directional derivatives, subgradients.
+3. Expand and refactor section 2.6 (on polyhedral functions).
+4. Add contents to section 4.6 (on subgradients).
+5. Add notation for differentiability clases in preface.
