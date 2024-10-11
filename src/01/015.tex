@@ -3,7 +3,7 @@
 \paragraph{}For this section, let us work within some $\mathbb{R}^m$.
 
 \begin{defn}[Hyperplanes, Halfspaces]\label{defn:015-hyperplanes-halfspaces}
-	Given $a\in \mathbb{R}^{m}\smallsetminus \{0\},b\in \mathbb{R}$, we define:
+	Given $a\in \mathbb{R}^{m}\smallsetminus \{O\},b\in \mathbb{R}$, we define:
 	\[
 		H_{a,b}=\{x\in \mathbb{R}^m:a^Tx=b\},\;
 		E_{a,b,+}=\{x\in \mathbb{R}^m:a^Tx\geq b\},\;
@@ -26,6 +26,7 @@
 		E_{a,b,\pm}=\operatorname{cl}(E_{a,b,\pm}^o),\;
 		E^o_{a,b,\pm}=\operatorname{int}(E_{a,b,\pm})
 	\]
+	By rescaling (using the identity $E_{a,b,\pm}=E_{ca,cb,\pm}$ for $c\in \mathbb{R}_{++}$), one can require that $e^T_ma\in \{0,\pm1\}$.\\
 	If we restrict $a\in \mathbb{S}^{m-1}$, then $E_{a,b,+}$ (resp. $E_{a,b,-},E_{a,b,+}^o,E_{a,b,-}^o$) is unique, while $H_{a,b}$ is unique up to $\pm 1$.
 \end{rmrk}
 

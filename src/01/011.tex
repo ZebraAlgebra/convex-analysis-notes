@@ -1,19 +1,19 @@
 \section{Linear Sets, Affine Sets, Convex Sets, Cone Sets}
 \label{sect:011}
 
-\paragraph{}Fix an nonempty set $X\subset \mathbb{R}^m$. Consider all linear combinations of elements in $X$:
+\paragraph{}Fix a nonempty set $X\subset \mathbb{R}^m$. Consider all linear combinations of elements in $X$:
 
 \[
 	\left\{\sum_{i=1}^k \alpha_i x_i,\; \left\{ x_i \right\}_{i=1}^k \subset X, \left\{\alpha_i\right\}_{i=1}^k\subset \mathbb{R}\right\}
 \]
 
-\paragraph{}The set of all such combinations is the linear subspace $\operatorname{lin}(X)\subset \mathbb{R}^n$ spanned by $X$; this is the smallest linear subspace containing $X$. If it turns out that $X=\operatorname{lin}(X)$ - that is, $X$ is closed under taking $\operatorname{lin}$ - then $X$ is itself a linear subspace. By adding additional constraints to the coefficients $\alpha_i$, besides linear subspaces, we can then define the notion of affine sets, convex sets, and cones. We will define different types of constrained linear combinations, then define what it means to be affine, convex, cone.
+\paragraph{}The set of all such combinations is the linear subspace $\operatorname{lin}(X)\subset \mathbb{R}^m$ spanned by $X$; this is the smallest linear subspace containing $X$. If it turns out that $X=\operatorname{lin}(X)$ - that is, $X$ is closed under taking $\operatorname{lin}$ - then $X$ is itself a linear subspace. By adding additional constraints to the coefficients $\alpha_i$, besides linear subspaces, we can then define the notion of affine sets, convex sets, and cones. We will define different types of constrained linear combinations, then define what it means to be affine, convex, cone.
 
 \begin{defn}[Combinations]\label{defn:011-comb}
 	Let $\{\alpha_i\}_{i=1}^k\subset \mathbb{R}$. We say that $\sum_{i=1}^k \alpha_i x_i$ is a:
 	\begin{itemize}
 		\item Linear combination of $\{ x_i \}_{i=1}^k$
-		\item Non-negative combination of $\{ x_i \}_{i=1}^k$ if $\{\alpha_i\}_{i=1}^k\subset \mathbb{R}_+$
+		\item Non-negative (resp. Positive) combination of $\{ x_i \}_{i=1}^k$ if $\{\alpha_i\}_{i=1}^k\subset \mathbb{R}_+$ (resp. $\{\alpha_i\}_{i=1}^k\subset \mathbb{R}_++$).
 		\item Affine combination of $\{ x_i \}_{i=1}^k$ if $\sum_{i=1}^k \alpha_i=1$
 		\item Convex combination of $\{ x_i \}_{i=1}^k$ if it is both an affine combination and a non-negative combination.
 		\item Non-negative rescaling of $\{ x_i \}_{i=1}^k$ if it is a non-negative combination and $m=1$.
@@ -53,7 +53,7 @@
 \end{defn}
 
 \begin{exmp}\label{defn:011-I-exmpl}
-	Suppose $X,Y$ are one-point sets with elements $x, y$.
+	Suppose $X,Y$ are one-point sets with elements $x\neq y$.
 	\begin{itemize}
 		\item If $Z=0$ (resp. $1$), we get $I(x,y;Z)=x$ (resp. $y$).
 		\item If $Z=[0,1]$, we get $I(x,y;Z)$ the line segment connecting $x, y$.
@@ -63,7 +63,7 @@
 
 \paragraph{}The following is a restatement of \Cref{prop:011-bi} using \Cref{defn:011-I} for affine or convex sets.
 
-\begin{prop}[Alternative Definition of Convex, Affine sets]The set $X$ is affine (resp. convex) iff $I(X,X;\mathbb{R}_{+})=I(X,X;\mathbb{R})=X$ (resp. $I(X,X;[0,1])=X$).
+\begin{prop}[Alternative Definition of Convex, Affine sets]The set $X$ is affine (resp. convex) iff $I(X,X;\mathbb{R}_{+})=I(X,X;\mathbb{R})\subset X$ (resp. $I(X,X;[0,1])=X$) (note: "$\supset$" always holds)..
 \end{prop}
 
 \paragraph{}Basic facts about convex sets are given in the following proposition.
@@ -75,7 +75,7 @@
 		\item (Union of Ascending Chain) For convex sets $\{C_i\}_{i}$ in $\mathbb{R}^m$ with $C_1\subset C_2\subset\dotsc$, $\bigcup_iC_i$ is convex.
 		\item (Product) For convex sets $\{C_i\}_{i=1}^k$ with $C_i\subset \mathbb{R}^{m_i}$, $\bigtimes_{i=1}^kC_i$ is convex.
 		\item (Linear Combination) For convex sets $\{C_i\}_{i=1}^k$ in $\mathbb{R}^m$ and $\{\alpha_i\}_{i=1}^k\subset \mathbb{R}$, $\sum_{i=1}^k\alpha_iC_i$ is convex.
-		\item (Closure and Interior) For a convex set $C$ in $\mathbb{R}^m$, $\operatorname{cl}(C),\operatorname{int}(C)$ is convex.
+		\item (Closure and Interior) For a convex set $C$ in $\mathbb{R}^m$, $\operatorname{cl}(C),\operatorname{int}(C)$ are convex.
 		\item (Direct Image) For a convex set $C\subset \mathbb{R}^m$ and an affine $A:\mathbb{R}^m\to \mathbb{R}^n$, $A(C)$ is convex.
 		\item (Inverse Image) For a convex set $C\subset \mathbb{R}^m$ and an affine $A:\mathbb{R}^l\to \mathbb{R}^m$, $A^{-1}(C)$ is convex.
 		\item (Slice and Fibers) For a convex set $C\subset \mathbb{R}^m$ and $(x,y)\in \mathbb{R}^l\times \mathbb{R}^{m-l}$, $C_{x,:},C_{:,y}$ is convex.
