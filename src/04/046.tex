@@ -21,7 +21,7 @@ which motivates the following definition (written in MC/MC formalism):
 	\]
 \end{defn}
 
-\paragraph{}One can show that when $f$ is differentiable at $x$, $\partial f(x)=\{\nabla f(x)\}$. Also, \Cref{prop:032-optimal-set} translates to:
+\paragraph{}Now \Cref{prop:032-optimal-set} translates to:
 
 \begin{prop}[Decomposition of Set of Subgradients]\label{prop:046-set-of-subgrad}
 	Write $V=\operatorname{lin}(X)$. For $x\in \operatorname{ri}(X)$, $\partial f(x) = V^\perp + V\cap \partial f(x)$ with $V\cap \partial f(x)\neq\emptyset$ compact and convex. In particular, if $x\in \operatorname{int}(X)$, $\partial f(x)$ is compact.
@@ -44,22 +44,6 @@ which motivates the following definition (written in MC/MC formalism):
 
 \begin{proof}
 	"(a) iff (b)": use $\partial f(x) = \left\{y:f^\star(y)=x^Ty-f(x)\right\}$. For (c), use (d) of \Cref{prop:025-conjugacy-theorem}.
-\end{proof}
-
-\paragraph{}Subgradients of $f$ can be used to infer smootheness conditions of $f$.
-
-\begin{prop}[Subgradients and Smootheness]\label{prop:046-subgradients-and-smoothness}.
-	\begin{enumerate}[label=(\alph*)]
-		\item (Differentiability) Suppose $x\in \operatorname{int}(\operatorname{dom}(f))$, then $f$ is differentiable at $x$ iff $\partial f(x)$ is a singleton.
-		\item (Lipschitz Continuity) Suppose $f$ is real-valued, $C\subset \mathbb{R}^m$ is nonempty, compact, then:
-		      \begin{itemize}
-			      \item The set $\bigcup_{x\in X}\partial f(x)$ is nonempty and bounded; say $\left\|\bigcup_{x\in X}\partial f(x)\right\|\leq L$.
-			      \item The function $f$ is Lipschitz continuous on $C$, and the constant can be taken to be $L$.
-		      \end{itemize}
-	\end{enumerate}
-\end{prop}
-\begin{proof}
-	.
 \end{proof}
 
 \paragraph{}We can now formulate two yogas for subgradients:

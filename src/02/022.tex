@@ -4,7 +4,7 @@
 \paragraph{}Let us fix a proper scalar function $f$ on $\mathbb{R}^m$ with $\operatorname{dom}(f)=X$. We aim to illustrate several results relating smoothness conditions (such as continuity, Lipschitz continuity, 1st and 2nd order differentiability) and convexity. First we define a common construction:
 
 \begin{defn}[Slope of Secant, Directional Derivatives]\label{defn:022-secant-slope}
-	Fix a point $x\in X$, a direction $d\in \mathbb{R}^m$, a scalar $\gamma \in \mathbb{R}_{++}$, we define the slope of secant $S(x; d; \alpha)=\alpha^{-1}(f(x+\alpha d)-f(x))$, and the directional derivative $f'(x; d)=\lim_{\alpha \to 0^+}S(x;d; \alpha )$ provided that this limit exists.
+	Fix a point $x\in X$, a direction $d\in \mathbb{R}^m$, a scalar $\gamma \in \mathbb{R}_{++}$, we define the slope of secant $S(x; d; \alpha)=\alpha^{-1}(f(x+\alpha d)-f(x))$, and the directional derivative $f'(x; d)=\lim_{\alpha \to 0^+}S(x;d; \alpha )$ provided that this limit exists (in $\overline{\mathbb{R}}$).
 \end{defn}
 
 \begin{rmrk}Suppose $f$ is convex, given fixed $x, d$, $S(f,x; d; \alpha)$ is increasing in $\alpha$ (using the convention $\infty\leq \infty$), so it makes sense to talk about $\lim_{\alpha \to0^+},\lim_{\alpha \to\infty}$ of $S(f,x; d; \alpha )$ (might go to $\pm\infty$), which corresponds to $\inf$, $\sup$ of $S(f,x; d; \alpha )$ over $\alpha \in \mathbb{R}_{++}$. Taking $\lim_{\alpha \to 0^+}$ gives the directional derivative, while taking $\lim_{\alpha \to +\infty}$ gives "recession functions" (see \Cref{sect:024}) in some cases.
@@ -91,8 +91,57 @@
 		              & = \{y\in \mathbb{R}^m: S(f,x; d; \alpha) \geq y^Td \text{ for all }d \in \mathbb{R}^m, \alpha\in \mathbb{R}_{++} \}          \\
 		              & = \{y\in \mathbb{R}^m: f'(x; d) \geq y^T d \text{ for all }d \in \mathbb{R}^m \}
 	\end{align*}
-	We also define $\partial f(x)=\emptyset$ if $x\notin X$.
+	We also define $\partial f(x)=\emptyset$ if $x\notin X$; we will see that this set is nonempty when $x\in \operatorname{ri}(X)$ (see \Cref{prop:046-set-of-subgrad}). By this expression, $\partial f(x)$ is closed convex if not empty.
 \end{defn}
 
-\paragraph{}Properties of subgradients will be established later in \Cref{sect:046}, using MC/MC framework.
+\begin{exmp}[Optimality]
+	We have $O\in \partial f(x)$ iff $x$ minimizes $f$.
+\end{exmp}
 
+\paragraph{}Here are some properties for subgradients and directional derivatives. Other properties of subgradients will be established later in \Cref{sect:046}, utilizing the MC/MC framework.
+
+\begin{prop}[Basic Properties of Directional Derivatives]\label{prop:022-properties-of-directional}
+	Assume $f$ is proper, convex.
+	\begin{enumerate}[label=(\alph*)]
+		\item For $x\in X$, $f'(x;-)$ is convex, with $\operatorname{dom}(f'(x;-))=\operatorname{cone}(X-x)$ (note: $f'(x;-)$ might be improper).
+		\item For $x\in \operatorname{ri}(X)$, $f'(x;-)$ is proper, and is real-valued on $\operatorname{dom}(f'(x;-))=\operatorname{aff}(X)-x$; consequently, $\operatorname{epi}(f'(x;-))$ is a proper, closed, convex, epigraph-like, cone ((c) of \Cref{prop:023-compare-func-closure}) for $x\in \operatorname{ri}(X)$.
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	For (a), $f'(x;-)$ is the inf of the pointwise monotonically decreasing family $\{S(f,x;-; k^{-1})\}_{k}$ of convex functions, hence convex (by applying (b) of \Cref{prop:011-conv-yoga} to the epigraphs). The assertion on domain is easy to show. For (b), note for $x\in \operatorname{ri}(X)$, (a) gives $\operatorname{dom}(f'(x;-))=\operatorname{aff}(X)-x$, a linear subspace, so it remains to show properness. Given $d\in \operatorname{dom}(f'(x;-))=\operatorname{aff}(X)-x$, since $f'(x;O)=0$, $-d\in\operatorname{dom}(f'(x;-))$, $f'(x;d)+f'(x;-d)\geq 0$ by convexity of $f'(x;-)$, giving $f'(x;d)>-\infty$.
+\end{proof}
+
+\begin{coro}[Directional Derivatives - Subgradient Formula]\label{coro:022-dir-sub-formula}
+	Suppose $f$ is proper, convex, then for $x\in \operatorname{int}(X)$, we have $f'(x; d)=\sup \partial f(x)^T d$.
+\end{coro}
+
+\begin{proof}
+	Since $\operatorname{epi}(f'(x;-))$ is a closed, convex, epigraph-like cone with $\operatorname{dom}(f'(x;-))=\mathbb{R}^m$ ((b) of \Cref{prop:022-properties-of-directional}), $\operatorname{epi}(f'(x;-))=\bigcap_{y\in \partial f(x)}E_{(y,-1),0,-}$ by \Cref{coro:015-halfspaces-intersection}, giving the assertion.
+\end{proof}
+
+\paragraph{}In the settings of (a) of \Cref{prop:022-ordered-conditions-convexity} where $C=U=X$, $f$ convex, we have $f'(x;d)= \nabla f(x)^Td$, and that $\nabla f(x)\in \partial f(x)$. One can say more: differentiability is the same as $\nabla f(x)$ being a singleton; otherwise, one can use $\nabla f$ to infer other smootheness conditions on $f$.
+
+\begin{prop}[Smoothness v.s. Subgradients]\label{prop:022-smoothness-and-other-stuffs}Suppose $X$ is open and $f$ is convex. We have:
+	\begin{enumerate}[label=(\alph*)]
+		\item (Differentiability) $f$ differentiable at $x\in X$ iff $\partial f(x)$ is a singleton; in such case, $\partial f(x)=\{\nabla f(x)\}$.
+		\item (Lipschitz Continuity) Given compact subset $Y\subset X$, write $\partial f(Y)=\bigcup_{x\in Y}\partial f(x)$, then $\|\partial f(Y)\|<\infty$, with $\|f(x)-f(y)\|\leq \|\partial f(Y)\|\|x-y\|$ for $x,y$ in $Y$.
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	For (b), note first that $f$ is continuous on $X$ (see \Cref{prop:022-continuity}). Write $\partial f(Y)=\bigcup_{x\in Y}\partial f(x)$. Suppose $\|\partial f(Y)\|=\infty$, we can take $\varepsilon >0$, $\{x_k\}_{k}\subset Y$, $\{d_k\}_{k}\subset \partial f(Y)$, so that $d_k\in \partial f(x_k)$, $\|d_k\|\geq k$, $\nu(d_k)\to d\in \mathbb{S}^{m-1}$, $x_k\to x\in X$, $B(\{x_k\}_{k},2 \varepsilon )\subset X$ by using compactness of $Y, \mathbb{S}^{m-1}$. This gives:
+	\[
+		\mathbb{R}\ni f(x+\varepsilon d) - f(x) = \underset{k}{\operatorname{limsup}}\;f(x_k + \varepsilon \nu(d_k)) \geq \underset{k}{\operatorname{limsup}}\;\varepsilon d_k^T \nu(d_k) = \infty
+	\]
+	a contradiction. Now for $x,y$ in $Y$, we have $f(x)-f(y)\leq z^T(x-y)\leq \|z\|\|x-y\|$ for $z\in \partial f(Y)$; this holds also with $x,y$ interchanged, so $\|f(x)-f(y)\|\leq \|\partial f(Y)\|\|x-y\|$.\\
+	For (a), we know by \Cref{coro:022-dir-sub-formula} that $f'(x;-)$ is linear iff $\partial f(x)$ is a singleton. When $f$ is differentiable, $f'(x;d)=\nabla f(x)^Td$, which is linear. Conversely, when $f'(x; d)=y^Td$ for some $y\in \mathbb{R}^m$, we wish to show:
+	\[
+		g(d)=o(\|d\|),\;\text{ where }g(d)=f(x+d)-f(x)-y^Td\geq 0
+	\]
+	which would witness $y=\nabla f(x)$. By definition of $f'(x;d)$, we have $g(te_i)=o(|t|)$ for $i=1,\dotsc,m$, giving:
+	\[
+		g(d)= g \left( \sum_{i=1}^m e_i\left(e_i^Td\right) \right) \leq m^{-1} \left( \sum_{i=1}^m g\left(me_i(e_i^Td)\right) \right) = o(\|d\|)
+	\]
+	as $g$ is a convex function.
+\end{proof}
