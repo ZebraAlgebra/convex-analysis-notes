@@ -1,7 +1,7 @@
 \section{MC/MC - General Duality Theorems}
 \label{sect:032}
 
-\paragraph{}Under some assumptions, we have if and only if conditions for $w^\ast=q^\ast$. Fix some $M\subset \mathbb{R}^{m+1}$.
+\paragraph{}Under some assumptions, we have sufficient and necessary conditions for $w^\ast=q^\ast$. Fix some $M\subset \mathbb{R}^{m+1}$.
 
 \begin{prop}[Strong Duality]\label{prop:032-strong-duality}
 	Suppose the following holds:
@@ -19,7 +19,7 @@
 \paragraph{}The main idea is to consider non-vertical hyperplane separation between $\operatorname{cl}(M^+)$ and points on $\{O\}\times \mathbb{R}$.
 
 \begin{proof}
-	Assuming (2), and $\{(x_k,u_k)\}_{k}\subset M$ with $x_k\to 0$. Want to show (1) holds. It suffices to show $q(y)\leq \underset{k}{\operatorname{liminf}}u_k$. This is by applying $\underset{k}{\operatorname{liminf}}$ to:
+	Assuming (2), and $\{(x_k,u_k)\}_{k}\subset M$ with $x_k\to O$. Want to show (1) holds. It suffices to show $q(y)\leq \underset{k}{\operatorname{liminf}}u_k$. This is by applying $\underset{k}{\operatorname{liminf}}$ to:
 	\[
 		q(y)=\inf (-y,1)^TM \leq -x_k^Ty+u_k
 	\]
@@ -43,11 +43,11 @@
 	\end{enumerate}
 \end{coro}
 \begin{proof}
-	For (c), by (a), we show $\operatorname{conv}(M)$ is closed and convex. Note that $\operatorname{conv}(M)=\operatorname{conv}(M')+C\times \{0\}$. By \Cref{prop:011-cara}, this is a sum of a two closed convex sets with one being compact, so by \Cref{coro:014-closed-sum}, this set is convex and closed. For (a), we will just show $M^{+,\vee}$ is closed proper when $w^\ast > -\infty$, which follows from the definition $M^+=M+\{O\}\times \mathbb{R}_{+}$, and the fact that $(O, -1)\notin R_M$ (as $w^\ast \in \mathbb{R}$). For (b), use (a).
+	For (c), by (a), we show $\operatorname{conv}(M)$ is closed and convex. Note that $\operatorname{conv}(M)=\operatorname{conv}(M')+C\times \{O\}$. By \Cref{prop:011-cara}, this is a sum of a two closed convex sets with one being compact, so by \Cref{coro:014-closed-sum}, this set is convex and closed. For (a), we only need $M^{+,\vee}$ closed proper when $w^\ast\in \mathbb{R}$, which follows from the definition $M^+=M+\{O\}\times \mathbb{R}_{+}$, and the fact that $(O, -1)\notin R_M$ (as $w^\ast \in \mathbb{R}$). For (b), use (a).
 \end{proof}
 
 \begin{prop}[Reachability of Optimal Values]\label{prop:032-reachability}
-	Let $\pi :\mathbb{R}^{m+1}\to \mathbb{R}$ be $(x,u)\mapsto x$. Suppose:
+	Let $\pi :\mathbb{R}^{m+1}\to \mathbb{R}^m$ be $(x,u)\mapsto x$. Suppose:
 	\begin{enumerate}[label=(\alph*)]
 		\item $w^\ast >-\infty$
 		\item $M^+$ is convex
@@ -56,13 +56,13 @@
 	then $q^\ast=w^\ast$, with $q^\ast=q(y)$ for some $y\in \mathbb{R}^m$ (that is, $Q^\ast\neq\emptyset$).
 \end{prop}
 \begin{proof}
-	Condition (c) gives $w^\ast <\infty$. We now try to use (e) of \Cref{prop:015-hyperplane-sep} (see also the remark following the proposition) on $(O, w^\ast)$ and $M^+$. Indeed, we have $(O, w^\ast)\notin \operatorname{ri}(M^+)$, as $\operatorname{ri}(M^+_{O,:})=(w^\ast,0)$, by (g) of \Cref{prop:012-yoga-ri-cl}. Therefore, we have some $b\in \mathbb{R}$, $y\in \mathbb{R}^m$, $\varepsilon \in \{0,\pm 1\}$ with $(y,\varepsilon )\neq (O,0)$ that:
+	Condition (c) and (a) gives $w^\ast \in \mathbb{R}$. We now try to use (e) of \Cref{prop:015-hyperplane-sep} (see also the remark following the proposition) on $(O, w^\ast)$ and $M^+$. Indeed, we have $(O, w^\ast)\notin \operatorname{ri}(M^+)$, as $\operatorname{ri}(M^+_{O,:})=(w^\ast,0)$, by (g) of \Cref{prop:012-yoga-ri-cl}. Therefore, we have some $b\in \mathbb{R}$, $y\in \mathbb{R}^m$, $\varepsilon \in \{0,\pm 1\}$ with $(y,\varepsilon )\neq (O,0)$ that:
 	\[
 		(O,w^\ast)\in H_{(y,\varepsilon),b}\nsupset M^+ \subset E_{(y,\varepsilon ),b,-}
 	\]
-	As $M^+$ is upward-closed, $\varepsilon\leq 0$. If $\varepsilon =0$, then $H_{y,b}$ properly separates $O,\pi M^+=\pi M$, a contradiction to condition (c) paired with (e) of \Cref{prop:015-hyperplane-sep}. Therefore, $\varepsilon =-1$, giving $q^\ast=w^\ast$ by:
+	As $M^+$ is upward-closed, $\varepsilon\leq 0$. If $\varepsilon =0$, then $H_{y,b}$ properly separates $O,\pi M^+=\pi M$, a contradiction to condition (c) paired with (e) of \Cref{prop:015-hyperplane-sep}. Therefore, $\varepsilon =-1$, giving the assertion by:
 	\[
-		w^\ast \leq q(y) \leq q^\ast =w^\ast \qedhere
+		w^\ast \leq q(y) \leq q^\ast \leq w^\ast \qedhere
 	\]
 \end{proof}
 
@@ -71,7 +71,7 @@
 	Q^\ast = q^{-1}q^\ast = V_{-q,-q^\ast}
 \]
 
-\begin{prop}[Geomtery of $Q^\ast$]\label{prop:032-optimal-set}
+\begin{prop}[Geometry of $Q^\ast$]\label{prop:032-optimal-set}
 	Suppose (a)-(c) of \Cref{prop:032-reachability} holds. Let $V=\operatorname{lin}(\pi M)$, then:
 	\begin{enumerate}[label=(\alph*)]
 		\item $L_{Q^\ast}=R_{Q^\ast}=V^\perp$.
@@ -87,7 +87,7 @@
 		      \[
 			      q^\ast \geq \inf q(Q^\ast + V^\perp )=\inf \left((-Q^\ast - V^\perp)\times \{1\}\right)^T M = \inf \left((-Q^\ast) \times \{1\}\right)^TM = q^\ast
 		      \]
-		\item $V^\perp\supset R_{Q^\ast}$: Since $0\in \operatorname{ri}(\pi M)$, $B({O,\varepsilon})\cap V = B({O,\varepsilon})\cap (\pi M)$ for some $\varepsilon >0$. We show:
+		\item $V^\perp\supset R_{Q^\ast}$: Since $O\in \operatorname{ri}(\pi M)$, $B({O,\varepsilon})\cap V = B({O,\varepsilon})\cap (\pi M)$ for some $\varepsilon >0$. We show:
 		      \[
 			      R_{Q^\ast}^T \left(B({O,\varepsilon})\cap V\right) = \{0\}
 		      \]
@@ -96,7 +96,7 @@
 			      q^\ast = q(Q^\ast + R_{Q^\ast})\leq \inf \left(\left(-Q^\ast-R_{Q^\ast}\right)\times \{1\}\right)^T\left(\{\pm x\}\times \{u\}\right)
 			      =u+\inf \left(-Q^\ast-R_{Q^\ast}\right)^T\{\pm x\}
 		      \]
-		      If $R_{Q^\ast}^Tx\neq0$, the expression on the right evaluates to $-\infty$; this concludes the proof. \qedhere
+		      As $R_{Q^\ast}^T\{\pm x\}$ is a subspace of $\mathbb{R}$, if $R_{Q^\ast}^Tx\neq \{O\}$, RHS is $-\infty$; this concludes the proof.\qedhere
 	\end{itemize}
 \end{proof}
 
@@ -105,22 +105,25 @@
 \begin{coro}[Variants of Reachability Theorems]\label{coro:032-variants-reachability}
 	Suppose:
 	\begin{enumerate}[label=(\alph*)]
-		\item $w^\ast=-\infty$
-		\item $M^+=M'-P\times \{0\}$, with $M'\subset \mathbb{R}^{m+1},P\subset \mathbb{R}^m$ both convex.
+		\item $w^\ast>-\infty$
+		\item $M^+=M'-P\times \{0\}$, with $M'\subset \mathbb{R}^{m+1},P\subset \mathbb{R}^m$ both being convex.
 		\item Either $\operatorname{ri}(\pi M')\cap \operatorname{ri}(P)\neq\emptyset$ or $\operatorname{ri}(\pi M')\cap P\neq\emptyset$ with $P$ being polyhedral
 	\end{enumerate}
 	then $q^\ast=w^\ast$, $\emptyset\neq Q^\ast\subset R_P^\ast$ (polar cone of $P$). Furthermore, $Q^\ast$ is compact if $\operatorname{int}(\pi M')\cap P\neq\emptyset$.
 \end{coro}
 
 \begin{proof}
-	Strong duality $q^\ast=w^\ast$ is ensured by condition (c) (giving $w^\ast\neq \infty$) and \Cref{prop:032-strong-duality}. We show $Q^\ast\neq\emptyset$: take $P\times \{w^\ast\},M'^{,+}$, by \Cref{prop:017-polyhedral-proper-sep} or (c) of \Cref{prop:015-hyperplane-sep}, we have a proper separation:
+	Strong duality $q^\ast=w^\ast$ is ensured by condition (c) (giving $w^\ast\neq \infty$) and \Cref{prop:032-strong-duality}. We show $Q^\ast\neq\emptyset$: take $P\times \{w^\ast\},M'^{,+}$. Suppose $\operatorname{ri}(\pi M')\cap P\neq\emptyset$ with $P$ being polyhedral (resp. $\operatorname{ri}(\pi M')\cap \operatorname{ri}(P)\neq\emptyset$), then by \Cref{prop:017-polyhedral-proper-sep} (resp. (c) of \Cref{prop:015-hyperplane-sep}), we have separation:
 	\[
 		P\times \{w^\ast\}\subset E_{(y,\varepsilon ),b,+},\; H_{(y,\varepsilon ),b}\nsupset M'^{,+}\subset E_{(y,\varepsilon ),b,-}
 	\]
-	with $b\in \mathbb{R}$, $y\in \mathbb{R}^m$, $\varepsilon \in \{0,\pm 1\}$ with $(y,\varepsilon )\neq (O,0)$. As in the proof \Cref{prop:032-reachability}, $\varepsilon =-1$. This same hyperplane then gives $q(y)\geq w^\ast$, giving $Q^\ast\neq\emptyset$. For $Q^\ast\subset R_P^\ast$, take $y\in Q^\ast$, we have:
 	\[
-		q(y)=\inf (-y, 1)^TM = \inf (-y, 1)^T\left(M'-P\times \{0\}\right) = \inf (-y, 1)^T\left(M'-(P+R_P)\times \{0\}\right)
+		\text{(resp. }P\times \{w^\ast\}\subset E_{(y,\varepsilon ),b,+},\; M'^{,+}\subset E_{(y,\varepsilon ),b,-},\; H_{(y,\varepsilon ),b}\nsupset P\times \{w^\ast\}\cup M'^{,+}\text{ )}
 	\]
-	so if $\sup y^TR_P>0$, we get $q(y)=-\infty$. Statement on compactness of $Q^\ast$ is by (c) of \Cref{prop:032-optimal-set}.
+	with $b\in \mathbb{R}$, $y\in \mathbb{R}^m$, $\varepsilon \in \{0,\pm 1\}$ and $(y,\varepsilon )\neq (O,0)$. As $M'^{,+}$ is upward-closed and condition (c), $\varepsilon =-1$. This same hyperplane gives $w^\ast\geq q^\ast\geq q(y)\geq w^\ast$, giving $Q^\ast\neq\emptyset$. For $Q^\ast\subset R_P^\ast$, take $y\in Q^\ast$, we have:
+	\[
+		q(y)=\inf (-y, 1)^TM^+ = \inf (-y, 1)^T\left(M'-P\times \{0\}\right) = \inf (-y, 1)^T\left(M'-(P+R_P)\times \{0\}\right)
+	\]
+	so if $\sup y^TR_P>0$, $q(y)=-\infty$ as $y^TR_P$ is a cone. For compactness of $Q^\ast$, use (c) of \Cref{prop:032-optimal-set}.
 \end{proof}
 

@@ -4,17 +4,17 @@
 \paragraph{}We first show a slight extension fo Slater's condition. In the case where some constraints are polyhedral and some are not, we get the following:
 
 \begin{coro}[Extended Slater's Condition]\label{coro:044-slater-combined}
-	Suppose in the \Cref{defn:040-opt-prob} that the constraints $g(x)$ can be written as $(g^{(1)}(x),g^{(2)}(x))$ where $g^{(i)}:\mathbb{R}^m\to \mathbb{R}^{r_i}$, with $g^{(1)}$ affine, $g^{(2)}$ convex, then under the assumption that the following holds:
+	Suppose in \Cref{defn:040-opt-prob} that $g(x)=(g^{(1)}(x),g^{(2)}(x))$ where $g^{(i)}:\mathbb{R}^m\to \mathbb{R}^{r_i}$, with $g^{(1)}$ having polyhedral component functions, $g^{(2)}$ has convex component functions, and assume that the following holds:
 	\begin{enumerate}[label=(\alph*)]
 		\item There is $x^{(1)}\in \operatorname{ri}(X)$ with $g^{(1)}(x)\leq O$
 		\item There is $x^{(2)}\in X$ with $g^{(1)}(x)\leq O,g^{(2)}(x)<O$
 	\end{enumerate}
 	then strong duality holds ($q^\ast=f^\ast$) and $Q^\ast\neq\emptyset$.
 \end{coro}
-In particular, if there is $x\in \operatorname{ri}(X)$ with $g^{(1)}\leq O,g^{(2)}(x)< O$, (a), (b) are satisfied.
+In particular, if there is $x\in \operatorname{ri}(X)$ with $g^{(1)}(x)\leq O,g^{(2)}(x)< O$, (a), (b) are satisfied.
 
 \begin{proof}
-	Let $P=\{x:g^{(1)}(x)\leq O\}$. We can formulate three primal-dual problems pairs:
+	May assume $g^{(1)}$ is affine. Let $P=\{x:g^{(1)}(x)\leq O\}$. Formulate three primal-dual problems pairs:
 	\[
 		\begin{matrix}
 			(1)                                    &
@@ -45,10 +45,10 @@ In particular, if there is $x\in \operatorname{ri}(X)$ with $g^{(1)}\leq O,g^{(2
 			\end{Bmatrix}
 		\end{matrix}
 	\]
-	where problem 3 has an additional $y^{(2)}_0\leq O$ to be determined. Denote the $f^\ast,q^\ast,Q^\ast$ associated to these problems as $f^{(i),\ast},q^{(i),\ast},Q^{(i),\ast}$. By Slater's condition 1 and condition (b), we have $f^{(1),\ast}=f^{(2),\ast}=q^{(2),\ast}$ and $Q^{(2),\ast}\neq\emptyset$; take $y^{(2)}_0\in Q^{(2),\ast}$. By Slater's condition 2 and condition (a), we have $q^{(2),\ast}=f^{(3),\ast}=q^{(3),\ast}$ and $Q^{(3),\ast}\neq\emptyset$; take $y^{(1)}_0\in Q^{(3),\ast}$, then $(y^{(1)}_0,y^{(2)}_0)\in Q^{(1),\ast}$ with $q^{(1),\ast}\geq q^{(3),\ast}=f^{(1),\ast}$.
+	where problem 3 has an additional $y^{(2)}_0$ to be determined. Denote the $f^\ast,q^\ast,Q^\ast$ associated to these problems as $f^{(i),\ast},q^{(i),\ast},Q^{(i),\ast}$. By Slater's condition 1 and condition (b), we have $f^{(1),\ast}=f^{(2),\ast}=q^{(2),\ast}$ and $Q^{(2),\ast}\neq\emptyset$; take $y^{(2)}_0\in Q^{(2),\ast}$. By Slater's condition 2 and condition (a), we have $q^{(2),\ast}=f^{(3),\ast}=q^{(3),\ast}$ and $Q^{(3),\ast}\neq\emptyset$; take $y^{(1)}_0\in Q^{(3),\ast}$, then $(y^{(1)}_0,y^{(2)}_0)\in Q^{(1),\ast}$ with $q^{(1),\ast}\geq q^{(3),\ast}=f^{(1),\ast}$.
 \end{proof}
 
-\paragraph{}We now derive Fenchel duality and conic duality as corollaries to the convex programming duality.
+\paragraph{}We also derive Fenchel duality and conic duality as corollaries to the convex programming duality.
 
 \begin{coro}[Fenchel's Duality]\label{coro:044-fenchel}
 	Consider the problem:
@@ -70,13 +70,13 @@ In particular, if there is $x\in \operatorname{ri}(X)$ with $g^{(1)}\leq O,g^{(2
 		\end{matrix}
 	\]
 	\begin{enumerate}[label=(\alph*)]
-		\item Slater condtiion 2: if $f^\ast<\infty,A \operatorname{ri}(X_1)\cap \operatorname{ri}(X_2)\neq\emptyset$, then $Q^\ast\neq\emptyset,f^\ast=q^\ast$.
+		\item Slater's condtion 2: if $f^\ast<\infty,A \operatorname{ri}(X_1)\cap \operatorname{ri}(X_2)\neq\emptyset$, then $Q^\ast\neq\emptyset,f^\ast=q^\ast$.
 		\item Complementary slackness: given $((x^{(1)}_0,Ax^{(1)}_0),y_0)\in F\times Q$, then $f^\ast=q^\ast$ and $((x^{(1)}_0,Ax^{(1)}_0),y_0)\in F^\ast\times Q^\ast$ iff $x_0^{(1)}\in \underset{x^{(1)}\in \mathbb{R}^l}{\operatorname{argmin}}\left(f^{(1)}(x^{(1)})-(Ax^{(1)})^Ty_0\right)$ and $Ax_0^{(1)}\in \underset{x^{(2)}\in \mathbb{R}^l}{\operatorname{argmin}}\left(f^{(2)}(x^{(2)})-x^{(2),T}y_0\right)$.
 	\end{enumerate}
 \end{coro}
 
 \begin{coro}[Conic Duality]\label{coro:044-conic}
-	Assume $C$ is closed convex cone, $f$ is closed convex proper function on $\mathbb{R}^m$. Define $\iota_C$ as function taking $\infty$ outside $C$ and $0$ on $C$, then the following is a primal-dual pair:
+	Given closed convex cone $C\subset \mathbb{R}^m$, closed convex proper $f:\mathbb{R}^m\to \overline{\mathbb{R}}$, then the following is a primal-dual pair:
 	\[
 		\begin{matrix}
 			\begin{Bmatrix}
@@ -89,6 +89,6 @@ In particular, if there is $x\in \operatorname{ri}(X)$ with $g^{(1)}\leq O,g^{(2
 			\end{Bmatrix}
 		\end{matrix}
 	\]
-	by applying Fenchel's duality to $f^{(1)}=f$, $f^{(2)}=\iota_C$, $m=l$, $A=I_m$, noting $f^{(2),\star}=\iota_{C^\ast}$.\\
-	Slater condition 2 translates to: if $f^\ast<\infty$, $\operatorname{ri}(X)\cap \operatorname{ri}(C)\neq\emptyset$, then $f^\ast=q^\ast,Q^\ast\neq\emptyset$.
+	by applying Fenchel's duality to $f^{(1)}=f$, $f^{(2)}=\delta_C$, $m=l$, $A=I_m$, noting $f^{(2),\star}=\delta_{C^\ast}$; see \Cref{defn:025-indicator-function}.
+	Slater's condition 2 translates to: if $f^\ast<\infty$, $\operatorname{ri}(X)\cap \operatorname{ri}(C)\neq\emptyset$, then $f^\ast=q^\ast,Q^\ast\neq\emptyset$.
 \end{coro}

@@ -1,4 +1,4 @@
-\section{Farkas-type Lemmas, Lagrangian, Dual Problems}
+\section{Farkas-type, Lagrangian, Dual Problems}
 \label{sect:041}
 
 \paragraph{}The MC/MC duality theory in \Cref{chap:03} gives rise to many duality results in optimization.
@@ -6,7 +6,7 @@
 \paragraph{}The first duality result we shall prove is Farkas lemma, one in its original form for linear optimization, the other is a generalized form. The linear form of Farkas lemma asserts that a polyhedral set is non-empty iff there is a containment of certain polyhedral cones. The statements are as follows:
 
 \begin{prop}[Linear Farkas Lemma]\label{prop:041-farkas-lemma-linear}
-	Let $A\in \mathbf{M}_{n,m}(\mathbb{R})$, $c\in \mathbb{R}^n$.
+	Let $A\in \mathbf{M}_{m,r}(\mathbb{R})$, $c\in \mathbb{R}^m$.
 	\begin{enumerate}[label=(\alph*)]
 		\item The system $Ay=c,y\leq O$ has solution iff $A^Tx\leq O$ implies $c^Tx\geq 0$.
 		\item The system $Ay\leq c$ has solution iff $A^Tx=O,x\geq O$ implies $c^Tx\geq 0$.
@@ -18,27 +18,27 @@
 	\[
 		c^Tx=y^T(A^Tx)\geq 0
 	\]
-	if $Ay=c,y\geq O$ for some $y$. For "if", by (b) of \Cref{prop:041-farkas-lemma-nonlinear} with $X=\mathbb{R}^n$, $f(x)=c^Tx$, $g(x)=A^Tx$, $x_0=O$, there is $y_0\in -\mathbb{R}_+^m$, with $f(x)-y_0^Tg(x)=(c-Ay_0)^Tx\geq 0$ for $x\in \mathbb{R}^m$, so $Ay_0=c$.
+	if $Ay=c,y\leq O$ for some $y$. For "if", by (b) of \Cref{prop:041-farkas-lemma-nonlinear} with $X=\mathbb{R}^m$, $f(x)=c^Tx$, $g(x)=A^Tx$, $x_0=O$, there is $y_0\leq O_r$, with $f(x)-y_0^Tg(x)=(c-Ay_0)^Tx\geq 0$ for any $x\in \mathbb{R}^m$, giving $Ay_0=c$.
 \end{proof}
 
 \paragraph{}A loose thread in the above proof is deferred to the nonlinear Farkas lemma below, which would be a starting point of many duality results to be introduced in the subsequent subsections.
 
 \begin{prop}[Nonlinear Farkas Lemma]\label{prop:041-farkas-lemma-nonlinear}
-	Let $X\subset \mathbb{R}^m$ be a nonempty, convex, and $f:X\to \mathbb{R}$ be convex, $g=(g_1,\dotsc,g_r):X\to \mathbb{R}^r$ with each $g_i$ convex. Suppose that $g(x)\leq O,x\in X$ implies $f(x)\geq 0$. Define $Q_0$ to be the set:
+	Let $X\subset \mathbb{R}^m$ be nonempty, convex, $f:X\to \mathbb{R}$ be convex, $g=(g_1,\dotsc,g_r):X\to \mathbb{R}^r$ with each $g_i$ convex. Suppose $g(x)\leq O,x\in X$ implies $f(x)\geq 0$. Define $Q_0$ as:
 	\[
 		Q_0=\{y\in \mathbb{R}^r:y\leq O,f(x)-y^Tg(x)\geq0,\text{ for all }x\in X\}
 	\]
 	\begin{enumerate}[label=(\alph*)]
-		\item (Slater Condition I) If there is some $x_0\in X$ with $g(x_0)<O$, then $Q_0$ is nonempty and compact.
-		\item (Slater Condition II) If $g$ is affine with some $x_0\in \operatorname{ri}(X)$ with $g(x_0)\leq O$, then $Q_0$ is nonempty.
+		\item (Slater's Condition I) If there is some $x_0\in X$ with $g(x_0)<O$, then $Q_0$ is nonempty and compact.
+		\item (Slater's Condition II) If $g$ is affine with some $x_0\in \operatorname{ri}(X)$ with $g(x_0)\leq O$, then $Q_0$ is nonempty.
 	\end{enumerate}
 \end{prop}
 
 \paragraph{}Several comments on this proposition:
 \begin{itemize}
-	\item The condition "$g(x)\leq O,x\in X$ implies $f(x)\geq 0$" is analogous to the one given in Farkas Lemma, hence the name "Nonlinear Farkas Lemma"; let us call this the "Farkas condition".
-	\item The function $f(x)-y^Tg(x)$ is more often written as $f(x)+y^Tg(x)$, and often referred as a Lagrangian function; the emergence of such function can be explained via MC/MC in several different ways, one of such given in the proof below. Here we will just refer to $f(x)-y^Tg(x)$ as the Lagrangian.
-	\item The set $Q_0$ is in fact a certain type of sublevel set of the negative of a dual function $-q$ (just like the set $Q^\ast$ introduced in \Cref{chap:03}, which is $V_{-q,q^\ast}$).
+	\item The condition "$g(x)\leq O,x\in X$ implies $f(x)\geq 0$" is analogous to the one given in \Cref{prop:041-farkas-lemma-linear}, hence the name "Nonlinear Farkas Lemma"; let us call this the "Farkas condition".
+	\item The function $f(x)-y^Tg(x)$ is more often written as $f(x)+y^Tg(x)$, and is often referred to as a Lagrangian function; the emergence of such function can be explained via MC/MC in several different ways, one of such given in the proof below. Here we will just refer to $f(x)-y^Tg(x)$ as the Lagrangian.
+	\item The set $Q_0$ is in fact a certain type of sublevel set of the negative of a dual function $-q$ (just like the set of dual optimal values $Q^\ast$ introduced in \Cref{chap:03}, which is $V_{-q,q^\ast}$).
 \end{itemize}
 
 \begin{proof}
@@ -48,7 +48,7 @@
 		(y,u):(g(x),f(x))\leq (y,u)\text{ for some }x\in X
 		\right\}
 	\]
-	One can easily check that this set is convex (either directly, or notice that $M$ is the image of a projection of a convex subset of $\bigtimes_{i=0}^r \operatorname{epi}(g_i)$ with $g_0=f$). The corresponding $q,w^\ast$ associated to this set are then:
+	One can easily check that this set is convex (either directly, or notice that $M$ is the image of a projection of a convex subset of $\bigtimes_{i=1}^{r+1} \operatorname{epi}(g_i)$ with $g_{r+1}=f$). The corresponding $q,w^\ast$ associated to $M$ are then:
 	\[
 		w^\ast = \inf \left\{f(x):x\in X,g(x)\leq O\right\}
 	\]
@@ -62,7 +62,7 @@
 	\[
 		M=M'-\left(P\times \{0\}\right)
 	\]
-	where $P$ is the polyhedral set $\{x\in \mathbb{R}^{r}: x\leq O\}$, $M'$ is $\left(g\times {\operatorname{id}}_{\mathbb{R}}\right)\operatorname{epi}(f)$, We have $\pi M'=g(X),\pi M=g(X)-P$. Note: $M'$ is convex if $g$ is affine. Now let us prove (a) and (b):
+	where $P$ is the polyhedral set $\{x:x\leq O_r\}$, $M'$ is $\left(g\times {\operatorname{id}}_{\mathbb{R}}\right)\operatorname{epi}(f)$, We have $\pi M'=g(X),\pi M=g(X)-P$ where $\pi: \mathbb{R}^{m+1}\to \mathbb{R}^m$ is the map $(x,u)\mapsto x$. Note: $M'$ is convex if $g$ is affine. Now we prove (a) and (b):
 	\begin{enumerate}[label=(\alph*)]
 		\item By \Cref{prop:032-reachability} and \Cref{prop:032-optimal-set}, we verify: $w^\ast>-\infty$, $M$ convex, $O\in \operatorname{int}(\pi M)=\operatorname{int}(g(X)-P)$. First two conditions were verified above, $g(x_0)<O$ for some $x_0\in X$ gives the third.
 		\item By \Cref{coro:032-variants-reachability}, we verify: $w^\ast>-\infty$, $M'$ convex, $\operatorname{ri}(\pi M')\cap P\neq\emptyset$. First condition was verified above. Last condition is by $\operatorname{ri}(\pi M')=\operatorname{ri}(g(X))=g(\operatorname{ri}(X))$ (as $g$ is affine), so the assumption in (b) implies the third condition. \qedhere

@@ -1,14 +1,10 @@
-\section{Theory of Subgradiants (WIP \faWrench)}
+\section{Subgradiants - Revisited via MC/MC}
 \label{sect:046}
 
-\paragraph{}We will define subgradients via MC/MC. For this section, fix a proper convex function $f$ on $\mathbb{R}^m$, write $X=\operatorname{dom}(f)$. In the case where $f$ is differentiable, a property that holds for $\nabla f(x)$ at some $x\in X$ is that the following holds:
-\[
-	f(z)-f(x)\geq \nabla f(x)^T(z-x),\; \text{ for all }z\in \mathbb{R}^m
-\]
-which motivates the following definition (written in MC/MC formalism):
+\paragraph{}We will revist subgradients via MC/MC. Fix a proper convex function $f$ on $\mathbb{R}^m$, write $X=\operatorname{dom}(f)$.
 
 \begin{defn}[Subgradients]\label{defn-subgradients}
-	For $x\in X$, define $\operatorname{epi}(f)(x) = \operatorname{epi}(f) - (x,f(x))$. Define:
+	For $x\in X$, define $\operatorname{epi}(f)(x) = \operatorname{epi}(f) - (x,f(x))$. Then we have:
 	\[
 		\partial f(x) = \left\{
 		y\in \mathbb{R}^m,
@@ -16,16 +12,18 @@ which motivates the following definition (written in MC/MC formalism):
 		\right\}
 	\]
 	as the "subgradient of $f$ at $x$". Note: since $w^\ast_{\operatorname{epi}(f)(x)}=0$, $\partial f(x)=Q^\ast_{\operatorname{epi}(f)(x)}$ (weak duality). Therefore:
-	\[
-		\partial f(x) = \left\{y:\inf\left\{(-y,1)^T \operatorname{epi}(f)(x)\right\}=0\right\}=\left\{y:\sup_z \left\{ z^Ty-f(z)\right\}=x^Ty-f(x)\right\}
-	\]
+	\begin{align*}
+		\partial f(x) & =\left\{y:\inf\left\{(-y,1)^T \operatorname{epi}(f)(x)\right\}=0\right\}                                       \\
+		              & =\left\{y:\sup_z \left\{ z^Ty-f(z)\right\}=x^Ty-f(x)\right\}            =\left\{y:f^\star(y)=x^Ty-f(x)\right\}
+	\end{align*}
 \end{defn}
-
-\paragraph{}Now \Cref{prop:032-optimal-set} translates to:
 
 \begin{prop}[Decomposition of Set of Subgradients]\label{prop:046-set-of-subgrad}
 	Write $V=\operatorname{lin}(X)$. For $x\in \operatorname{ri}(X)$, $\partial f(x) = V^\perp + V\cap \partial f(x)$ with $V\cap \partial f(x)\neq\emptyset$ compact and convex. In particular, if $x\in \operatorname{int}(X)$, $\partial f(x)$ is compact.
 \end{prop}
+\begin{proof}
+	By \Cref{prop:032-optimal-set}.
+\end{proof}
 
 \paragraph{}Subgradients can be classified via conjugate functions. By \Cref{defn:025-conjugate}, we have Fenchel's inequality:
 \[
@@ -34,11 +32,9 @@ which motivates the following definition (written in MC/MC formalism):
 
 \begin{prop}[Subgradients v.s. Conjugate Functions]\label{prop:046-subgrad-conjugate}
 	Consider the conditions:
-	\begin{enumerate}[label=(\alph*)]
-		\item $f(x) + f^\star(y) = x^Ty$
-		\item $y\in \partial f(x)$
-		\item $x\in \partial f^\star(x)$
-	\end{enumerate}
+	\begin{center}
+		(a) $f(x) + f^\star(y) = x^Ty$ \quad (b) $y\in \partial f(x)$ \quad (c) $x\in \partial f^\star(x)$
+	\end{center}
 	then (a) and (b) are equivalent, and they are equivalent to (c) if $f$ is closed.
 \end{prop}
 
@@ -46,18 +42,54 @@ which motivates the following definition (written in MC/MC formalism):
 	"(a) iff (b)": use $\partial f(x) = \left\{y:f^\star(y)=x^Ty-f(x)\right\}$. For (c), use (d) of \Cref{prop:025-conjugacy-theorem}.
 \end{proof}
 
-\paragraph{}We can now formulate two yogas for subgradients:
+\paragraph{}Subgradients can also be defined as optimization problems: as $d\in\partial f(x)$ iff $x$ minimizes $f(y)-d^Ty$ (over $y$). We will use this to give some yogas of subgradients, and derive a constrained optimality condition.
 
 \begin{prop}[Yoga of Subgradients]\label{prop:046-yoga-subgradients}.
 	\begin{enumerate}[label=(\alph*)]
-		\item (Chain Rule) We have $A^T\partial f(Ax)\subset \partial F(x)$.
-		\item
+		\item (Chain Rule) Given proper convex $f$ on $\mathbb{R}^m$, $A\in \mathbf{M}_{m,l}(\mathbb{R})$, write $X=\operatorname{dom}(f)$. If $f\circ A$ is proper, then $A^T\partial f(Ax)\subset \partial (f\circ A)(x)$, and "$=$" holds if either $A^{-1}\operatorname{ri}(X)\neq\emptyset$ or $f$ is polyhedral.
+		\item (Summation Rule) Given convex proper functions $f_1,\dotsc, f_r,f_{r+1},\dotsc,f_{s}$ each having domain $X_1,\dotsc,X_s$, with $f_1,\dotsc,f_r$ polyhedral, on $\mathbb{R}^m$ such that $g:=\sum_{i=1}^sf_i$ is proper, then $\sum_{i=1}^s\partial f_i(x)\subset \partial g(x)$, and "$=$" holds if $\left(\bigcap_{i=1}^r X_i\right)\cap \left(\bigcap_{i=r+1}^s \operatorname{ri}(X_i)\right)\neq\emptyset$.
 	\end{enumerate}
 \end{prop}
 
 \begin{proof}
-	For (a), use \Cref{prop:046-subgrad-conjugate}: for $y\in \partial f(Ax)$, $F(x)+F^\star(A^Ty)\leq f(Ax)+f^\star(y)=x^TA^Ty$.
+	For (a), to show "$\subset$", use \Cref{prop:046-subgrad-conjugate}: for $y\in \partial f(Ax)$, $F(x)+F^\star(A^Ty)\leq f(Ax)+f^\star(y)=x^TA^Ty$. For "$=$", we use duality: given $d\in \mathbb{R}^l$, consider three problems (with (3) having also its dual):
+	\[
+		\begin{matrix}
+			(1)                             &
+			\begin{Bmatrix}
+				\text{Min.}\;    f(z) - w^Tz \\
+				\text{s.t.}\;  z\in X
+			\end{Bmatrix} & (2)                                                & \begin{Bmatrix}
+				                                                                     \text{Min.}\;    f(Ay)-d^Ty \\
+				                                                                     \text{s.t.}\;  y\in A^{-1}X
+			                                                                     \end{Bmatrix} \\
+			(3)                             & \begin{Bmatrix}
+				                                  \text{Min.}\;   f(z)-d^Ty \\
+				                                  \text{s.t.}\;  (y,z)\in \mathbb{R}^l\times X, Ay=z
+			                                  \end{Bmatrix} & \leftrightarrow                &
+			\begin{Bmatrix}
+				\text{Max.}\;    \inf_{(y,z)\in \mathbb{R}^l\times X}f(z)-w^Tz-(d-A^Tw)^Ty \\
+				\text{s.t.}\;    w\in \mathbb{R}^m
+			\end{Bmatrix}
+		\end{matrix}
+	\]
+	where problem $(1)$ has a vector $w$ to be determined. Write the primal optimal sets, values for problem $(i)$ as $F^{(i),\ast},f^{(i),\ast}$, the dual optimal set, dual optimal value of problem $(3)$ as $q^\ast,Q^\ast$. We have $f^{(2),\ast}=f^{(3),\ast}=Q^{\ast},q^\ast\neq\emptyset$ by \Cref{coro:044-slater-combined}. For any $w\in Q^\ast$, we must have $d=A^Tw$. By taking such $w$ in problem $(1)$, we have $f^{(1),\ast}\leq f^{(2),\ast}$. Note that in this case, $q^\ast=f^{(1),\ast}$ - as $A^Tw=d$, we have:
+	\[
+		q^\ast = \inf_{(y,z)\in \mathbb{R}^l\times X}f(z)-w^Tz-(d-A^Tw)^Ty =  \inf_{z\in X}f(z)-w^Tz=f^{(1),\ast}
+	\]
+	giving $f^{(1),\ast}=f^{(2),\ast}$ and $AF^{(2),\ast}\subset F^{(1),\ast}$. Therefore, given $d\in \partial (f\circ A)(x)$, define problem $(1)$ according to any element $w\in Q^\ast$, then $Ax \in AF^{(2),\ast}\subset F^{(1),\ast}$, giving $w\in \partial f(Ax)$, showing $d=A^Tw\in A^T\partial f(Ax)$. For (b), use the above proof $A:\mathbb{R}^m\to \mathbb{R}^{ms},x\mapsto (x,x,\dotsc,x)$, $f:\mathbb{R}^{ms}\to \overline{\mathbb{R}}$, $(x_i)_{i=1}^s\mapsto \sum_{i=1}^sf_i(x_i)$.
 \end{proof}
 
-\paragraph{}The subgradients of the conjugate function is also interesting.
-
+\begin{prop}[Subgradients and Optimality]\label{prop:046-subgrad-optimality-conditions}
+	Let $f$ be proper convex on $\mathbb{R}^m$ with $\operatorname{dom}(f)=X$, and let $C\subset \mathbb{R}^m$ be a convex subset. If any of the following holds:
+	\begin{enumerate}[label=(\alph*)]
+		\item $\operatorname{ri}(X)\cap \operatorname{ri}(C)\neq\emptyset$
+		\item $f$ is polyhedral and $\operatorname{ri}(C)\cap X\neq\emptyset$.
+		\item $C$ is polyhedral and $\operatorname{ri}(X)\cap C\neq\emptyset$.
+		\item both $f$ and $C$ are polyhedral with $X\cap C\neq\emptyset$
+	\end{enumerate}
+	then $x\in C$ minimizes $f$ over $C$ iff $O\in\partial f(x)+N_C(x)$, where $N_C(x):=\partial \delta_C(x)=(C-x)^\ast$. That is: the set of subgradients $\partial f(x)$, along with the "normal cone" $N_C(x)$ is enough to determine optimality over $C$.
+\end{prop}
+\begin{proof}
+	This is the same as minimizing $\delta_C+f$, so optimality is the same as $O\in\partial(\delta_C+f)(x)=N_C(x)+\partial f(x)$ (by \Cref{prop:046-yoga-subgradients} and conditions (a)-(d)). That $N_C(x)=(C-x)^\ast$ (polar cone of $C-x$) is easy to show.
+\end{proof}

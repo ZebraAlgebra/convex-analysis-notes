@@ -15,7 +15,11 @@
 	where $A\in \mathbf{M}_{r,m}(\mathbb{R}),b\in \mathbb{R}^r$ given by $A_{i,:}=a_i^T,b_i=b_i$. Under such representation, we call $Av\leq b$ a defining equation of $P$. A polyhedral set is a polyhedral cone if the $b_i$'s can be taken to be $0$.
 \end{defn}
 
-\paragraph{}Note that a polyhedral cone is precisely a polyhedral set that is also a cone: suppose a cone $X$ is contained in some $E_{a,b,-}$, then $b\geq 0$ and $X\subset E_{a,0,-}$.
+\paragraph{}A polyhedral cone is precisely a polyhedral set that is also a cone by the following lemma.
+
+\begin{lemm}[Halfspace Promotion]\label{lemm:017-promotion}
+	Given $\emptyset\neq X=\operatorname{cone}(X)$ with $X\subset E_{a,b,-}$, then $b\geq 0$ and $X\subset E_{a,0,-}$.
+\end{lemm}
 
 \begin{exmp}
 	A "linear programming (LP) problem in standard form" is given as the follows:

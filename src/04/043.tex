@@ -26,7 +26,7 @@
 \end{prop}
 
 \begin{proof}
-	We only show the statement for $f,F$. Note that $F^\ast=V_{f,f^\ast}\cap F=\left(\bigcap_{k\in \mathbb{N}}V_{f,f^\ast+ k^{-1}}\right)\cap F$. We will use \Cref{prop:014-non-empt-II} to show $F^\ast\neq\emptyset$ - using the same notation as in that proposition, we let:
+	We only show the statement for $f,F$ assuming $c\neq O$. Note: $F^\ast=V_{f,f^\ast}\cap F=\left(\bigcap_{k\in \mathbb{N}}V_{f,f^\ast+ k^{-1}}\right)\cap F$. We will use \Cref{prop:014-non-empt-II} to show $F^\ast\neq\emptyset$ - using the same notation as in that proposition, we let:
 	\[
 		C_0=F,\;C_k=V_{f,f^\ast+k^{-1}}\;\text{ for }k\geq 1
 	\]
@@ -37,7 +37,7 @@
 	\begin{enumerate}[label=(\alph*)]
 		\item (Weak Duality) We have $f^\ast\geq q^\ast$.
 		\item (Strong Duality) If any of $f^\ast$ or $q^\ast$ is finite, $f^\ast=q^\ast$.
-		\item (Optimality) Given $(x_0,y_0)\in F\times Q$, we have $(x_0,y_0)\in F^\ast\times Q^\ast$ iff $y_0^Tg(x_0)=0$.
+		\item (Reachability) Given $(x_0,y_0)\in F\times Q$, we have $(x_0,y_0)\in F^\ast\times Q^\ast$ iff $y_0^Tg(x_0)=0$.
 	\end{enumerate}
 \end{prop}
 
