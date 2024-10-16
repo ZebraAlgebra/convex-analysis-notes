@@ -15,7 +15,7 @@
 	where $A\in \mathbf{M}_{r,m}(\mathbb{R}),b\in \mathbb{R}^r$ given by $A_{i,:}=a_i^T,b_i=b_i$. Under such representation, we call $Av\leq b$ a defining equation of $P$. A polyhedral set is a polyhedral cone if the $b_i$'s can be taken to be $0$.
 \end{defn}
 
-\paragraph{}A polyhedral cone is precisely a polyhedral set that is also a cone by the following lemma.
+\paragraph{}A polyhedral cone is precisely a polyhedral set that is also a cone by the following lemma; proof is omitted.
 
 \begin{lemm}[Halfspace Promotion]\label{lemm:017-promotion}
 	Given $\emptyset\neq X=\operatorname{cone}(X)$ with $X\subset E_{a,b,-}$, then $b\geq 0$ and $X\subset E_{a,0,-}$.
@@ -50,7 +50,7 @@
 \paragraph{}Extreme points of polyhedral sets admits quite explicit descriptions. We first define a notation:
 
 \begin{defn}[A Submatrix Construction]\label{defn:017-submatrix}
-	Given $A\in \mathbf{M}_{r,m}(\mathbb{R}),b\in \mathbb{R}^r,v\in \mathbb{R}^m$ with $Av\leq b$, we denote $A_{v; b}$ as the matrix given by keeping the rows of $A$ where $"="$ holds.
+	Given $A\in \mathbf{M}_{r,m}(\mathbb{R}),b\in \mathbb{R}^r,v\in \mathbb{R}^m$ with $Av\leq b$, we denote $A_{v; b}$ as the matrix given by keeping the rows of $A$ where "$=$" holds.
 \end{defn}
 
 \begin{prop}[Characterization of Extreme points of Polyhedral Sets]\label{prop:017-characterization-polyhedral-extreme}
@@ -253,7 +253,6 @@
 \subsection{Yogas of Polyhedral Sets}
 
 \paragraph{}We are now ready to formulate some yogas of polyhedral sets:
-
 \begin{prop}[Yoga of Polyhedral sets]\label{prop:017-polyhedral-yoga}.
 	\begin{enumerate}[label=(\alph*)]
 		\item (Finite Intersection) Given polyhedral sets $\{P_i\}_{i=1}^{k}\subset \mathbb{R}^m$, $\bigcap_{i=1}^kP_i$ is polyhedral.

@@ -8,6 +8,7 @@
 \RequirePackage{xcolor}
 \RequirePackage[colorlinks=true, allcolors=blue]{hyperref}
 \RequirePackage[backend=biber,style=ieee]{biblatex}
+% \RequirePackage{varioref}
 \RequirePackage[nameinlink]{cleveref}
 \RequirePackage{csquotes}
 \RequirePackage{chngcntr}
@@ -15,6 +16,8 @@
 \RequirePackage[labelfont=bf,textfont=it]{caption}
 \RequirePackage[section]{placeins}
 \RequirePackage{fontawesome5}
+
+% custom colors for special texts
 \newcommand{\code}[1]{\color{purple}{\texttt{#1}}\color{black}{}}
 \newcommand{\filename}[1]{\color{teal}{\texttt{#1}}\color{black}{}}
 \newcommand{\datatext}[1]{\color{brown}{\texttt{#1}}\color{black}{}}
@@ -33,3 +36,4 @@
 % new settings
 \RequirePackage[useregional=numeric, datesep=/, datetimesep=\;\;, timesep=., timezonesep=\;\;UTC, showisoZ=true, showzoneminutes=false]{datetime2}
 \DTMsetzonestyle{iso}
+

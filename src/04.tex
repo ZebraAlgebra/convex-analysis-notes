@@ -12,7 +12,7 @@
 	where $f:\mathbb{R}^m\to \overline{\mathbb{R}}$ (resp. $g:\mathbb{R}^m\to \mathbb{R}^r,X\cap \operatorname{dom}(f),\{x\in X:g(x)\leq O\}$) is called the objective function (resp. constraint function, basic feasibility region, feasibility region) of the problem. The optimal value is written as $f^\ast$. The set of feasible solutions is written as $F$, with the set of optimal points written as $F^\ast$.
 \end{defn}
 
-\paragraph{}For convex problems, $f,X$ are convex, with $g$ having convex component functions, so $F$ is convex. In linear programming, $f,g$ are affine, with $X=\mathbb{R}^m$, so $F$ is polyhedral. For maximization problems, we regard it as the same as a minimization problem over $-f$ with other components fixed. For this chapter, we will always assume that the problem is convex.
+\paragraph{}For convex problems, $f,X$ are convex, with $g$ having convex component functions, so $F$ is convex. In linear programming, $f,g$ are affine, with $X=\mathbb{R}^m$, so $F$ is polyhedral. For maximization problems, we regard it as the same as a minimization problem over $-f$ with other components fixed. For this note, we will always assume that the problem is convex. When dealing with equality constraints of the form $g(x)=O$ (often in this case $g$ is assumed to be affine), one can think as imposing inequality constraints $g(x)\leq O,-g(x)\leq O$.
 
 \input{./src/04/041.tex}
 \input{./src/04/042.tex}
