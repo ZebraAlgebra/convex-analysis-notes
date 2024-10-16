@@ -73,11 +73,11 @@
 			\end{Bmatrix}
 		\end{matrix}
 	\]
-	where problem $(1)$ has a vector $w$ to be determined. Write the primal optimal sets, values for problem $(i)$ as $F^{(i),\ast},f^{(i),\ast}$, the dual optimal set, dual optimal value of problem $(3)$ as $q^\ast,Q^\ast$. We have $f^{(2),\ast}=f^{(3),\ast}=Q^{\ast},q^\ast\neq\emptyset$ by \Cref{coro:044-slater-combined}. For any $w\in Q^\ast$, we must have $d=A^Tw$. By taking such $w$ in problem $(1)$, we have $f^{(1),\ast}\leq f^{(2),\ast}$. Note that in this case, $q^\ast=f^{(1),\ast}$ - as $A^Tw=d$, we have:
+	where problem $(1)$ has a vector $w$ to be determined. Write the primal optimal sets, values for problem $(i)$ as $F^{(i),\ast},f^{(i),\ast}$, the dual optimal set, dual optimal value of problem $(3)$ as $q^\ast,Q^\ast$. We have $f^{(2),\ast}=f^{(3),\ast}=q^{\ast},Q^\ast\neq\emptyset$ by \Cref{coro:044-slater-combined}. For any $w\in Q^\ast$, we must have $d=A^Tw$. By taking such $w$ in problem $(1)$, we have $f^{(1),\ast}\leq f^{(2),\ast}$. Note that in this case, $q^\ast=f^{(1),\ast}$ - as $A^Tw=d$, we have:
 	\[
 		q^\ast = \inf_{(y,z)\in \mathbb{R}^l\times X}f(z)-w^Tz-(d-A^Tw)^Ty =  \inf_{z\in X}f(z)-w^Tz=f^{(1),\ast}
 	\]
-	giving $f^{(1),\ast}=f^{(2),\ast}$ and $AF^{(2),\ast}\subset F^{(1),\ast}$. Therefore, given $d\in \partial (f\circ A)(x)$, define problem $(1)$ according to any element $w\in Q^\ast$, then $Ax \in AF^{(2),\ast}\subset F^{(1),\ast}$, giving $w\in \partial f(Ax)$, showing $d=A^Tw\in A^T\partial f(Ax)$. For (b), use the above proof $A:\mathbb{R}^m\to \mathbb{R}^{ms},x\mapsto (x,x,\dotsc,x)$, $f:\mathbb{R}^{ms}\to \overline{\mathbb{R}}$, $(x_i)_{i=1}^s\mapsto \sum_{i=1}^sf_i(x_i)$.
+	giving $f^{(1),\ast}=f^{(2),\ast}$ and $AF^{(2),\ast}\subset F^{(1),\ast}$. Therefore, given $d\in \partial (f\circ A)(x)$, define problem $(1)$ according to any element $w\in Q^\ast$, then $Ax \in AF^{(2),\ast}\subset F^{(1),\ast}$, giving $w\in \partial f(Ax)$, showing $d=A^Tw\in A^T\partial f(Ax)$. For (b), use (a)'s proof with $A:\mathbb{R}^m\to \mathbb{R}^{ms},x\mapsto (x,x,\dotsc,x)$, $f:\mathbb{R}^{ms}\to \overline{\mathbb{R}}$, $(x_i)_{i=1}^s\mapsto \sum_{i=1}^sf_i(x_i)$.
 \end{proof}
 
 \begin{prop}[Subgradients and Optimality]\label{prop:046-subgrad-optimality-conditions}

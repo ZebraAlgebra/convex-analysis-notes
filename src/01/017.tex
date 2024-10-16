@@ -134,7 +134,7 @@
 			      x\in \mathbb{R}^{m^2}:x\geq 0,Ax=1
 			      \right\}
 		      \]
-		      where $A\in \mathbf{M}_{2m,m^2}(\mathbb{R})$ has rows encoding the requirement that each row (resp. column) sum to $1$; note that $A$ is not injective, so if $M\in \operatorname{ext}(P_m)$, $M$ has at most $(2m-1)$ zero entries, so $M_{i,j}=1$ for some $i,j$ (pigeon-hole principle). Now we show $M\in X_m$ by induction using this $i,j$: if $m=1$, $i=j=1$, and we are done; otherwise, take $M_{(i,j)}$, defined as $M$ with $i$-th row and $j$-th column removed, lies in $\operatorname{ext}(P_{m-1})$ (by \Cref{lemm:016-extreme-and-hyperlane}), so by inductive hypothesis, $M_{(i,j)}\in X_{m-1}$, and hence $M\in X_m$.
+		      where $A\in \mathbf{M}_{2m,m^2}(\mathbb{R})$ has rows encoding the requirement that each row (resp. column) sum to $1$; note that $A$ is not injective, so if $M\in \operatorname{ext}(P_m)$, $M$ has at most $(2m-1)$ nonzero entries, so $M_{i,j}=1$ for some $i,j$. Now we show $M\in X_m$ by induction using this $i,j$: if $m=1$, $i=j=1$, and we are done; otherwise, take $M_{(i,j)}$, defined as $M$ with $i$-th row and $j$-th column removed, lies in $\operatorname{ext}(P_{m-1})$ (by \Cref{lemm:016-extreme-and-hyperlane}), so by inductive hypothesis, $M_{(i,j)}\in X_{m-1}$, and hence $M\in X_m$.
 	\end{itemize}
 \end{exmp}
 

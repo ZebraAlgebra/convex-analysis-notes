@@ -94,11 +94,11 @@
 	We also define $\partial f(x)=\emptyset$ if $x\notin X$; we will see that this set is nonempty when $x\in \operatorname{ri}(X)$ (see \Cref{prop:046-set-of-subgrad}). By this expression, $\partial f(x)$ is closed convex if not empty.
 \end{defn}
 
-\begin{exmp}[Optimality]
+\begin{prop}[Basic Optimality]\label{prop:022-optimality-via-subgradient-basic}
 	We have $O\in \partial f(x)$ iff $x$ minimizes $f$.
-\end{exmp}
+\end{prop}
 
-\paragraph{}Here are some properties for subgradients and directional derivatives. Other properties of subgradients will be established later in \Cref{sect:046}, utilizing the MC/MC framework.
+\paragraph{}The proof is easy. An extension is given in \Cref{prop:046-subgrad-optimality-conditions}. Here are some properties for subgradients and directional derivatives. Other properties of subgradients will be established later in \Cref{sect:046}, utilizing the MC/MC framework.
 
 \begin{prop}[Basic Properties of Directional Derivatives]\label{prop:022-properties-of-directional}
 	Assume $f$ is proper, convex.
@@ -120,7 +120,7 @@
 	Since $\operatorname{epi}(f'(x;-))$ is a closed, convex, epigraph-like cone with $\operatorname{dom}(f'(x;-))=\mathbb{R}^m$ ((b) of \Cref{prop:022-properties-of-directional}), $\operatorname{epi}(f'(x;-))=\bigcap_{y\in \partial f(x)}E_{(y,-1),0,-}$ by \Cref{coro:015-halfspaces-intersection}, giving the assertion.
 \end{proof}
 
-\paragraph{}In the settings of (a) of \Cref{prop:022-ordered-conditions-convexity} where $C=U=X$, $f$ convex, we have $f'(x;d)= \nabla f(x)^Td$, and that $\nabla f(x)\in \partial f(x)$. One can say more: differentiability is the same as $\nabla f(x)$ being a singleton; otherwise, one can use $\nabla f$ to infer other smootheness conditions on $f$.
+\paragraph{}In the settings of (a) of \Cref{prop:022-ordered-conditions-convexity} where $C=U=X$, $f$ convex, we have $f'(x;d)= \nabla f(x)^Td$, and that $\nabla f(x)\in \partial f(x)$. One can say more: differentiability is the same as $\nabla f(x)$ being a singleton; otherwise, one can use $\partial f$ to infer other smootheness conditions on $f$.
 
 \begin{prop}[Smoothness v.s. Subgradients]\label{prop:022-smoothness-and-other-stuffs}Suppose $X$ is open and $f$ is convex. We have:
 	\begin{enumerate}[label=(\alph*)]
@@ -130,9 +130,9 @@
 \end{prop}
 
 \begin{proof}
-	For (b), note first that $f$ is continuous on $X$ (see \Cref{prop:022-continuity}). Write $\partial f(Y)=\bigcup_{x\in Y}\partial f(x)$. Suppose $\|\partial f(Y)\|=\infty$, we can take $\varepsilon >0$, $\{x_k\}_{k}\subset Y$, $\{d_k\}_{k}\subset \partial f(Y)$, so that $d_k\in \partial f(x_k)$, $\|d_k\|\geq k$, $\nu(d_k)\to d\in \mathbb{S}^{m-1}$, $x_k\to x\in X$, $B(\{x_k\}_{k},2 \varepsilon )\subset X$ by using compactness of $Y, \mathbb{S}^{m-1}$. This gives:
+	For (b), note first that $f$ is continuous on $X$ (see \Cref{prop:022-continuity}). Suppose $\|\partial f(Y)\|=\infty$, we can take $\varepsilon >0$, $\{x_k\}_{k}\subset Y$, $\{d_k\}_{k}\subset \partial f(Y)$, so that $d_k\in \partial f(x_k)$, $\|d_k\|\geq k$, $\nu(d_k)\to d\in \mathbb{S}^{m-1}$, $x_k\to x\in X$, $B(\{x_k\}_{k},2 \varepsilon )\subset X$ by using compactness of $Y, \mathbb{S}^{m-1}$. This gives:
 	\[
-		\mathbb{R}\ni f(x+\varepsilon d) - f(x) = \underset{k}{\operatorname{limsup}}\;f(x_k + \varepsilon \nu(d_k)) \geq \underset{k}{\operatorname{limsup}}\;\varepsilon d_k^T \nu(d_k) = \infty
+		\mathbb{R}\ni f(x+\varepsilon d) - f(x) = \underset{k}{\operatorname{limsup}}\;f(x_k + \varepsilon \nu(d_k))-f(x_k) \geq \underset{k}{\operatorname{limsup}}\;\varepsilon d_k^T \nu(d_k) = \infty
 	\]
 	a contradiction. Now for $x,y$ in $Y$, we have $f(x)-f(y)\leq z^T(x-y)\leq \|z\|\|x-y\|$ for $z\in \partial f(Y)$; this holds also with $x,y$ interchanged, so $\|f(x)-f(y)\|\leq \|\partial f(Y)\|\|x-y\|$.\\
 	For (a), we know by \Cref{coro:022-dir-sub-formula} that $f'(x;-)$ is linear iff $\partial f(x)$ is a singleton. When $f$ is differentiable, $f'(x;d)=\nabla f(x)^Td$, which is linear. Conversely, when $f'(x; d)=y^Td$ for some $y\in \mathbb{R}^m$, we wish to show:
