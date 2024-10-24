@@ -1,9 +1,7 @@
 \section{Primal Reachability}
 \label{sect:045}
 
-\paragraph{}Recall that one of the question we posted in \Cref{sect:042} asks whether $Q^\ast,F^\ast$ are nonempty. The case of $Q^\ast$ (dual reachability) can be obtained in some cases via the Slater's conditions or complementary slackness. The case of $F^\ast$ as mentioned before is more intricate. In the case of linear programs, we have given one such result in \Cref{prop:043-linear-reachability}: when $f^\ast\in \mathbb{R}$, $F^\ast\neq\emptyset$.
-
-\paragraph{}In this section, we will extend both the proof and the result of \Cref{prop:043-linear-reachability}, to derive the fundamental theorem of linear programming, as well as giving a condition where primal optimal set is nonempty (or compact) via recession cones.
+\paragraph{}Recall that one of the question we posted in \Cref{sect:042} asks whether $Q^\ast,F^\ast$ are nonempty. The case of $Q^\ast$ (dual reachability) can be obtained in some cases via the Slater's conditions or complementary slackness. The case of $F^\ast$ as mentioned before is more intricate. In the case of linear programs, we have given one such result in \Cref{prop:043-linear-reachability}: when $f^\ast\in \mathbb{R}$, $F^\ast\neq\emptyset$. In this section, we extend both the proof and the result of \Cref{prop:043-linear-reachability}, to derive the fundamental theorem of linear programming. We also give a condition where primal optimal set is nonempty (or compact) via recession cones in the unconstrained case. Another result is postponed to \Cref{coro:047-convex-programming-primal-reachability}, which uses the theory of partial minimization, given in \Cref{sect:047}.
 
 \begin{prop}[Primal Optimal Set - Linear Case]\label{prop:045-linear-primal-optimality}
 	Suppose $f$ is affine in \Cref{defn:040-opt-prob} and $f^\ast\in \mathbb{R}$.
@@ -21,16 +19,16 @@
 	giving $x\in F^\ast$. For (b), note that $F^\ast\neq\emptyset$ by \Cref{prop:043-linear-reachability}; take a point $x_0\in F^\ast$. If $x_0\in \operatorname{ri}(F)$, then we are done by (a); otherwise, by (e) of \Cref{prop:015-hyperplane-sep} and the remarks following it, we have for some $(a,b)\in \mathbb{S}^{m-1}\times \mathbb{R}$, that $F\subset E_{a,b,+},x_0\in H_{a,b,-}$. Now we use \Cref{lemm:016-extreme-and-hyperlane}, and replace $F$ by $F\cap H_{a,b}$; this process cannot continue indefinitely (consider $\dim(F)$), giving the assertion.
 \end{proof}
 
-\begin{prop}[Primal Optimal set via Recession Cones]
-	Suppose in \Cref{defn:040-opt-prob}, $X,f$ are closed convex, $g$ has closed convex components, and that $F\neq\emptyset$.
+\begin{prop}[Unconstrained Case - Primal Optimal set via Recession Cones]\label{prop:045-primal-reachability}
+	Suppose in \Cref{defn:040-opt-prob}, $X,f$ are closed convex, $g$ is empty, and that $F\neq\emptyset$.
 	\begin{enumerate}[label=(\alph*)]
 		\item If $R_X\cap R_f=L_X\cap L_f$, then $F^\ast\neq\emptyset$, and $F^\ast=L_X\cap L_f+X'$ with $X'$ compact.
-		\item If $R_X\cap R_f\subset L_f$ with $X$ polyhedral, then $F^\ast\neq\emptyset$.
+		\item If $R_X\cap R_f\subset L_f$ with $F$ polyhedral, then $F^\ast\neq\emptyset$.
 	\end{enumerate}
 	Notable cases that will imply (a): when $f$ has a nonempty compact level set or when $\operatorname{dom}(f)$ is bounded.
 \end{prop}
 
 \begin{proof}
-	These follows from applying \Cref{coro:014-decomp-compact} (for (a)) or \Cref{prop:014-non-empt-II} (for (b)), with the nested sequence of closed convex sets $\{C_i\}_{i=1}^{\infty}$ given by $C_i=F\cap V_{f,\gamma_i}$ where $\{\gamma_i\}_{i=1}^{\infty}\to f^{\ast,+}$.
+	These follows from applying \Cref{coro:014-decomp-compact} (for (a)) or \Cref{prop:014-non-empt-II} (for (b)), with the nested sequence of closed convex sets $\{C_i\}_{i=1}^{\infty}$ given by $C_i=X\cap V_{f,\gamma_i}$ where $\{\gamma_i\}_{i=1}^{\infty}\to f^{\ast,+}$.
 \end{proof}
 

@@ -1,0 +1,234 @@
+\section{Minimax Theory}
+\label{sect:047}
+
+\paragraph{}The duality gap between a primal and dual convex optimization problem can be interpreted as a particular minimax problem. A general minimax problem is as follows: given a function $\phi:X\times Y\to \mathbb{R}$  where $X\subset \mathbb{R}^p,Y\subset \mathbb{R}^q$, we can consider the pair of problems:
+
+\[
+	\begin{matrix}
+		\begin{Bmatrix}
+			\text{Minimize.}\; \sup_{y\in Y}\phi(x,y) \\
+			\text{subject to}\;  x\in X
+		\end{Bmatrix} & \leftrightarrow &
+		\begin{Bmatrix}
+			\text{Maximize.}\;    \inf_{x\in X }\phi(x, y) \\
+			\text{subject to}\;    y\in Y
+		\end{Bmatrix}
+	\end{matrix}
+\]
+
+\paragraph{}Let us write the optimal value, optimal set of the min (resp. max) problem as $a^\ast,X^\ast$ (resp. $b^\ast,Y^\ast$).
+
+\begin{itemize}
+	\item Weak duality holds: we have $a^\ast = \inf_{x\in X}\sup_{y\in Y}\phi(x,y)\geq \sup_{y\in Y}\inf_{x\in X}\phi(x,y)=b^\ast$
+	\item Complementary slackness: they corresponds the notion of "saddle points"; the existence of saddle points is a certificate for strong duality ($a^\ast = b^\ast$) and both primal and dual reachability.
+\end{itemize}
+
+\begin{asmp}
+	We will make the following assumptions throughout this section:
+	\begin{itemize}
+		\item $X,Y$ are nonempty convex
+		\item The functions $-\phi(x,-)$ (resp. $\phi(-,y)$) are convex closed for fixed $x\in X$ (resp. $y\in Y$).
+	\end{itemize}
+\end{asmp}
+
+\begin{exmp}[Minimax for Lagrangian]
+	The primal and dual problems in convex programming duality can be formulated as a minimax problems - recall that $L(x,y)=f(x)-y^Tg(x)$ and $q(y)=\inf_{x\in X}L(x,y)$:
+	\[
+		\begin{matrix}
+			\begin{Bmatrix}
+				\text{Min.}\; f(x) \\
+				\text{s.t.}\;  x\in X,g(x)\leq O
+			\end{Bmatrix}      & \cong           &
+			\begin{Bmatrix}
+				\text{Min.}\; \sup_{y\leq O}L(x,y) \\
+				\text{s.t.}\;  x\in X
+			\end{Bmatrix} & \leftrightarrow &
+			\begin{Bmatrix}
+				\text{Max.}\;    \inf_{x\in X }L(x, y) \\
+				\text{s.t.}\;    y\leq O
+			\end{Bmatrix}
+		\end{matrix}
+	\]
+\end{exmp}
+
+\begin{defn}[Saddle Points]\label{defn:047-saddle}
+	A point $(x,y)\in X\times Y$ is a saddle point if $\phi(x,y')\leq \phi(x,y)\leq \phi(x',y)$ for any $x'\in X,y'\in Y$. In other words: $x$ minimizes $\phi(-,y)$ and $y$ maximizes $\phi(x,-)$.
+\end{defn}
+
+\begin{lemm}[Classification of Saddle Points]\label{lemm:047-classify-saddle}
+	$(x,y)\in X\times Y$ is saddle iff $a^\ast=b^\ast$ and $(x,y)\in X^\ast\times Y^\ast$.
+\end{lemm}
+\begin{proof}
+	Suppose $(x,y)$ is a saddle point, then $a^\ast\leq \sup_{y'\in Y}\phi(x,y')\leq \phi(x,y)\leq \inf_{x'\in X}\phi(x',y)\leq b^\ast$, so equality holds throughout these inequalities, giving $a^\ast=b^\ast,(x,y)\in X^\ast\times Y^\ast$. Converse is similar.
+\end{proof}
+
+\paragraph{}Minimax can be studied via MC/MC, so results from \Cref{sect:032} can be ported. We first show how $a^\ast,b^\ast$ can be interpreted as $w^\ast,q^\ast$. There are two different ways, both utilizing conjugate transforms. Define two extended functions $\phi_1,\phi_2$ on $\mathbb{R}^p\times \mathbb{R}^q\to \overline{\mathbb{R}}$, by the following rules:
+
+\begin{itemize}
+	\item $\phi_1(x,y)=-\infty$ (resp. $\phi_2(x,y)=\infty$) if $y\notin Y$ (resp. $x\notin X$).
+	\item $\phi_1(x,y)=\infty$ (resp. $\phi_2(x,y)=-\infty$) if $y\in Y$ and $x\notin X$ (resp. $x\in X$ and $y\notin Y$).
+	\item $\phi(x,y)=\phi_1(x,y)=\phi_2(x,y)$ if $(x,y)\in X\times Y$.
+\end{itemize}
+
+\paragraph{}Now define two other functions $\Phi_1$ (resp. $\Phi_2$) on $\mathbb{R}^p\times \mathbb{R}^q\times \mathbb{R}^p$ (resp. $\mathbb{R}^p\times \mathbb{R}^q\times \mathbb{R}^q$), by:
+\[
+	\Phi_1(x,y,z)=z^Tx-\phi_1(x,y),\;
+	\Phi_2(x,y,z)=z^Ty-(-\phi_2(x,y))
+\]
+(one can think of $\phi_2,\Phi_2$ as an application of the construction of $\phi_1,\Phi_2$ to the function $(y,x)\mapsto -\phi (x,y)$)
+
+\paragraph{}For brevity of notations, we use the following notations for currying and partial infs, sups (over $\mathbb{R}^{p}$ or $\mathbb{R}^q$):
+\[
+	(\Phi_1)_{\downarrow,-,-}(y,z)=\inf_{x\in \mathbb{R}^p}\Phi_1(x,y,z),\;
+	(\Phi_2)_{-,-,\uparrow}(x,y)=\sup_{z\in \mathbb{R}^q}\Phi_1(x,y,z),\;
+	(\Phi_2)_{-,y,-}(x,z)=\Phi_1(x,y,z)
+\]
+
+\paragraph{}We have the following:
+\begin{itemize}
+	\item $-b^\ast=((\Phi_{1})_{\uparrow,-,-})_{\downarrow,-}(O)$, $a^\ast=((\Phi_{2})_{-,\uparrow,-})_{\downarrow,-}(O)$
+	\item $(\Phi_1)_{\uparrow,y,-}=(\phi_1)_{-,y}^\star$, $(\Phi_2)_{x,\uparrow,-}=(-\phi_2)_{x,-}^\star$
+\end{itemize}
+
+\paragraph{}Therefore, if we define $p_1=((\Phi_{1})_{\uparrow,-,-})_{\downarrow,-}$, $p_2=((\Phi_{2})_{-,\uparrow,-})_{\downarrow,-}$, then $p_1,p_2$ are convex by (c) and (d) of \Cref{prop:021-yoga-convex-functions}, and can be thought of as partial infs of $(y,z)\mapsto(\phi_{1})_{-,y}^\star(z)$, $(x,z)\mapsto(-\phi_{2})_{x,-}^\star(z)$.
+
+\paragraph{}Also, if we define $M_1=\operatorname{epi}(p_1)$, $M_2=\operatorname{epi}(p_2)$, the max-crossing values gives $p_1(O),p_2(O)$. Even better - in fact, the min-commons also gives $-a^\ast,b^\ast$. For what follows, we write the $q,q^\ast,w^\ast$ for $M_i$ as $q_i,q^\ast_i,w^\ast_i$.
+
+\begin{prop}[Minimax Strong Duality]\label{prop:047-minimax-strong-duality}Recall that $p_1(O)=-b^\ast,p_2(O)=a^\ast$.
+	\begin{enumerate}[label=(\alph*)]
+		\item If either $-b^\ast<\infty$ or $p_1(z)>-\infty$ for $z\in \mathbb{R}^p$, then $a^\ast=b^\ast$ iff $p_1$ lower semicontinuous at $O$.
+		\item If either $a^\ast<\infty$ or $p_2(z)>-\infty$ for $z\in \mathbb{R}^q$, then $a^\ast=b^\ast$ iff $p_2$ lower semicontinuous at $O$.
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	By \Cref{prop:032-strong-duality}, we only need $q_1^\ast=-a^\ast,q_2^\ast=b^\ast$. We have by (d) of \Cref{prop:025-conjugacy-theorem} that:
+	\[
+		q_1(x)=\inf(-x,1)^T \operatorname{epi}(p_1)=\inf_{z\in \mathbb{R}^q,y\in Y}-x^Tz+(\phi_1)_{-,y}^\star(z)=-\sup_{y\in Y}(\phi_1)_{-,y}^{\star\star}(x)=-\sup_{y\in Y}\phi_1(x,y)
+	\]
+	which evaluates to $-\infty$ for $x\notin X$, otherwise to $-\sup_{y\in Y}{\phi}(x,y)$, giving $q_1^\ast=-a^\ast$. Similarly:
+	\[
+		q_2(y)=\inf(-y,1)^T \operatorname{epi}(p_2)=\inf_{z\in \mathbb{R}^q,x\in X}-y^Tz-(\phi_2)_{x,-}^\star(z)=-\sup_{x\in X}(-\phi_2)_{x,-}^{\star\star}(y)=\inf_{x\in X}\phi_2(x,y)
+	\]
+	which evaluates to $-\infty$ for $y\notin Y$, otherwise to $\inf_{x\in X}{\phi}(x,y)$, giving $q_2^\ast=b^\ast$.
+\end{proof}
+
+\paragraph{}Except \Cref{prop:032-strong-duality}, we can also port \Cref{prop:032-reachability} and \Cref{prop:032-optimal-set}, using the same setup.
+
+\begin{prop}[Minimax Dual Reachability]\label{prop:047-dual-reachability}Recall that $p_1(O)=-b^\ast,p_2(O)=a^\ast$.
+	\begin{enumerate}[label=(\alph*)]
+		\item If $-b^\ast>-\infty$, $O\in \operatorname{ri}(\operatorname{dom}(p_1))$, then $a^\ast=b^\ast$, $X^\ast\neq\emptyset$. Also, $X^\ast$ is compact iff $O\in \operatorname{int}(\operatorname{dom}(p_1))$.
+		\item If $a^\ast>-\infty$, $O\in \operatorname{ri}(\operatorname{dom}(p_2))$, then $a^\ast=b^\ast$, $Y^\ast\neq\emptyset$. Also, $Y^\ast$ is compact iff $O\in \operatorname{int}(\operatorname{dom}(p_2))$.
+	\end{enumerate}
+\end{prop}
+
+\paragraph{}The preceding proposition guarantees existence of dual optimal solutions. The rest of this section would be devoted to the study of the so-called "Saddle Point Theorems", which are conditions guaranteeing existence of saddle points. By \Cref{lemm:047-classify-saddle}, it would be beneficial to look for conditions where $X^\ast,Y^\ast$ are nonempty and strong duality holds. The analysis revolves around the following functions:
+
+\[
+	p_1:=((\Phi_1)_{\uparrow, -,-})_{\downarrow,-},\;
+	F_1:=(\Phi_1)_{\uparrow, -,-},\;
+	t_1:=(\Phi_1)_{\uparrow, -,O_p}
+\]
+\[
+	p_2:=((\Phi_2)_{-, \uparrow, -})_{\downarrow,-},\;
+	F_2:=(\Phi_2)_{-, \uparrow, -},\;
+	t_2:=(\Phi_2)_{-, \uparrow, O_q}
+\]
+where the definitions of $p_1,p_2$ are repeated here.
+
+\paragraph{}We will consider conditions on closedness, convexity, and properness of these functions, and how they relate to each other. The following table gives a summary ($i=1,2$):
+
+\begin{center}
+	\begin{tabular}{|r||l|l|l|}
+		\hline
+		      & convex? & closed?                                       & proper?                                       \\\hline\hline
+		$p_i$ & yes     & see \Cref{lemm:047-proper-closed-partial-inf} & see \Cref{lemm:047-proper-closed-partial-inf} \\\hline
+		$F_i$ & yes     & yes                                           & yes if $t_i$ proper                           \\\hline
+		$t_i$ & yes     & yes                                           & yes iff $p_i(O)<\infty$                       \\\hline
+	\end{tabular}
+\end{center}
+
+\paragraph{}To see that the $p_i,F_i,t_i$ are convex and $F_i,t_i$ are closed, use \Cref{prop:021-yoga-convex-functions}. For properness condition of $t_1$, one can write out explicitly the expression of $t_1$:
+
+\[
+	t_1(y)=-\inf_{x\in X}\phi_1(x,y)=\begin{cases}
+		\infty,                          & \text{ if }x\notin X \\
+		-\inf_{x\in X}\phi(x,y)>-\infty, & \text{ if }x\in X
+	\end{cases}
+\]
+which would give $t_1$ proper iff $p_1(O)=-b^\ast=-\sup_{y\in Y}\inf_{x\in X}\phi(x,y)<\infty$. Simiarly for $t_2$.
+\paragraph{}To see that $t_1$ proper implies $F_1$ proper, it suffices by \Cref{prop:013-yoga-recession} and closedness of $t_1,F_1$ to show $e_{p+q+1}\notin R_{\operatorname{epi}(F_1)}$ if $e_{q+1}\notin R_{\operatorname{epi}(t_1)}$, which follows directly from $R_{\operatorname{epi}(t_1)}=(R_{\operatorname{epi}(F_1)})_{:,O_p,:}$. Similarly for $t_2,F_2$.
+
+\paragraph{}Now $p_i=(F_1)_{\downarrow,-}$ is a partial inf of $F_1$. Properness and closedness of $p_i$ can be given by the following:
+
+\begin{lemm}[Closedness and Properness of Partial Minimization]\label{lemm:047-proper-closed-partial-inf}
+	Given a closed proper convex function $F$ on $\mathbb{R}^{p}\times \mathbb{R}^q$, let $f=F_{\downarrow,-}$, then $f$ is closed, convex if any of the following holds:
+	\begin{enumerate}[label=(\alph*)]
+		\item Some sublevel set $V_{F_{-,y},u}$ is nonempty compact for some $y\in \mathbb{R}^q$, $u\in \mathbb{R}$
+		\item Some sublevel set $V_{F_{-,y},u}$ is nonempty with $R_{V_{F_{-,y}}}\subset L_{V_{F_{-,y}}}$ for some $y\in \mathbb{R}^q$, $u\in \mathbb{R}$
+	\end{enumerate}
+	Also, for fixed $x\in \operatorname{dom}(f)\neq\emptyset$, $f(x)>-\infty$, with $V_{F_{-,y},f(y)}$ being nonempty (resp. nonempty and compact) if (b) (resp. (a)) holds; consequently, $f$ is proper.
+\end{lemm}
+
+\paragraph{}Before going into the proof, we first note the application of this lemma to our minimax problem. Note that by taking $F$ to be $F_1,F_2$, $y$ to be $O_p,O_q$, the function $F_{-,y}$ becomes $t_1,t_2$, the function $f$ becomes $p_1,p_2$, the set $V_{F_{-,y},f(y)}$ becomes $Y^\ast,X^\ast$. Knowing that $p_1$ or $p_2$ is significant - as in this case, we have by \Cref{prop:047-minimax-strong-duality} that strong duality holds. Therefore, this lemma translates to the following saddle point theorem:
+
+\begin{prop}[Saddle Point Theorem]\label{prop:047-saddle-point-theorem}.
+	\begin{enumerate}[label=(\alph*)]
+		\item Suppose any of the following holds:
+		      \begin{enumerate}[label=(Y\arabic*)]
+			      \item $Y$ is nonempty compact
+			      \item Some sublevel set $V_{t_1,u}$ is nonempty compact for some $u\in \mathbb{R}$
+			      \item Some sublevel set $V_{t_1,u}$ is nonempty with $R_{V_{t_1,u}}\subset L_{V_{t_1,u}}$ for some $u\in \mathbb{R}$
+			      \item Some sublevel set $V_{-\phi_{x,-},u}$ is nonempty for some $x\in X,u\in \mathbb{R}$
+		      \end{enumerate}
+		      If $t_1$ is proper, we have $-\infty<b^\ast=a^\ast$, $Y^\ast\neq\emptyset$, and under (Y1), (Y2), (Y4), $Y^\ast$ is compact.
+		\item Suppose any of the following holds:
+		      \begin{enumerate}[label=(X\arabic*)]
+			      \item $X$ is nonempty compact
+			      \item Some sublevel set $V_{t_2,u}$ is nonempty compact for some $u\in \mathbb{R}$
+			      \item Some sublevel set $V_{t_2,u}$ is nonempty with $R_{V_{t_2,u}}\subset L_{V_{t_2,u}}$ for some $u\in \mathbb{R}$
+			      \item Some sublevel set $V_{\phi_{-,y},u}$ is nonempty for some $y\in Y,u\in \mathbb{R}$
+		      \end{enumerate}
+		      If $t_2$ is proper, we have $b^\ast=a^\ast<\infty$, $X^\ast\neq\emptyset$, and under (X1), (X2), (X4), $X^\ast$ is compact.
+		\item If (Xi) and (Yj) both holds and $\{i,j\}\subset \{1,4\}$, then $-\infty<b^\ast=a^\ast<\infty$, and saddle points exists.
+	\end{enumerate}
+\end{prop}
+\begin{proof}
+	We show (a) and (c); the proof for (b) is similar to (a). For (a), conditions (Y1), (Y4) implies (Y2) under the condition $t_1$ proper, while (Y2), (Y3) are translations of (a), (b) of \Cref{lemm:047-proper-closed-partial-inf}. For (c), note that condition (X1), (X2) implies properness of $t_1$ by \Cref{prop:045-primal-reachability}, and similarly, (Y1), (Y2) implies properness of $t_2$; the rest is then a application of \Cref{lemm:047-classify-saddle}.
+\end{proof}
+
+\begin{proof}
+	Write $\pi:\mathbb{R}^p\times\mathbb{R}^q\times\mathbb{R}\to\mathbb{R}^q\times\mathbb{R}$ as the projection map $(x,y,u)\mapsto(y,u)$. Since $\operatorname{epi}(f)_{y,:}=\operatorname{cl}((\pi\operatorname{epi}(F))_{y,:})$, $f$ is closed if $\pi\operatorname{epi}(F)$ is closed. We show this is the case by \Cref{coro:014-closed-affine}. Firstly:
+	\[
+		R_{V_{F_{-,y}},u}=R_{F_{-,y}}=\left(R_{\operatorname{epi}(F_{-,y})}\right)_{:,0}=\left(R_{\operatorname{epi}(F)}\right)_{:,O_{q+1}}
+	\]
+	and similarly with $R$ replaced by $L$, so under assumption (a) or (b):
+	\[
+		\operatorname{ker}(\pi)\cap\left(R_{\operatorname{epi}(F)}\right)=R_{V_{F_{-,y},u}}\times \{O_{q+1}\}\subset
+		L_{V_{F_{-,y},u}}\times\{O_{q+1}\}\subset L_{\operatorname{epi}(F)}
+	\]
+	so \Cref{coro:014-closed-affine} can be applied (under the notation of that proposition, take $C_i=R_{\operatorname{epi}(F)}$, $C_0=\mathbb{R}^{p+q+1}$). The assertions on $V_{F_{-,y},f(y)}$ follows from \Cref{prop:045-primal-reachability}, as $R_{F_{-,y}}=R_{V_{F_{-,y}},u}$, $L_{F_{-,y}}=L_{V_{F_{-,y}},u}$.
+\end{proof}
+
+\paragraph{}This lemma allows us to digress and derive a general primal reachability theorem for convex programming, promised in \Cref{sect:045} but deferred here.
+
+\begin{coro}[Convex Programming Primal Reachability]\label{coro:047-convex-programming-primal-reachability}
+	Suppose the problem in \Cref{defn:040-opt-prob} is feasible, $f$ is closed proper convex, $g$ has closed, convex components. Define $F:\mathbb{R}^m\times \mathbb{R}^r\to \overline{\mathbb{R}}$ by:
+	\[
+		F(x,y)=
+		\begin{cases}
+			f(x),   & \text{ if }x\in X\text{ and }g(x)\leq y \\
+			\infty, & \text{ otherwise}
+		\end{cases}
+	\]
+	If $F_{-,O_r}$ has a nonempty compact level set, then $f^\ast=q^\ast$, $F^\ast\neq\emptyset$ and compact (set of primal optimal points).
+\end{coro}
+
+\begin{proof}
+	By \Cref{lemm:047-proper-closed-partial-inf} and \Cref{prop:032-strong-duality} on $\operatorname{epi}(p)$ with $p=F_{\downarrow,-}$, noting $F$ closed convex proper. To see this, note that $\operatorname{epi}(F)=\pi^{-1}\operatorname{epi}(f)\cap Z\times \mathbb{R}$, where $\pi:\mathbb{R}^m\times \mathbb{R}^r\times \mathbb{R}\to \mathbb{R}^m\times \mathbb{R}$ is the projection $(x,y,u)\mapsto (x,u)$, and $Z$ is the set $\{(x,y)\in \mathbb{R}^m\times \mathbb{R}^r:g(x)\leq y\}$, which is convex and closed, and contains the feasibility region.
+\end{proof}
+
+\begin{rmrk}[Perturbation]
+	The function $p$ given in \Cref{coro:047-convex-programming-primal-reachability} is called a "perturbation function" in \cite{bertsekas2009convex}.
+\end{rmrk}
+

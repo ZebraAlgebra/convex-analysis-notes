@@ -35,7 +35,7 @@
 	As (i), (ii) are true, the conditions for (g) of \Cref{prop:015-hyperplane-sep} are satisfied, and we are done.
 \end{proof}
 
-\begin{coro}[Reachability - Special Cases]\label{coro:032-reachability-special-cases}Suppose $w^\ast<\infty$.
+\begin{coro}[Strong Duality - Special Cases]\label{coro:032-reachability-special-cases}Suppose $w^\ast<\infty$.
 	\begin{enumerate}[label=(\alph*)]
 		\item Suppose $M$ is closed and convex, then $M^{+,\vee}$ is convex, and $q^\ast=w^\ast$. If $w^\ast > -\infty$, $M^{+,\vee}$ is also closed, proper.
 		\item In general, we have $q_M^\ast = w_{\operatorname{clconv}(M)}^\ast = q_{\operatorname{clconv}(M)}^\ast$.
@@ -46,7 +46,7 @@
 	For (c), by (a), we show $\operatorname{conv}(M)$ is closed and convex. Note that $\operatorname{conv}(M)=\operatorname{conv}(M')+C\times \{O\}$. By \Cref{prop:011-cara}, this is a sum of a two closed convex sets with one being compact, so by \Cref{coro:014-closed-sum}, this set is convex and closed. For (a), we only need $M^{+,\vee}$ closed proper when $w^\ast\in \mathbb{R}$, which follows from the definition $M^+=M+\{O\}\times \mathbb{R}_{+}$, and the fact that $(O, -1)\notin R_M$ (as $w^\ast \in \mathbb{R}$). For (b), use (a).
 \end{proof}
 
-\begin{prop}[Reachability of Optimal Values]\label{prop:032-reachability}
+\begin{prop}[Reachability of Dual Optimal Values]\label{prop:032-reachability}
 	Let $\pi :\mathbb{R}^{m+1}\to \mathbb{R}^m$ be $(x,u)\mapsto x$. Suppose:
 	\begin{enumerate}[label=(\alph*)]
 		\item $w^\ast >-\infty$
